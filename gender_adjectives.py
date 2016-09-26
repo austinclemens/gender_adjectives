@@ -5,9 +5,11 @@ from nltk.corpus import twitter_samples
 from nltk.corpus import gutenberg
 from nltk.stem.lancaster import *
 from textblob import TextBlob
+from nltk import word_tokenize
 import string
 import enchant
 import operator
+import requests
 
 female_nouns=['she','her','woman','mother','girl','aunt','wife','daughter','actress','princess','waitress','female','grandmother','sister','niece','queen','bitch','whore','cunt','slut','dyke','skank']
 male_nouns=['he','his','man','father','boy','uncle','husband','son','actor','prince','waiter','male','grandfather','brother','nephew','king','fag','faggot','fairy','gay']
@@ -19,9 +21,31 @@ stemmer=LancasterStemmer()
 
 corpora={}
 
-twitter=[twitter_samples.strings('tweets.20150430-223406.json'),twitter_samples.strings('negative_tweets.json'),twitter_samples.strings('positive_tweets.json')]
-austen=[gutenberg.sents('austen-emma.txt'),gutenberg.sents('austen-persuasion.txt'),gutenberg.sents('austen-sense.txt')]
-# to divy into sentences: http://www.nltk.org/api/nltk.tokenize.html
+austen_list=['946','1212','22962']
+dickens_list=['580','730','967','700','917','968','821','766','1023','786','963','98','1400','883','564']
+
+def gettwitter():
+	twitter=[twitter_samples.strings('tweets.20150430-223406.json'),twitter_samples.strings('negative_tweets.json'),twitter_samples.strings('positive_tweets.json')]
+
+def getdickens():
+	dickens=[]
+	for num in dickens_list:
+		a=get_gutenberg(num)
+		dickens.append(word_tokenize(a))
+	return dickens
+
+def getausten():
+	austen=[gutenberg.sents('austen-emma.txt'),gutenberg.sents('austen-persuasion.txt'),gutenberg.sents('austen-sense.txt')]
+	for num in austen_list:
+		print num
+		a=get_gutenberg(num)
+		austen.append(word_tokenize(a))
+	return austen
+
+def get_gutenberg(textnumber):
+	r = requests.get('http://www.gutenberg.org/files/'+textnumber+'/'+textnumber+'.txt')
+	raw=r.text.decode('utf8')
+	return raw
 
 def parse(corpora,tokenize=1):
 	# for any corpora where you're starting with sentences
