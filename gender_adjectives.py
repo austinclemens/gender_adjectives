@@ -5,7 +5,12 @@ from nltk.corpus import twitter_samples
 from nltk.corpus import gutenberg
 from nltk.stem.lancaster import *
 from textblob import TextBlob
+<<<<<<< Updated upstream
 from nltk import sent_tokenize, word_tokenize
+=======
+from nltk import word_tokenize
+from nltk.tokenize import sent_tokenize
+>>>>>>> Stashed changes
 import string
 import enchant
 import operator
@@ -21,6 +26,16 @@ dictionary=enchant.Dict("en_US")
 stemmer=LancasterStemmer()
 
 corpora={}
+
+def getgamergate():
+	r=praw.Reddit(user_agent='/austinclemens gendered-adjectives project, Python PRAW')
+	subreddit=r.get_subreddit('KotakuInAction')
+	subreddit_comments=subreddit.get_comments(limit=1000)
+	flat=praw.helpers.flatten_tree(subreddit_comments)
+	flat[0].body
+	# etc. - but this only returns 1000 comments - need to find a way to keep getting more. Just google a little - someone suggests it can be done by looking at time stamps on posts or something
+	# here are the praw docs: https://praw.readthedocs.io/en/stable/pages/writing_a_bot.html
+	# see here: http://stackoverflow.com/questions/33901832/how-to-scrape-all-subreddit-posts-in-a-given-time-period
 
 def gettwitter():
 	twitter=[twitter_samples.strings('tweets.20150430-223406.json'),twitter_samples.strings('negative_tweets.json'),twitter_samples.strings('positive_tweets.json')]
@@ -49,11 +64,12 @@ def getausten():
 			for sent in text:
 				final.append(word_tokenize(sent))
 			austen.append(final)
+
 	return austen
 
 def get_gutenberg(textnumber):
 	r = requests.get('http://www.gutenberg.org/files/'+textnumber+'/'+textnumber+'.txt')
-	raw=r.text.decode('utf8')
+	raw=r.text
 	return raw
 
 def parse(corpora,tokenize=1):
