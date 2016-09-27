@@ -5,15 +5,15 @@ from nltk.corpus import twitter_samples
 from nltk.corpus import gutenberg
 from nltk.stem.lancaster import *
 from textblob import TextBlob
-from nltk import sent_tokenize, word_tokenize
+from nltk import sent_tokenize, word_tokenize, chunk
 import string
 import enchant
 import operator
 import requests
 import os
 
-female_nouns=['she','her','woman','mother','girl','aunt','wife','daughter','actress','princess','waitress','female','grandmother','sister','niece','queen','bitch','whore','cunt','slut','dyke','skank']
-male_nouns=['he','his','man','father','boy','uncle','husband','son','actor','prince','waiter','male','grandfather','brother','nephew','king','fag','faggot','fairy','gay']
+female_nouns=['matron','countess','baroness','dame','gal','mom','mama','crone','lady','ms.','mrs.','miss','missus','mistress','she','her','woman','mother','girl','aunt','wife','daughter','actress','princess','waitress','female','grandmother','sister','niece','queen','bitch','whore','cunt','slut','dyke','skank']
+male_nouns=['gentleman','sir','mr.','mister','he','his','man','father','boy','uncle','husband','son','actor','prince','waiter','male','grandfather','brother','nephew','king','fag','faggot','fairy','gay']
 female_names=names.words('female.txt')
 male_names=names.words('male.txt')
 exclude = set(string.punctuation)
@@ -21,6 +21,7 @@ dictionary=enchant.Dict("en_US")
 stemmer=LancasterStemmer()
 
 corpora={}
+folder_loc='/Users/austinclemens/Desktop/gender_adjectives/'
 
 def getgamergate():
 	r=praw.Reddit(user_agent='/austinclemens gendered-adjectives project, Python PRAW')
@@ -33,14 +34,30 @@ def getgamergate():
 	# see here: http://stackoverflow.com/questions/33901832/how-to-scrape-all-subreddit-posts-in-a-given-time-period
 
 def gettwitter():
-	twitter=[twitter_samples.strings('tweets.20150430-223406.json'),twitter_samples.strings('negative_tweets.json'),twitter_samples.strings('positive_tweets.json')]
+	credentials=open(folder_loc+'twitter_creds.txt','r').read().split('\n')
+	api = twitter.Api(consumer_key=credentials[0],consumer_secret=credentials[1],access_token_key=credentials[2],access_token_secret=credentials[3])
+	b=api.GetStreamSample()
+
+	with open(folder_loc+"tweets.csv",'w+') as cfile:
+		cwriter=csv.writer(cfile)
+		i=1
+		for line in b:
+			tweet=twitter.Status.NewFromJsonDict(line)
+			if tweet.lang=='en':
+
+			try:
+				cwriter.writerow([tweet.text.encode('ascii','ignore')])
+				print i
+				i=i+1
+			except:
+				print "ERROR: ",tweet.text
 
 def getdickens():
 	dickens=[]
-	dickens_list=os.listdir("/Users/austinc/Desktop/gender_adjectives/dickens/")
+	dickens_list=os.listdir(folder_loc+"dickens/")
 	for text in dickens_list:
 		if text[-3:]=='txt':
-			text=open("/Users/austinc/Desktop/gender_adjectives/dickens/"+text,'r').read().decode('ascii','ignore')
+			text=open(folder_loc+"dickens/"+text,'r').read().decode('ascii','ignore')
 			text=sent_tokenize(text)
 			final=[]
 			for sent in text:
@@ -50,10 +67,10 @@ def getdickens():
 
 def getausten():
 	austen=[gutenberg.sents('austen-emma.txt'),gutenberg.sents('austen-persuasion.txt'),gutenberg.sents('austen-sense.txt')]
-	austen_list=os.listdir("/Users/austinc/Desktop/gender_adjectives/austen/")
+	austen_list=os.listdir(folder_loc+"austen/")
 	for text in austen_list:
 		if text[-3:]=='txt':
-			text=open("/Users/austinc/Desktop/gender_adjectives/austen/"+text,'r').read().decode('ascii','ignore')
+			text=open(folder_loc+"austen/"+text,'r').read().decode('ascii','ignore')
 			text=sent_tokenize(text)
 			final=[]
 			for sent in text:
