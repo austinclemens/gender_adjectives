@@ -138,8 +138,8 @@ def parse(corpora,tokenize=1):
 
 	for key in adjective_dict.keys():
 		# convert from number of male/female mentions to % of male/female mentions that are associated with adj
-		adjective_dict[key][1]=adjective_dict[key][1]/total_females
-		adjective_dict[key][2]=adjective_dict[key][2]/total_males
+		adjective_dict[key][1]=100*adjective_dict[key][1]/total_females
+		adjective_dict[key][2]=100*adjective_dict[key][2]/total_males
 
 		# replace stemmed adjective with most popular unstemmed option
 		unstemmed_opt=adjective_dict[key][4][0][adjective_dict[key][4][1].index(max(adjective_dict[key][4][1]))]
@@ -190,6 +190,8 @@ def method1(biglist):
 
 	for term in outlist:
 		print term
+
+	return outlist
 
 
 
