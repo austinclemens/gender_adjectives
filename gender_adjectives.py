@@ -11,6 +11,8 @@ import enchant
 import operator
 import requests
 import os
+import twitter
+import csv
 
 female_nouns=['matron','countess','baroness','dame','gal','mom','mama','crone','lady','ms.','mrs.','miss','missus','mistress','she','her','woman','mother','girl','aunt','wife','daughter','actress','princess','waitress','female','grandmother','sister','niece','queen','bitch','whore','cunt','slut','dyke','skank']
 male_nouns=['gentleman','sir','mr.','mister','he','his','man','father','boy','uncle','husband','son','actor','prince','waiter','male','grandfather','brother','nephew','king','fag','faggot','fairy','gay']
@@ -33,10 +35,15 @@ def getgamergate():
 	# here are the praw docs: https://praw.readthedocs.io/en/stable/pages/writing_a_bot.html
 	# see here: http://stackoverflow.com/questions/33901832/how-to-scrape-all-subreddit-posts-in-a-given-time-period
 
+	# get all comments for top submissions (if you put this in a loop)
+	a=r.get_subreddit('KotakuInAction').get_top()
+	b=a.next()
+	c=praw.helpers.flatten_tree(b.comments)
+
 def gettwitter():
 	credentials=open(folder_loc+'twitter_creds.txt','r').read().split('\n')
 	api = twitter.Api(consumer_key=credentials[0],consumer_secret=credentials[1],access_token_key=credentials[2],access_token_secret=credentials[3])
-	b=api.GetStreamSample()
+	b=api.GetStreamSample(stall_warnings=True)
 
 	with open(folder_loc+"tweets.csv",'w+') as cfile:
 		cwriter=csv.writer(cfile)
@@ -44,13 +51,12 @@ def gettwitter():
 		for line in b:
 			tweet=twitter.Status.NewFromJsonDict(line)
 			if tweet.lang=='en':
-
-			try:
-				cwriter.writerow([tweet.text.encode('ascii','ignore')])
-				print i
-				i=i+1
-			except:
-				print "ERROR: ",tweet.text
+				try:
+					cwriter.writerow([tweet.text.encode('ascii','ignore')])
+					print i
+					i=i+1
+				except:
+					print "ERROR: ",tweet.text
 
 def getdickens():
 	dickens=[]
