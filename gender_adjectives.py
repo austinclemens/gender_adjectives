@@ -5,12 +5,7 @@ from nltk.corpus import twitter_samples
 from nltk.corpus import gutenberg
 from nltk.stem.lancaster import *
 from textblob import TextBlob
-<<<<<<< Updated upstream
 from nltk import sent_tokenize, word_tokenize
-=======
-from nltk import word_tokenize
-from nltk.tokenize import sent_tokenize
->>>>>>> Stashed changes
 import string
 import enchant
 import operator
