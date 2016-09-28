@@ -6,6 +6,7 @@ from nltk.corpus import gutenberg
 from nltk.stem.lancaster import *
 from textblob import TextBlob
 from nltk import sent_tokenize, word_tokenize, chunk
+from datetime import timedelta
 import string
 import enchant
 import operator
@@ -13,6 +14,8 @@ import requests
 import os
 import twitter
 import csv
+import time
+import datetime
 
 female_nouns=['matron','countess','baroness','dame','gal','mom','mama','crone','lady','ms.','mrs.','miss','missus','mistress','she','her','woman','mother','girl','aunt','wife','daughter','actress','princess','waitress','female','grandmother','sister','niece','queen','bitch','whore','cunt','slut','dyke','skank']
 male_nouns=['gentleman','sir','mr.','mister','he','his','man','father','boy','uncle','husband','son','actor','prince','waiter','male','grandfather','brother','nephew','king','fag','faggot','fairy','gay']
@@ -26,19 +29,27 @@ corpora={}
 folder_loc='/Users/austinclemens/Desktop/gender_adjectives/'
 
 def getgamergate():
-	r=praw.Reddit(user_agent='/austinclemens gendered-adjectives project, Python PRAW')
-	subreddit=r.get_subreddit('KotakuInAction')
-	subreddit_comments=subreddit.get_comments(limit=1000)
-	flat=praw.helpers.flatten_tree(subreddit_comments)
-	flat[0].body
-	# etc. - but this only returns 1000 comments - need to find a way to keep getting more. Just google a little - someone suggests it can be done by looking at time stamps on posts or something
-	# here are the praw docs: https://praw.readthedocs.io/en/stable/pages/writing_a_bot.html
-	# see here: http://stackoverflow.com/questions/33901832/how-to-scrape-all-subreddit-posts-in-a-given-time-period
+	r=praw.Reddit(user_agent='/austinclemens gendered-adjectives project')
+	currentstart=datetime.date(2016,1,1)
+	currentend=currentstart+timedelta(days=1)
 
-	# get all comments for top submissions (if you put this in a loop)
-	a=r.get_subreddit('KotakuInAction').get_top()
-	b=a.next()
-	c=praw.helpers.flatten_tree(b.comments)
+	while int(currentend.strftime('%s'))<1475093977:
+		day_comments=[]
+		print currentstart
+		a=praw.helpers.submissions_between(r,'KotakuInAction',lowest_timestamp=int(currentstart.strftime('%s')),highest_timestamp=int(currentend.strftime('%s')))
+		currentstart=currentstart+timedelta(days=1)
+		currentend=currentstart+timedelta(days=1)
+
+		for sub in a:
+			sub.replace_more_comments(limit=None,threshold=0)
+			all_comments=praw.helpers.flatten_tree(sub.comments)
+			for comment in all_comments:
+				day_comments.append(comment.body)
+
+		with open(folder_loc+"kotakuinaction.csv",'w+') as cfile:
+			cwriter=csv.writer(cfile)
+			for line in day_comments:
+				cwriter.writerow([line.encode('ascii','ignore')])
 
 def gettwitter():
 	credentials=open(folder_loc+'twitter_creds.txt','r').read().split('\n')
