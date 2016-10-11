@@ -30,10 +30,10 @@ folder_loc='/Users/austinclemens/Desktop/gender_adjectives/'
 
 def getgamergate():
 	r=praw.Reddit(user_agent='/austinclemens gendered-adjectives project')
-	currentstart=datetime.date(2016,1,1)
+	currentstart=datetime.date(2015,5,11)
 	currentend=currentstart+timedelta(days=1)
 
-	while int(currentend.strftime('%s'))<1475093977:
+	while int(currentend.strftime('%s'))<1475854178:
 		day_comments=[]
 		print currentstart
 		a=praw.helpers.submissions_between(r,'KotakuInAction',lowest_timestamp=int(currentstart.strftime('%s')),highest_timestamp=int(currentend.strftime('%s')))
@@ -46,7 +46,7 @@ def getgamergate():
 			for comment in all_comments:
 				day_comments.append(comment.body)
 
-		with open(folder_loc+"kotakuinaction.csv",'w+') as cfile:
+		with open(folder_loc+"kotakuinaction.csv",'a+') as cfile:
 			cwriter=csv.writer(cfile)
 			for line in day_comments:
 				cwriter.writerow([line.encode('ascii','ignore')])
@@ -56,7 +56,7 @@ def gettwitter():
 	api = twitter.Api(consumer_key=credentials[0],consumer_secret=credentials[1],access_token_key=credentials[2],access_token_secret=credentials[3])
 	b=api.GetStreamSample(stall_warnings=True)
 
-	with open(folder_loc+"tweets.csv",'w+') as cfile:
+	with open(folder_loc+"tweets2.csv",'a+') as cfile:
 		cwriter=csv.writer(cfile)
 		i=1
 		for line in b:

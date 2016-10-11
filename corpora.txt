@@ -1,7 +1,12 @@
-possible corpora:
+POSSIBLE:
 http://www.hansard-archive.parliament.uk
-twitter (created by me)
-Gutenberg (created by me)
-http://quod.lib.umich.edu/m/micase/
 http://www.anc.org/data/oanc/download/
-the illiad and the odyssey could be fun
+reddit - some common subreddit
+reddit - kotakuinaction commenters outside of kotakuinaction
+
+DONE:
+Dickens
+Austen
+Reddit
+	kotakuinaction
+Twitter
