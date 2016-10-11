@@ -29,8 +29,6 @@ Example:
     { w: 100, h: 100 },
     { w:  80, h:  80 },
     { w:  80, h:  80 },
-    etc
-    etc
   ];
 
   var packer = new Packer(500, 500);
@@ -46,14 +44,14 @@ Example:
 
 ******************************************************************************/
 
-Packer = function(w, h) {
-  this.init(w, h);
+Packer = function(x, y, w, h) {
+  this.init(x, y, w, h);
 };
 
 Packer.prototype = {
 
-  init: function(w, h) {
-    this.root = { x: 0, y: 0, w: w, h: h };
+  init: function(x, y, w, h) {
+    this.root = { x: x, y: y, w: w, h: h };
   },
 
   fit: function(blocks) {
@@ -76,8 +74,8 @@ Packer.prototype = {
 
   splitNode: function(node, w, h) {
     node.used = true;
-    node.down  = { x: node.x,     y: node.y + h, w: node.w,     h: node.h - h };
-    node.right = { x: node.x + w, y: node.y,     w: node.w - w, h: h          };
+    node.down  = { x: node.x,     y: node.y + h+3, w: node.w,     h: node.h - h - 3 };
+    node.right = { x: node.x + w+3, y: node.y,     w: node.w - w - 3, h: h          };
     return node;
   }
 
