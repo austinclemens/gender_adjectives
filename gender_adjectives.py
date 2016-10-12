@@ -96,6 +96,8 @@ def getausten():
 
 	return austen
 
+def getslate():
+
 def get_gutenberg(textnumber):
 	r = requests.get('http://www.gutenberg.org/files/'+textnumber+'/'+textnumber+'.txt')
 	raw=r.text
