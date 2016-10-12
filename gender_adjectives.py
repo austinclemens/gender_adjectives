@@ -26,7 +26,10 @@ stemmer=LancasterStemmer()
 corpora={}
 folder_loc='/Users/austinclemens/Desktop/gender_adjectives/'
 
-def getgamergate():
+##### DOWNLOAD TEXTS
+
+def downloadgamergate():
+	# tokenize
 	r=praw.Reddit(user_agent='/austinclemens gendered-adjectives project')
 	currentstart=datetime.date(2016,2,11)
 	currentend=currentstart+timedelta(days=1)
@@ -49,7 +52,8 @@ def getgamergate():
 			for line in day_comments:
 				cwriter.writerow([line.encode('ascii','ignore')])
 
-def gettwitter():
+def downloadtwitter():
+	# tokenize
 	credentials=open(folder_loc+'twitter_creds.txt','r').read().split('\n')
 	api = twitter.Api(consumer_key=credentials[0],consumer_secret=credentials[1],access_token_key=credentials[2],access_token_secret=credentials[3])
 	b=api.GetStreamSample(stall_warnings=True)
@@ -67,7 +71,46 @@ def gettwitter():
 				except:
 					print "ERROR: ",tweet.text
 
+##### LOAD TEXTS FOR ANALYSIS
+
+def getoutlist(getfunction,tokenize=0):
+	# pass this one of the getfunctions, it will spit out a complete method1 list
+	corpus=getfunction()
+	parsed=parse(corpus,tokenize)
+	biglist=compare_genders(parsed)
+	outlist=method1(biglist)
+	return outlist
+
+def gettwitter():
+	#don't tokenize
+	out=[]
+	twit_list=os.listdir(folder_loc+'corpora/twitter/')
+	for text in twit_list:
+		if text[-3:]=='txt':
+			text=open(folder_loc+"corpora/twitter/"+text,'r').read().decode('ascii','ignore')
+			text=sent_tokenize(text)
+			final=[]
+			for sent in text:
+				final.append(word_tokenize(sent))
+			out.append(final)
+	return out	
+
+def getggate():
+	# don't tokenize
+	out=[]
+	ggate_list=os.listdir(folder_loc+'corpora/ggate/')
+	for text in ggate_list:
+		if text[-3:]=='txt':
+			text=open(folder_loc+"corpora/ggate/"+text,'r').read().decode('ascii','ignore')
+			text=sent_tokenize(text)
+			final=[]
+			for sent in text:
+				final.append(word_tokenize(sent))
+			out.append(final)
+	return out	
+
 def getdickens():
+	# don't tokenize
 	from nltk.corpus import gutenberg
 	dickens=[]
 	dickens_list=os.listdir(folder_loc+"corpora/dickens/")
@@ -82,6 +125,7 @@ def getdickens():
 	return dickens
 
 def getausten():
+	# don't tokenize
 	from nltk.corpus import gutenberg
 	austen=[gutenberg.sents('austen-emma.txt'),gutenberg.sents('austen-persuasion.txt'),gutenberg.sents('austen-sense.txt')]
 	austen_list=os.listdir(folder_loc+"corpora/austen/")
@@ -93,22 +137,22 @@ def getausten():
 			for sent in text:
 				final.append(word_tokenize(sent))
 			austen.append(final)
-
 	return austen
 
 def getreuters():
+	# don't tokenize
 	from nltk.corpus import reuters
 	reuterslist=[]
 	for article in reuters.fileids():
 		reuterslist.append(reuters.sents(article))
-
 	return reuterslist
 
 
 def getslate():
+	# don't tokenize
 	out=[]
 	slate_list=os.listdir(folder_loc+'corpora/slate/')
-	for text in austen_list:
+	for text in slate_list:
 		if text[-3:]=='txt':
 			text=open(folder_loc+"corpora/slate/"+text,'r').read().decode('ascii','ignore')
 			text=sent_tokenize(text)
@@ -116,15 +160,9 @@ def getslate():
 			for sent in text:
 				final.append(word_tokenize(sent))
 			out.append(final)
-
 	return out
 
-def get_gutenberg(textnumber):
-	r = requests.get('http://www.gutenberg.org/files/'+textnumber+'/'+textnumber+'.txt')
-	raw=r.text
-	return raw
-
-def parse(corpora,tokenize=1):
+def parse(corpora,tokenize=0):
 	# for any corpora where you're starting with sentences
 	total_females=0
 	total_males=0
