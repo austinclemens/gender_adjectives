@@ -4,7 +4,7 @@
 	<title>gender_adj1</title>
 	<script src="lib/jquery-3.1.1.min.js"></script>
 	<script src="lib/snap.svg-min.js"></script>
-	<script src="packer.js"></script>
+	<script src="shelf-pack.js"></script>
 	<!-- check this: https://github.com/mapbox/shelf-pack -->
 	<!-- this too: http://pollinimini.net/demos/RectanglePacker.html -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
@@ -34,7 +34,7 @@ function get_coord(value,min,max,coordmin,coordmax){
 }
 
 function get_size(value,min,max){
-	return 500+(value-min)/(max-min)*4000
+	return 1000+(value-min)/(max-min)*4000
 }
 
 function get_color(value){
@@ -50,12 +50,14 @@ function get_color(value){
 }
 
 function draw_axes(){
-	var rectheight=(gbounds.y[1]-gbounds.y[0])/5
-	var male2=inter1.rect(gbounds.x[0],gbounds.y[0]+rectheight*4,gbounds.x[1]-gbounds.x[0],rectheight).attr({fill:colorscale[4],opacity:.3})
-	var male1=inter1.rect(gbounds.x[0],gbounds.y[0]+rectheight*3,gbounds.x[1]-gbounds.x[0],rectheight).attr({fill:colorscale[3],opacity:.3})
-	var neutral=inter1.rect(gbounds.x[0],gbounds.y[0]+rectheight*2,gbounds.x[1]-gbounds.x[0],rectheight).attr({fill:colorscale[2],opacity:.3})
-	var female1=inter1.rect(gbounds.x[0],gbounds.y[0]+rectheight,gbounds.x[1]-gbounds.x[0],rectheight).attr({fill:colorscale[1],opacity:.3})
-	var female2=inter1.rect(gbounds.x[0],gbounds.y[0],gbounds.x[1]-gbounds.x[0],rectheight).attr({fill:colorscale[0],opacity:.3})
+	// var rectheight=(gbounds.y[1]-gbounds.y[0])/5
+	// var male2=inter1.rect(gbounds.x[0],gbounds.y[0]+rectheight*4,gbounds.x[1]-gbounds.x[0],rectheight).attr({fill:colorscale[4],opacity:.3})
+	// var male1=inter1.rect(gbounds.x[0],gbounds.y[0]+rectheight*3,gbounds.x[1]-gbounds.x[0],rectheight).attr({fill:colorscale[3],opacity:.3})
+	// var neutral=inter1.rect(gbounds.x[0],gbounds.y[0]+rectheight*2,gbounds.x[1]-gbounds.x[0],rectheight).attr({fill:colorscale[2],opacity:.3})
+	// var female1=inter1.rect(gbounds.x[0],gbounds.y[0]+rectheight,gbounds.x[1]-gbounds.x[0],rectheight).attr({fill:colorscale[1],opacity:.3})
+	// var female2=inter1.rect(gbounds.x[0],gbounds.y[0],gbounds.x[1]-gbounds.x[0],rectheight).attr({fill:colorscale[0],opacity:.3})
+	var g = inter1.gradient("L(0, 0, 0, 750)#b2abd2-#fff:50-#fdb863");
+	var gholder=inter1.rect(gbounds.x[0],gbounds.y[0],gbounds.x[1]-gbounds.x[0],gbounds.y[1]-gbounds.y[0]).attr({fill:g,opacity:.6})
 }
 
 function graphdata(dataset){
@@ -124,28 +126,27 @@ function graphdata(dataset){
 	console.log(groups.group2)
 
 	// size of each vertical swath of words
-	var rectheight=-6+(gbounds.y[1]-gbounds.y[0])/5
-	var rectwidth=-6+(gbounds.x[1]-gbounds.x[0])
-	var x=gbounds.x[0]+3
-	var y=gbounds.y[0]+3
+	var rectheight=(gbounds.y[1]-gbounds.y[0])/5
+	var rectwidth=(gbounds.x[1]-gbounds.x[0])
+	var x=gbounds.x[0]
+	var y=gbounds.y[0]
 
 	// iterate through groups, block fit each one, then draw/place
 	for (var g in groups){
 		var g=groups[g]
-		var temp_pack=new Packer(x,y,rectwidth,rectheight)
-		temp_pack.fit(g)
+		// var temp_pack=new Packer(x,y,rectwidth,rectheight)
+		var temp_pack = new ShelfPack(rectwidth, rectheight);
+		temp_pack.pack(g, {inPlace: true})
 
 		for(var i=0;i<g.length;i++){
-			if(g[i].fit){
+			if(g[i].x){
 				var color=get_color(g[i].polarity)
-				var temp=inter1.rect(g[i].fit.x,g[i].fit.y,g[i].w,g[i].h).attr({fill:color,stroke:'white','stroke-width':0,'stroke-opacity':1,opacity:.7})
-				var temptext=inter1.text(g[i].fit.x+g[i].w/2,g[i].fit.y+g[i].h/1.3,g[i].word).attr({'font-family':font,'font-size':g[i].h-5,'text-anchor':'middle'})
-			} else {
-				console.log(g[i].word,g[i].w,g[i].h)
+				var temp=inter1.rect(x+g[i].x,y+g[i].y,g[i].w,g[i].h).attr({fill:color,stroke:'white','stroke-width':0,'stroke-opacity':1,opacity:.7})
+				var temptext=inter1.text(x+g[i].x+g[i].w/2,y+g[i].y+g[i].h/1.3,g[i].word).attr({'font-family':font,'font-size':g[i].h-5,'text-anchor':'middle'})
 			}
 		}
 
-		var y=y+rectheight+6
+		var y=y+rectheight
 	}
 }
 
