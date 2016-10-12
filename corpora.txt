@@ -1,6 +1,4 @@
 POSSIBLE:
-http://www.hansard-archive.parliament.uk
-http://www.anc.org/data/oanc/download/
 reddit - some common subreddit
 reddit - kotakuinaction commenters outside of kotakuinaction
 
@@ -10,3 +8,26 @@ Austen
 Reddit
 	kotakuinaction
 Twitter
+Reuters
+Slate
+
+
+
+
+
+
+
+testing chunking/etc
+
+import nltk
+from nltk import sent_tokenize, word_tokenize, chunk
+
+grammar = "NP: {<DT|PP\$>?<JJ>*<NN>}{<NNP>+}{<NN>+}"
+cp = nltk.RegexpParser(grammar)
+
+test="I only know one twitch cop who's worth a damn, all others are power hungry lunatics who don't know shit about games. Not gonna name drop either, don't want him to be canned for being competent."
+a=word_tokenize(test)
+a=nltk.pos_tag(a)
+result = cp.parse(a)
+for item in result:
+	print item

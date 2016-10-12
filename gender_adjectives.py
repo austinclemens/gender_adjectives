@@ -1,8 +1,6 @@
 from __future__ import division
 import nltk
 from nltk.corpus import names
-from nltk.corpus import twitter_samples
-from nltk.corpus import gutenberg
 from nltk.stem.lancaster import *
 from textblob import TextBlob
 from nltk import sent_tokenize, word_tokenize, chunk
@@ -30,7 +28,7 @@ folder_loc='/Users/austinclemens/Desktop/gender_adjectives/'
 
 def getgamergate():
 	r=praw.Reddit(user_agent='/austinclemens gendered-adjectives project')
-	currentstart=datetime.date(2015,5,11)
+	currentstart=datetime.date(2016,2,11)
 	currentend=currentstart+timedelta(days=1)
 
 	while int(currentend.strftime('%s'))<1475854178:
@@ -46,7 +44,7 @@ def getgamergate():
 			for comment in all_comments:
 				day_comments.append(comment.body)
 
-		with open(folder_loc+"kotakuinaction.csv",'a+') as cfile:
+		with open(folder_loc+"corpora/kotakuinaction2.csv",'a+') as cfile:
 			cwriter=csv.writer(cfile)
 			for line in day_comments:
 				cwriter.writerow([line.encode('ascii','ignore')])
@@ -56,7 +54,7 @@ def gettwitter():
 	api = twitter.Api(consumer_key=credentials[0],consumer_secret=credentials[1],access_token_key=credentials[2],access_token_secret=credentials[3])
 	b=api.GetStreamSample(stall_warnings=True)
 
-	with open(folder_loc+"tweets2.csv",'a+') as cfile:
+	with open(folder_loc+"corpora/tweets2.csv",'a+') as cfile:
 		cwriter=csv.writer(cfile)
 		i=1
 		for line in b:
@@ -70,8 +68,9 @@ def gettwitter():
 					print "ERROR: ",tweet.text
 
 def getdickens():
+	from nltk.corpus import gutenberg
 	dickens=[]
-	dickens_list=os.listdir(folder_loc+"dickens/")
+	dickens_list=os.listdir(folder_loc+"corpora/dickens/")
 	for text in dickens_list:
 		if text[-3:]=='txt':
 			text=open(folder_loc+"dickens/"+text,'r').read().decode('ascii','ignore')
@@ -83,8 +82,9 @@ def getdickens():
 	return dickens
 
 def getausten():
+	from nltk.corpus import gutenberg
 	austen=[gutenberg.sents('austen-emma.txt'),gutenberg.sents('austen-persuasion.txt'),gutenberg.sents('austen-sense.txt')]
-	austen_list=os.listdir(folder_loc+"austen/")
+	austen_list=os.listdir(folder_loc+"corpora/austen/")
 	for text in austen_list:
 		if text[-3:]=='txt':
 			text=open(folder_loc+"austen/"+text,'r').read().decode('ascii','ignore')
@@ -96,7 +96,28 @@ def getausten():
 
 	return austen
 
+def getreuters():
+	from nltk.corpus import reuters
+	reuterslist=[]
+	for article in reuters.fileids():
+		reuterslist.append(reuters.sents(article))
+
+	return reuterslist
+
+
 def getslate():
+	out=[]
+	slate_list=os.listdir(folder_loc+'corpora/slate/')
+	for text in austen_list:
+		if text[-3:]=='txt':
+			text=open(folder_loc+"corpora/slate/"+text,'r').read().decode('ascii','ignore')
+			text=sent_tokenize(text)
+			final=[]
+			for sent in text:
+				final.append(word_tokenize(sent))
+			out.append(final)
+
+	return out
 
 def get_gutenberg(textnumber):
 	r = requests.get('http://www.gutenberg.org/files/'+textnumber+'/'+textnumber+'.txt')
