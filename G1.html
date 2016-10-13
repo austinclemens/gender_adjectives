@@ -6,13 +6,14 @@
 	<script src="lib/snap.svg-min.js"></script>
 	<script src="lib/jqcloud.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+	<link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
 
 	<style>
 		p{width:650px;margin-right:auto;margin-left:auto;}
 
-		.interblock{background:#ddd;}
+		.interblock{background:#ddd;height:100%;width:100%;}
 		.svg{position:absolute;}
-		.rect{position:'absolute';height:17%;width:100%;max-height:250;display:flex;align-items:center;padding-top:5px;padding-bottom:5px;}
+		.rect{width:100%;max-width:1200px;margin-left:auto;margin-right:auto;display:flex;align-items:center;padding-top:5px;padding-bottom:5px;}
 		.w1{font-size:0.6em;}
 		.w2{font-size:0.7em;}
 		.w3{font-size:0.8em;}
@@ -32,11 +33,14 @@
 		.c7{background:rgba(166,217,106,.8);border:1px solid white;color:white;}
 		.c8{background:rgba(102,189,99,.8);border:1px solid white;color:white;}
 		.c9{background:rgba(26,152,80,.8);border:1px solid white;color:white;}
-		.jqcloud-word{font-family:'Roboto Condensed';font-weight:400;padding:3px 5px 3px 5px;border-radius:2px; text-shadow:-1px -1px 0 #444,1px -1px 0 #444,-1px 1px 0 #444,1px 1px 0 #444,1px 0px 0 #444,0px 1px 0 #444,-1px 0px 0 #444,0px -1px 0 #444;box-shadow:1px 0px 0 #444,0px 1px 0 #444,-1px 0px 0 #444,0px -1px 0 #444;}
-		.container{font-family:'Roboto Condensed';color:#eee;position:absolute;width:100%;max-width:900;height:93.5%;max-height:1000;overflow:hidden;text-align:justify;}
-		.interblock .rect+.rect{border-top:1px dashed gray}
+		.jqcloud-word{white-space:pre;font-family:'Roboto Condensed';font-weight:400;padding:3px 5px 3px 5px;border-radius:2px; text-shadow:-1px -1px 0 #444,1px -1px 0 #444,-1px 1px 0 #444,1px 1px 0 #444,1px 0px 0 #444,0px 1px 0 #444,-1px 0px 0 #444,0px -1px 0 #444;box-shadow:1px 0px 0 #444,0px 1px 0 #444,-1px 0px 0 #444,0px -1px 0 #444;}
+		.interblock .rect+.rect{border-top:1px solid gray}
 		.subrect{width:100%;height:100%}
-		.labelrect{display:inline-block;width:100px;padding-left:30px;padding-right:20px;text-align:left;font-family:'Roboto Condensed';}
+		.labelrect{display:inline-block;width:100px;padding-left:30px;padding-right:20px;text-align:right;font-family:'Roboto Condensed';font-weight:400;font-size:1.2em;}
+		.lowrect{text-align:center;width:100%;max-width:1200px;margin-left:auto;margin-right:auto;padding:15px 0px 15px 0px;}
+		.corpusbutton{text-align:center;margin-right:2px;cursor:pointer;padding:5px 10px 5px 10px;border:1px solid black;border-radius:2px;background:#fdf7ef;font-family:'Roboto Condensed';display:inline-block;font-size:.8em;}
+		.corpusbutton:hover{background:#faebd7;}
+		.expand{opacity:.7;font-size:.8em;cursor:pointer;background:black;color:white;font-family:Sans-Serif;padding:4px 5px 4px 5px;position:absolute;right:0;bottom:0;border-radius:2px;}
 	</style>
 </head>
 
@@ -47,29 +51,49 @@
 	<p>Small batch dreamcatcher migas farm-to-table. Keytar taxidermy pour-over, umami chicharrones pok pok mustache shoreditch hashtag mumblecore. Tilde before they sold out austin, celiac tbh brooklyn bitters whatever pork belly cliche typewriter. Chia freegan sriracha, scenester cred prism art party pitchfork crucifix pickled unicorn organic. DIY venmo mlkshk unicorn whatever. Yr jean shorts ugh disrupt 90's semiotics microdosing. +1 shoreditch helvetica keytar.</p>
 
 	<div class='interblock'>
-		<svg id='inter1' class='svg' viewBox="0 0 1200 800" width=1200></svg>
+		<!-- <svg id='inter1' class='svg' viewBox="0 0 1200 800" width=1200></svg> -->
+		<div class='lowrect' id='key'>
+			<div style="text-align:left;display:block">
+				<span class='c9 w3 jqcloud-word'>positive sentiment</span>
+				<span class='c7 w3 jqcloud-word'>                  </span>
+				<span class='c5 w3 jqcloud-word'>neutral sentiment</span>
+				<span class='c3 w3 jqcloud-word'>                  </span>
+				<span class='c1 w3 jqcloud-word'>negative sentiment</span>
+			</div>    
+			<span style="text-align:right;display:block">
+				<span class='c5 w1 jqcloud-word'>infrequent</span>
+				<span class='c5 w3 jqcloud-word'>        </span>
+				<span class='c5 w5 jqcloud-word'>        </span>
+				<span class='c5 w7 jqcloud-word'>frequent</span>
+			</spans>
+		</div>
 		<div class='rect'>
 			<div class='labelrect'><span style='vertical-align:middle'>Almost always used to describe females</span></div>
-			<div id='rect1' class='subrect'></div>
+			<div id='rect1' class='subrect'><div class='expand'><i class="fa fa-expand" aria-hidden="true"></i></div></div>
 		</div>
 		<div class='rect'>
 			<div class='labelrect'><span style='vertical-align:middle'>Frequently used to describe females</span></div>
-			<div id='rect2' class='subrect'></div>
+			<div id='rect2' class='subrect'><div class='expand'><i class="fa fa-expand" aria-hidden="true"></i></div></div>
 		</div>
 		<div class='rect'>
 			<div class='labelrect'><span style='vertical-align:middle'>Used to describe both genders</span></div>
-			<div id='rect3' class='subrect'></div>
+			<div id='rect3' class='subrect'><div class='expand'><i class="fa fa-expand" aria-hidden="true"></i></div></div>
 		</div>
 		<div class='rect'>
 			<div class='labelrect'><span style='vertical-align:middle'>Frequently used to describe males</span></div>
-			<div id='rect4' class='subrect'></div>
+			<div id='rect4' class='subrect'><div class='expand'><i class="fa fa-expand" aria-hidden="true"></i></div></div>
 		</div>
 		<div class='rect'>
 			<div class='labelrect'><span style='vertical-align:middle'>Almost always used to describe males</span></div>
-			<div id='rect5' class='subrect'></div>
+			<div id='rect5' class='subrect'><div class='expand'><i class="fa fa-expand" aria-hidden="true"></i></div></div>
 		</div>
-		<div class='rect'>
-
+		<div class='lowrect' id='buttons'>
+			<div class='corpusbutton'>Books by Jane Austen<br>~1.2m words (1811-1818)</div>
+			<div class='corpusbutton'>Books by Charles Dickens<br>~5.4m words (1836-1870)</div>
+			<div class='corpusbutton'>Slate articles<br>~5.4m words (1996-2002)</div>
+			<div class='corpusbutton'>Reddit: gamergate<br>~5.4m words (2015-2016)</div>
+			<div class='corpusbutton'>Reddit: movies/books/tv<br>~5.4m words (2016)</div>
+			<div class='corpusbutton'>Randomly sampled tweets<br>~25.4m words (2016)</div>
 		</div>
 	</div>
 
@@ -89,9 +113,21 @@ var reuters=[['partial', 3, 0.0, 0.054844606946983544, -0.1, 0.0], ['disastrous'
 var inter1 = Snap('#inter1')
 var gbounds={x:[100,1200],y:[50,800]}
 var colorscale=['#b2abd2','#d8daeb','#f7f7f7','#fee0b6','#fdb863']
+var rectheight
 
-draw_axes()
-graphdata(slate)
+
+
+$(document).ready(function(){
+	var height=window.innerHeight
+	var blockheight=height-$('#key').height()-$('#buttons').height()
+	console.log(blockheight)
+	$('.rect').each(function(){
+		$(this).css('height',(blockheight-125)/5)
+	})
+	var rectheight=blockheight/5
+	draw_axes()
+	graphdata(slate)
+})
 
 function get_color(value){
 	if(value<-.8){return 'c1'}

@@ -52,6 +52,78 @@ def downloadgamergate():
 			for line in day_comments:
 				cwriter.writerow([line.encode('ascii','ignore')])
 
+def downloadmovies():
+	# tokenize
+	r=praw.Reddit(user_agent='/austinclemens gendered-adjectives project')
+	currentstart=datetime.date(2016,4,1)
+	currentend=currentstart+timedelta(days=1)
+
+	while int(currentend.strftime('%s'))<1475854178:
+		day_comments=[]
+		print currentstart
+		a=praw.helpers.submissions_between(r,'movies',lowest_timestamp=int(currentstart.strftime('%s')),highest_timestamp=int(currentend.strftime('%s')))
+		currentstart=currentstart+timedelta(days=1)
+		currentend=currentstart+timedelta(days=1)
+
+		for sub in a:
+			sub.replace_more_comments(limit=None,threshold=0)
+			all_comments=praw.helpers.flatten_tree(sub.comments)
+			for comment in all_comments:
+				day_comments.append(comment.body)
+
+		with open(folder_loc+"corpora/movies.csv",'a+') as cfile:
+			cwriter=csv.writer(cfile)
+			for line in day_comments:
+				cwriter.writerow([line.encode('ascii','ignore')])\
+
+def downloadtelevision():
+	# tokenize
+	r=praw.Reddit(user_agent='/austinclemens gendered-adjectives project')
+	currentstart=datetime.date(2016,4,1)
+	currentend=currentstart+timedelta(days=1)
+
+	while int(currentend.strftime('%s'))<1475854178:
+		day_comments=[]
+		print currentstart
+		a=praw.helpers.submissions_between(r,'television',lowest_timestamp=int(currentstart.strftime('%s')),highest_timestamp=int(currentend.strftime('%s')))
+		currentstart=currentstart+timedelta(days=1)
+		currentend=currentstart+timedelta(days=1)
+
+		for sub in a:
+			sub.replace_more_comments(limit=None,threshold=0)
+			all_comments=praw.helpers.flatten_tree(sub.comments)
+			for comment in all_comments:
+				day_comments.append(comment.body)
+
+		with open(folder_loc+"corpora/television.csv",'a+') as cfile:
+			cwriter=csv.writer(cfile)
+			for line in day_comments:
+				cwriter.writerow([line.encode('ascii','ignore')])
+
+def downloadbooks():
+	# tokenize
+	r=praw.Reddit(user_agent='/austinclemens gendered-adjectives project')
+	currentstart=datetime.date(2016,4,1)
+	currentend=currentstart+timedelta(days=1)
+
+	while int(currentend.strftime('%s'))<1475854178:
+		day_comments=[]
+		print currentstart
+		a=praw.helpers.submissions_between(r,'books',lowest_timestamp=int(currentstart.strftime('%s')),highest_timestamp=int(currentend.strftime('%s')))
+		currentstart=currentstart+timedelta(days=1)
+		currentend=currentstart+timedelta(days=1)
+
+		for sub in a:
+			sub.replace_more_comments(limit=None,threshold=0)
+			all_comments=praw.helpers.flatten_tree(sub.comments)
+			for comment in all_comments:
+				day_comments.append(comment.body)
+
+		with open(folder_loc+"corpora/books.csv",'a+') as cfile:
+			cwriter=csv.writer(cfile)
+			for line in day_comments:
+				cwriter.writerow([line.encode('ascii','ignore')])
+
 def downloadtwitter():
 	# tokenize
 	credentials=open(folder_loc+'twitter_creds.txt','r').read().split('\n')
@@ -100,8 +172,12 @@ def getggate():
 	out=[]
 	ggate_list=os.listdir(folder_loc+'corpora/ggate/')
 	for text in ggate_list:
-		if text[-3:]=='txt':
+		if text[-3:]=='csv':
 			text=open(folder_loc+"corpora/ggate/"+text,'r').read().decode('ascii','ignore')
+			text=text.split('\n')
+			text=[line for line in text if len(line)>2 and line[0]!='>' and line[0:2]!='">']
+			text='\n'.join(text)
+			print text[0:20]
 			text=sent_tokenize(text)
 			final=[]
 			for sent in text:
