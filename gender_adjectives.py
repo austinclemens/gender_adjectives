@@ -5,6 +5,7 @@ from nltk.stem.lancaster import *
 from textblob import TextBlob
 from nltk import sent_tokenize, word_tokenize, chunk
 from datetime import timedelta
+import praw
 import string
 import enchant
 import operator
@@ -55,7 +56,7 @@ def downloadgamergate():
 def downloadmovies():
 	# tokenize
 	r=praw.Reddit(user_agent='/austinclemens gendered-adjectives project')
-	currentstart=datetime.date(2016,4,1)
+	currentstart=datetime.date(2016,5,3)
 	currentend=currentstart+timedelta(days=1)
 
 	while int(currentend.strftime('%s'))<1475854178:
@@ -252,7 +253,7 @@ def parse(corpora,tokenize=0):
 				twit=''.join(ch for ch in twit if ch not in exclude)
 				tags=nltk.pos_tag(nltk.word_tokenize(twit))
 			else:
-				twit=[ch for ch in twit if ch not in exclude]
+				twit=[ch.replace('.','') for ch in twit if ch not in exclude]
 				tags=nltk.pos_tag(twit)
 
 			# set up lists for nouns and adjectives found in sentence
