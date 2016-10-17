@@ -159,14 +159,19 @@ def gettwitter():
 	out=[]
 	twit_list=os.listdir(folder_loc+'corpora/twitter/')
 	for text in twit_list:
-		if text[-3:]=='txt':
+		if text[-3:]=='csv':
 			text=open(folder_loc+"corpora/twitter/"+text,'r').read().decode('ascii','ignore')
-			text=sent_tokenize(text)
+			text=text.split('\n')
+			text=[sent_tokenize(tweet) for tweet in text]
+			text2=[]
+			for tweet in text:
+				for sent in tweet:
+					text2.append(sent)
 			final=[]
-			for sent in text:
+			for sent in text2:
 				final.append(word_tokenize(sent))
 			out.append(final)
-	return out	
+	return out
 
 def getggate():
 	# don't tokenize
@@ -177,11 +182,13 @@ def getggate():
 			text=open(folder_loc+"corpora/ggate/"+text,'r').read().decode('ascii','ignore')
 			text=text.split('\n')
 			text=[line for line in text if len(line)>2 and line[0]!='>' and line[0:2]!='">']
-			text='\n'.join(text)
-			print text[0:20]
-			text=sent_tokenize(text)
+			text=[sent_tokenize(post) for post in text]
+			text2=[]
+			for post in text:
+				for sent in post:
+					text2.append(sent)
 			final=[]
-			for sent in text:
+			for sent in text2:
 				final.append(word_tokenize(sent))
 			out.append(final)
 	return out	
