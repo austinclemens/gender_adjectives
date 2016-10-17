@@ -261,6 +261,7 @@ def parse(corpora,tokenize=0):
 				tags=nltk.pos_tag(nltk.word_tokenize(twit))
 			else:
 				twit=[ch.replace('.','') for ch in twit if ch not in exclude]
+				twit=[ch for ch in twit if ch!='']
 				tags=nltk.pos_tag(twit)
 
 			# set up lists for nouns and adjectives found in sentence

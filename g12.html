@@ -1,0 +1,31 @@
+<html>
+<head>
+	<style>
+		/* flex boxes */
+		.interblock{background:gray;height:100vh;display:flex;flex-direction:column;}
+		.subrect{flex:1 90%;}
+		.labelrect{flex:0 1 10%;}
+		.footrect{flex:1 100%;background:yellow;height:auto;}
+		.topleft{flex:0 1 50%;height:auto;background:green;}
+		.topright{flex:0 1 50%;height:auto;background:red;}
+	</style>
+</head>
+
+<body>
+	<div class='interblock'>
+		<div class='topleft'>
+			topleft
+		</div>    
+		<div class='topright'>
+			topright
+		</div>
+		<div class='labelrect' style='background:coral'>labelrect</div>
+		<div class='subrect' style="background:orange">subrect</div>	
+		<div class='labelrect' style='background:cyan'>labelrect</div>
+		<div class='subrect' style="background:blue">subrect</div>		
+		<div class='footrect'>
+			footer
+		</div>
+	</div>
+</body>
+</html>
