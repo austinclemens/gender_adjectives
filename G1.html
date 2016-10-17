@@ -13,8 +13,7 @@
 	<style>
 		p{width:650px;margin-right:auto;margin-left:auto;}
 
-		.interblock{background:#ddd;height:100%;width:100%;}
-		.rect{border-top:1px solid gray;width:100%;max-width:1200px;margin-left:auto;margin-right:auto;display:flex;align-items:center;padding-top:5px;padding-bottom:5px;}
+		/* jqcloud words */
 		.w1{font-size:0.6em;}
 		.w2{font-size:0.7em;}
 		.w3{font-size:0.8em;}
@@ -35,9 +34,16 @@
 		.c8{background:rgba(102,189,99,.8);border:1px solid white;color:white;}
 		.c9{background:rgba(26,152,80,.8);border:1px solid white;color:white;}
 		.jqcloud-word{white-space:pre;font-family:'Roboto Condensed';font-weight:400;padding:3px 5px 3px 5px;border-radius:2px; text-shadow:-1px -1px 0 #444,1px -1px 0 #444,-1px 1px 0 #444,1px 1px 0 #444,1px 0px 0 #444,0px 1px 0 #444,-1px 0px 0 #444,0px -1px 0 #444;box-shadow:1px 0px 0 #444,0px 1px 0 #444,-1px 0px 0 #444,0px -1px 0 #444;}
-		.subrect{width:100%;}
-		.labelrect{display:inline-block;width:100px;padding-left:30px;padding-right:20px;text-align:right;font-family:'Roboto Condensed';font-weight:400;font-size:1.2em;}
-		.lowrect{display:flex;text-align:center;max-width:1200px;margin-left:auto;margin-right:auto;padding:15px 0px 15px 0px;}
+
+		/* flex boxes */
+		.interblock{background:#ddd;height:100%;display:flex;flex-flow:row wrap;}
+		.subrect{flex:1 80%;border-top:1px solid gray;}
+		.labelrect{flex:0 1 100px;align-self:center;padding-left:30px;padding-right:20px;text-align:right;font-family:'Roboto Condensed';font-weight:400;font-size:1.2em;}
+		.lowrect{flex:1 100%;align-self:center;text-align:center;max-width:1200px;margin-left:auto;margin-right:auto;padding:15px 0px 15px 0px;}
+		.keyleft{flex:0 1 50%;align-self:center;}
+		.keyright{flex:0 1 50%;text-align:right;align-self:center}
+
+		/* buttons */
 		.corpusbutton{display:inline-block;text-align:center;margin-right:2px;cursor:pointer;padding:5px 10px 5px 10px;border:1px solid black;border-radius:2px;background:white;font-family:'Alegreya';font-size:.8em;}
 		.corpusbutton:hover{background:#faebd7;}
 		.expand{opacity:.7;font-size:.8em;cursor:pointer;background:black;color:white;font-family:Sans-Serif;padding:4px 5px 4px 5px;position:absolute;right:0;bottom:0;border-radius:2px;}
@@ -51,44 +57,29 @@
 	<p>Small batch dreamcatcher migas farm-to-table. Keytar taxidermy pour-over, umami chicharrones pok pok mustache shoreditch hashtag mumblecore. Tilde before they sold out austin, celiac tbh brooklyn bitters whatever pork belly cliche typewriter. Chia freegan sriracha, scenester cred prism art party pitchfork crucifix pickled unicorn organic. DIY venmo mlkshk unicorn whatever. Yr jean shorts ugh disrupt 90's semiotics microdosing. +1 shoreditch helvetica keytar.</p>
 
 	<div class='interblock'>
-		<!-- <svg id='inter1' class='svg' viewBox="0 0 1200 800" width=1200></svg> -->
-		<div class='lowrect' id='key'>
-			<div style="text-align:left;display:inline-block;width:50%;padding-top:9px;padding-left:10px;padding-right:10px">
-				<span class='c9 w3 jqcloud-word'>positive sentiment</span>
-				<span class='c7 w3 jqcloud-word'>                  </span>
-				<span class='c5 w3 jqcloud-word'>neutral sentiment</span>
-				<span class='c3 w3 jqcloud-word'>                  </span>
-				<span class='c1 w3 jqcloud-word'>negative sentiment</span>
-			</div>    
-			<span style="text-align:right;display:inline-block;width:50%;padding-left:10px;padding-right:10px">
-				<span class='c5 w1 jqcloud-word'>infrequent</span>
-				<span class='c5 w3 jqcloud-word'>        </span>
-				<span class='c5 w5 jqcloud-word'>        </span>
-				<span class='c5 w7 jqcloud-word'>frequent</span>
-			</spans>
+		<div class='keyleft'>
+			<span class='c9 w3 jqcloud-word'>positive sentiment</span>
+			<span class='c7 w3 jqcloud-word'>                  </span>
+			<span class='c5 w3 jqcloud-word'>neutral sentiment</span>
+			<span class='c3 w3 jqcloud-word'>                  </span>
+			<span class='c1 w3 jqcloud-word'>negative sentiment</span>
+		</div>    
+		<div class='keyright'>
+			<span class='c5 w1 jqcloud-word'>infrequent</span>
+			<span class='c5 w3 jqcloud-word'>        </span>
+			<span class='c5 w5 jqcloud-word'>        </span>
+			<span class='c5 w7 jqcloud-word'>frequent</span>
 		</div>
-		<div style="height:100%">
-			<div class='rect'>
-				<div class='labelrect'><span style='vertical-align:middle'>Almost always used to describe females</span></div>
-				<div id='rect1' class='subrect'><div class='expand'><i class="fa fa-expand" aria-hidden="true"></i></div></div>
-			</div>
-			<div class='rect'>
-				<div class='labelrect'><span style='vertical-align:middle'>Frequently used to describe females</span></div>
-				<div id='rect2' class='subrect'><div class='expand'><i class="fa fa-expand" aria-hidden="true"></i></div></div>
-			</div>
-			<div class='rect'>
-				<div class='labelrect'><span style='vertical-align:middle'>Used to describe both genders</span></div>
-				<div id='rect3' class='subrect'><div class='expand'><i class="fa fa-expand" aria-hidden="true"></i></div></div>
-			</div>
-			<div class='rect'>
-				<div class='labelrect'><span style='vertical-align:middle'>Frequently used to describe males</span></div>
-				<div id='rect4' class='subrect'><div class='expand'><i class="fa fa-expand" aria-hidden="true"></i></div></div>
-			</div>
-			<div class='rect' style='border-bottom:1px solid gray'>
-				<div class='labelrect'><span style='vertical-align:middle'>Almost always used to describe males</span></div>
-				<div id='rect5' class='subrect'><div class='expand'><i class="fa fa-expand" aria-hidden="true"></i></div></div>
-			</div>
-		</div>
+		<div class='labelrect'><span style='vertical-align:middle'>Almost always used to describe females</span></div>
+		<div id='rect1' class='subrect'><div class='expand'><i class="fa fa-expand" aria-hidden="true"></i></div></div>
+		<div class='labelrect'><span style='vertical-align:middle'>Frequently used to describe females</span></div>
+		<div id='rect2' class='subrect'><div class='expand'><i class="fa fa-expand" aria-hidden="true"></i></div></div>
+		<div class='labelrect'><span style='vertical-align:middle'>Used to describe both genders</span></div>
+		<div id='rect3' class='subrect'><div class='expand'><i class="fa fa-expand" aria-hidden="true"></i></div></div>
+		<div class='labelrect'><span style='vertical-align:middle'>Frequently used to describe males</span></div>
+		<div id='rect4' class='subrect'><div class='expand'><i class="fa fa-expand" aria-hidden="true"></i></div></div>
+		<div class='labelrect'><span style='vertical-align:middle'>Almost always used to describe males</span></div>
+		<div id='rect5' class='subrect'><div class='expand'><i class="fa fa-expand" aria-hidden="true"></i></div></div>
 		<div class='lowrect' id='buttons'>
 			<div style="width:100%;margin-right:auto;margin-left:auto">
 				<div class='corpusbutton'>Books by Jane Austen<br>~1.2m words (1811-1818)</div>
@@ -123,15 +114,8 @@ var rectheight
 
 
 $(document).ready(function(){
-	// var height=window.innerHeight
-	// var blockheight=height-$('#key').height()-$('#buttons').height()
-	// console.log(blockheight)
-	// $('.rect').each(function(){
-	// 	$(this).css('height',(blockheight-130)/5)
-	// })
-	// var rectheight=blockheight/5
 	draw_axes()
-	// graphdata(gamergate)
+	graphdata(gamergate)
 })
 
 function get_color(value){
