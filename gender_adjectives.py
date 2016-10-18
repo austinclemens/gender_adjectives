@@ -232,7 +232,6 @@ def getreuters():
 		reuterslist.append(reuters.sents(article))
 	return reuterslist
 
-
 def getslate():
 	# don't tokenize
 	out=[]
@@ -357,20 +356,18 @@ def sort_adjectives(adjective_dict,female=1):
 		print row
 
 def compare_genders(adjective_dict):
+	# at one time this did the division to get female/male but now that's done in js.
+	# It still appends a placeholder because I'm lazy and don't want to redo all the indexing in G1
 	biglist=[]
 	for key in adjective_dict:
 		biglist.append(adjective_dict[key])
 
 	# hm - should some sort of culling happen based on overall frequency?
 	biglist.sort(key=lambda x:x[1])
-
-	for item in biglist:
-		try:
-			item.append(item[2]/item[3])
-		except:
-			item.append(float('inf'))
-
 	biglist.sort(key=lambda x:x[-1])
+	for item in biglist:
+		item.append('')
+
 	return biglist
 
 def method1(biglist):
@@ -385,6 +382,17 @@ def method1(biglist):
 
 	return outlist
 
+def method2(biglist):
+	# another way to look at biglist. Leave in polarity=0, remove infrequent terms
+	outlist=[]
+	for term in biglist:
+		if term[1]>2:
+			outlist.append(term)
+
+	for term in outlist:
+		print term
+
+	return outlist
 
 
 
