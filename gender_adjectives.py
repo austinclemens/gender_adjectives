@@ -15,6 +15,7 @@ import twitter
 import csv
 import time
 import datetime
+import pickle
 
 female_nouns=['matron','countess','baroness','dame','gal','mom','mama','crone','lady','ms.','mrs.','miss','missus','mistress','she','her','woman','mother','girl','aunt','wife','daughter','actress','princess','waitress','female','grandmother','sister','niece','queen','bitch','whore','cunt','slut','dyke','skank']
 male_nouns=['gentleman','sir','mr.','mister','he','his','man','father','boy','uncle','husband','son','actor','prince','waiter','male','grandfather','brother','nephew','king','fag','faggot','fairy','gay']
@@ -56,7 +57,7 @@ def downloadgamergate():
 def downloadmovies():
 	# tokenize
 	r=praw.Reddit(user_agent='/austinclemens gendered-adjectives project')
-	currentstart=datetime.date(2016,5,17)
+	currentstart=datetime.date(2016,6,10)
 	currentend=currentstart+timedelta(days=1)
 
 	while int(currentend.strftime('%s'))<1475854178:
@@ -200,7 +201,7 @@ def getdickens():
 	dickens_list=os.listdir(folder_loc+"corpora/dickens/")
 	for text in dickens_list:
 		if text[-3:]=='txt':
-			text=open(folder_loc+"dickens/"+text,'r').read().decode('ascii','ignore')
+			text=open(folder_loc+"corpora/dickens/"+text,'r').read().decode('ascii','ignore')
 			text=sent_tokenize(text)
 			final=[]
 			for sent in text:
@@ -215,7 +216,7 @@ def getausten():
 	austen_list=os.listdir(folder_loc+"corpora/austen/")
 	for text in austen_list:
 		if text[-3:]=='txt':
-			text=open(folder_loc+"austen/"+text,'r').read().decode('ascii','ignore')
+			text=open(folder_loc+"corpora/austen/"+text,'r').read().decode('ascii','ignore')
 			text=sent_tokenize(text)
 			final=[]
 			for sent in text:
