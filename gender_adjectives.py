@@ -57,7 +57,7 @@ def downloadgamergate():
 def downloadmovies():
 	# tokenize
 	r=praw.Reddit(user_agent='/austinclemens gendered-adjectives project')
-	currentstart=datetime.date(2016,6,10)
+	currentstart=datetime.date(2016,6,25)
 	currentend=currentstart+timedelta(days=1)
 
 	while int(currentend.strftime('%s'))<1475854178:
