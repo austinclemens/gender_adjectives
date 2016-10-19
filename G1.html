@@ -10,7 +10,7 @@
 
 	<style>
 		p{width:650px;margin-right:auto;margin-left:auto;}
-		html,body{margin:0;background:#ddd;}
+		html,body{overflow:hidden;margin:0;background:#ddd;}
 
 		/* jqcloud words */
 		.w1{font-size:0.6em;}
@@ -35,8 +35,8 @@
 		.jqcloud-word{cursor:pointer;-webkit-user-select:none;-moz-user-select:none;user-select:none;white-space:pre;font-family:'Dosis';font-weight:600;border:1px solid black;color:white;padding:1px 5px 2px 5px;border-radius:2px; text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000,1px 0px 0 #000,0px 1px 0 #000,-1px 0px 0 #000,0px -1px 0 #000;}
 
 		/* flex boxes */
-		.interblock{background:#ddd;height:100vh;display:flex;flex-direction:column;max-width:1200px;margin-left:auto;margin-right:auto;max-height:1000px;}
-		.subrect{flex:1 80%;border-bottom:1px solid #999;font-size:14px;margin-top:2px;margin-bottom:2px;margin-left:10px;}
+		.interblock{height:100vh;display:flex;flex-direction:column;max-width:1200px;margin-left:auto;margin-right:auto;max-height:1000px;}
+		.subrect{flex:1 80%;border-bottom:2px solid black;font-size:14px;margin-top:2px;margin-bottom:2px;margin-left:10px;}
 		.labelrect{flex:0 1 100px;align-self:center;padding-right:20px;text-align:right;font-family:'Cabin';font-weight:600;font-size:1.2em;width:100px;}
 		.lowrect{flex:1 content;height:auto;align-self:center;text-align:center;margin-left:auto;margin-right:auto;padding:15px 0px 15px 0px;}
 		.keyleft{flex:0 1 70%;padding-left:120px;height:auto;align-self:center;}
@@ -45,10 +45,10 @@
 		.top{flex-basis:auto;display:flex;padding:15px;}
 
 		/* buttons */
-		.corpusbutton{display:inline-block;text-align:center;margin-right:2px;cursor:pointer;padding:5px 8px 5px 8px;border:1px solid black;border-radius:2px;background:rgba(0,0,0,.6);color:white;font-family:'Cabin';font-size:1.4em;}
-		.corpusbutton:hover{border:1px solid white;background:rgba(255,255,255,.6);color:black;}
-		.active{border:1px solid white;background:rgba(255,255,255,.6);color:black;}
-		.expand{font-size:12px;cursor:pointer;background:#999;color:white;font-family:Sans-Serif;padding:4px 5px 4px 5px;position:absolute;right:0;bottom:0;border-radius:2px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;}
+		.corpusbutton{display:inline-block;text-align:center;margin-right:2px;cursor:pointer;padding:5px 8px 5px 8px;border:2px solid black;border-radius:2px;background:rgba(0,0,0,.6);color:white;font-family:'Cabin';font-size:1.4em;}
+		.corpusbutton:hover{border:2px solid white;background:rgba(255,255,255,.6);color:black;}
+		.active{border:2px solid white;background:rgba(255,255,255,.6);color:black;}
+		.expand{font-size:12px;cursor:pointer;background:#000;color:white;font-family:Sans-Serif;padding:4px 5px 4px 5px;position:absolute;right:0;bottom:0;border-radius:2px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;}
 		.tooltip{text-align:center;padding:3px 5px 3px 5px;border-radius:2px;top:-9999px;background:rgba(0,0,0,.8);border:1px solid black;color:white;font-family:'Cabin';position: fixed;z-index: 100}
 		.expand:hover{background:#bc0f10;}
 	</style>
@@ -190,7 +190,7 @@ function graphdata(dataset,name){
 								$(menu).css("left", e.clientX-5);
 							}
 							$(menu).css("top", e.clientY-20-$(menu).height());
-							$(this).css('box-shadow','5px 5px 1px #888')
+							$(this).css('box-shadow','0px 0px 5px black')
 						}
 					})
 

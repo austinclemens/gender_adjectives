@@ -395,6 +395,28 @@ def method2(biglist):
 	return outlist
 
 
+# MISC
+
+def wordlist():
+	# get all words from the pickles, flatten them out and put them in a list
+	picklelist=os.listdir(folder_loc+'parsed_pickles/')
+	biglist=[]
+	for pick in picklelist:
+		if pick[-2:]=='.p':
+			pick=pickle.load(open(folder_loc+"parsed_pickles/"+pick,'rb'))
+			for word in pick.keys():
+				biglist.append(pick[word])
+
+	outlist=[]
+	for word in biglist:
+		if word[4]!=0 and word[1]>2 and word[0] not in outlist:
+			outlist.append(word[0])
+
+	return outlist
+
+
+
+
 
 
 
