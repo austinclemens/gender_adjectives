@@ -26,7 +26,7 @@ dictionary=enchant.Dict("en_US")
 stemmer=LancasterStemmer()
 
 corpora={}
-folder_loc='/Users/austinclemens/Desktop/gender_adjectives/'
+folder_loc='/Users/austinc/Desktop/gender_adjectives/'
 
 ##### DOWNLOAD TEXTS
 
@@ -413,6 +413,28 @@ def wordlist():
 			outlist.append(word[0])
 
 	return outlist
+
+def dicts():
+	# produce dictionaries for each pickle for use in G3
+	picklelist=os.listdir(folder_loc+'parsed_pickles/')
+	wordlist=[]
+
+	for pick in picklelist:
+		biglist={}
+		if pick[-2:]=='.p':
+			picka=pickle.load(open(folder_loc+"parsed_pickles/"+pick,'rb'))
+			for word in picka.keys():
+				if picka[word][1]>2 and picka[word][4]!=0:
+					biglist[word]=[picka[word][2],picka[word][3],picka[word][4]]
+					if word not in wordlist:
+						wordlist.append(word)
+
+			print '==========================================='
+			print pick
+			print biglist
+			
+	print 'WORDS'
+	print wordlist
 
 
 
