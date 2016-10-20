@@ -10,7 +10,7 @@
 
 	<style>
 		p{width:650px;margin-right:auto;margin-left:auto;}
-		html,body{overflow:hidden;margin:0;background:#ddd;}
+		html,body{overflow:hidden;margin:0;}
 
 		/* jqcloud words */
 		.w1{font-size:0.6em;}
@@ -23,31 +23,31 @@
 		.w8{font-size:1.7em;}
 		.w9{font-size:1.9em;}
 		.w10{font-size:2.1em;}
-		.c1{background:rgba(215,48,39,.8)}
-		.c2{background:rgba(244,109,67,.8)}
-		.c3{background:rgba(253,174,97,.8)}
-		.c4{background:rgba(254,224,139,.8)}
-		.c5{background:rgba(255,255,191,.8)}
-		.c6{background:rgba(217,239,139,.8)}
-		.c7{background:rgba(166,217,106,.8)}
-		.c8{background:rgba(102,189,99,.8)}
-		.c9{background:rgba(26,152,80,.8)}
-		.jqcloud-word{cursor:pointer;-webkit-user-select:none;-moz-user-select:none;user-select:none;white-space:pre;font-family:'Dosis';font-weight:600;border:1px solid black;color:white;padding:1px 5px 2px 5px;border-radius:2px; text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000,1px 0px 0 #000,0px 1px 0 #000,-1px 0px 0 #000,0px -1px 0 #000;}
+		.c1{background:rgba(215,48,39,.8);border:2px solid rgb(215,48,39);}
+		.c2{background:rgba(244,109,67,.8);border:2px solid rgb(244,109,67);}
+		.c3{background:rgba(253,174,97,.8);border:2px solid rgb(253,174,97);}
+		.c4{background:rgba(254,224,139,.8);border:2px solid rgb(254,224,139);}
+		.c5{background:rgba(255,255,191,.8);border:2px solid rgb(255,255,191);}
+		.c6{background:rgba(217,239,139,.8);border:2px solid rgb(217,239,139);}
+		.c7{background:rgba(166,217,106,.8);border:2px solid rgb(166,217,106);}
+		.c8{background:rgba(102,189,99,.8);border:2px solid rgb(102,189,99);}
+		.c9{background:rgba(26,152,80,.8);border:2px solid rgb(26,152,80);}
+		.jqcloud-word{cursor:pointer;-webkit-user-select:none;-moz-user-select:none;user-select:none;white-space:pre;font-family:'Dosis';font-weight:600;color:white;padding:1px 5px 2px 5px;border-radius:2px; text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000,1px 0px 0 #000,0px 1px 0 #000,-1px 0px 0 #000,0px -1px 0 #000;}
 
 		/* flex boxes */
 		.interblock{height:100vh;display:flex;flex-direction:column;max-width:1200px;margin-left:auto;margin-right:auto;max-height:1000px;}
-		.subrect{flex:1 80%;border-bottom:2px solid black;font-size:14px;margin-top:2px;margin-bottom:2px;margin-left:10px;}
+		.subrect{background:#ddd;flex:1 calc(100% - 130px);border-bottom:1px solid black;font-size:14px;padding-top:2px;padding-bottom:2px;margin-left:10px;}
 		.labelrect{flex:0 1 100px;align-self:center;padding-right:20px;text-align:right;font-family:'Cabin';font-weight:600;font-size:1.2em;width:100px;}
 		.lowrect{flex:1 content;height:auto;align-self:center;text-align:center;margin-left:auto;margin-right:auto;padding:15px 0px 15px 0px;}
-		.keyleft{flex:0 1 70%;padding-left:120px;height:auto;align-self:center;}
+		.keyleft{flex:0 1 70%;padding-left:130px;height:auto;align-self:center;}
 		.keyright{flex:0 1 30%;height:auto;text-align:right;align-self:center}
 		.middle{flex:1;display:flex;flex-wrap:wrap;padding-left:15px;padding-right:15px;}
 		.top{flex-basis:auto;display:flex;padding:15px;}
 
 		/* buttons */
-		.corpusbutton{display:inline-block;text-align:center;margin-right:2px;cursor:pointer;padding:5px 8px 5px 8px;border:2px solid black;border-radius:2px;background:rgba(0,0,0,.6);color:white;font-family:'Cabin';font-size:1.4em;}
-		.corpusbutton:hover{border:2px solid white;background:rgba(255,255,255,.6);color:black;}
-		.active{border:2px solid white;background:rgba(255,255,255,.6);color:black;}
+		.corpusbutton{margin-top:5px;border:2px solid black;padding:6px;display:inline-block;text-align:center;cursor:pointer;border-radius:2px;color:black;font-family:'Cabin';font-size:1.2em;}
+		.corpusbutton:hover{border:2px solid #666;background:rgba(0,0,0,.4);color:white;}
+		.active{border:2px solid #666;background:rgba(0,0,0,.4);color:white;}
 		.expand{font-size:12px;cursor:pointer;background:#000;color:white;font-family:Sans-Serif;padding:4px 5px 4px 5px;position:absolute;right:0;bottom:0;border-radius:2px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;}
 		.tooltip{text-align:center;padding:3px 5px 3px 5px;border-radius:2px;top:-9999px;background:rgba(0,0,0,.8);border:1px solid black;color:white;font-family:'Cabin';position: fixed;z-index: 100}
 		.expand:hover{background:#bc0f10;}
@@ -67,10 +67,10 @@
 				<span class='c1 w3 jqcloud-word key'>negative sentiment</span>
 			</div>    
 			<div class='keyright'>
-				<span class='c5 w1 jqcloud-word key'>infrequent</span>
-				<span class='c5 w3 jqcloud-word key'>    </span>
-				<span class='c5 w5 jqcloud-word key'>    </span>
-				<span class='c5 w7 jqcloud-word key'>frequent</span>
+				<span class='c4 w1 jqcloud-word key'>infrequent</span>
+				<span class='c4 w3 jqcloud-word key'>    </span>
+				<span class='c4 w5 jqcloud-word key'>    </span>
+				<span class='c4 w7 jqcloud-word key'>frequent</span>
 			</div>
 		</div>
 		<div class='middle'>

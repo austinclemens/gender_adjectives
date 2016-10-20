@@ -24,20 +24,21 @@
 		.w8{font-size:1.7em;}
 		.w9{font-size:1.9em;}
 		.w10{font-size:2.1em;}
-		.c1{background:rgba(215,48,39,.8)}
-		.c2{background:rgba(244,109,67,.8)}
-		.c3{background:rgba(253,174,97,.8)}
-		.c4{background:rgba(254,224,139,.8)}
-		.c5{background:rgba(255,255,191,.8)}
-		.c6{background:rgba(217,239,139,.8)}
-		.c7{background:rgba(166,217,106,.8)}
-		.c8{background:rgba(102,189,99,.8)}
-		.c9{background:rgba(26,152,80,.8)}
-		.jqcloud-word{cursor:pointer;-webkit-user-select:none;-moz-user-select:none;user-select:none;white-space:pre;font-family:'Dosis';font-weight:600;border:1px solid black;color:white;padding:1px 5px 2px 5px;border-radius:2px; text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000,1px 0px 0 #000,0px 1px 0 #000,-1px 0px 0 #000,0px -1px 0 #000;}
+		.c1{background:rgba(215,48,39,.8);}
+		.c2{background:rgba(244,109,67,.8);}
+		.c3{background:rgba(253,174,97,.8);}
+		.c4{background:rgba(254,224,139,.8);}
+		.c5{background:rgba(255,255,191,.8);}
+		.c6{background:rgba(217,239,139,.8);}
+		.c7{background:rgba(166,217,106,.8);}
+		.c8{background:rgba(102,189,99,.8);}
+		.c9{background:rgba(26,152,80,.8);}
+		.jqcloud-word{margin-bottom:3px;border:1px solid black;text-align:center;vertical-align:center;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;user-select:none;white-space:pre;font-family:'Dosis';font-weight:600;color:white;padding:1px 5px 2px 5px;border-radius:2px; text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000,1px 0px 0 #000,0px 1px 0 #000,-1px 0px 0 #000,0px -1px 0 #000;}
+		.test{visibility:hidden;position:absolute;height:auto;width:auto;white-space:nowrap;}
 
 		/* flex boxes */
 		.interblock{height:100vh;display:flex;flex-direction:column;max-width:1200px;margin-left:auto;margin-right:auto;max-height:1000px;}
-		.subrect{flex:1 80%;border-bottom:2px solid black;font-size:14px;margin-top:2px;margin-bottom:2px;margin-left:10px;}
+		.subrect{flex:1 calc(100% - 150px);border-bottom:2px solid black;font-size:14px;margin-top:2px;margin-bottom:2px;margin-left:10px;overflow:hidden;}
 		.labelrect{flex:0 1 100px;align-self:center;padding-right:20px;text-align:right;font-family:'Cabin';font-weight:600;font-size:1.2em;width:100px;}
 		.lowrect{flex:1 content;height:auto;align-self:center;text-align:center;margin-left:auto;margin-right:auto;padding:15px 0px 15px 0px;}
 		.keyleft{flex:0 1 70%;padding-left:120px;height:auto;align-self:center;}
@@ -96,6 +97,8 @@
 			</div>
 		</div>
 	</div>
+
+	<div class='jqcloud-word test' id='test'></div>
 </body>
 
 <script>
@@ -143,7 +146,6 @@ function graphdata(dataset,name){
 	$('#'+name).addClass('active')
 
 	// sort by maleness/femaleness - this will be most female first
-	// then divide into five groups and place in a dictionary
 	for(var i=0;i<dataset.length;i++){
 		if(dataset[i][2]==0){
 			dataset[i].push(Number.POSITIVE_INFINITY)
@@ -152,61 +154,78 @@ function graphdata(dataset,name){
 		}
 	}
 
+	// get min and max frequencies
+	var sizeset=[]
+
+	for (var i=0;i<dataset.length;i++){
+		sizeset.push(dataset[i][1])
+	} 
+
+	var minsize=Math.min(...sizeset)
+	var maxsize=Math.max(...sizeset)
+	var q1=sizeset[Math.round(sizeset.length/5)]
+	var q2=sizeset[2*Math.round(sizeset.length/5)]
+	var q3=sizeset[3*Math.round(sizeset.length/5)]
+	var q4=sizeset[4*Math.round(sizeset.length/5)]
+
+	// construct groups according to male/female ratio
 	var groups={'group1':[],'group2':[],'group4':[],'group5':[]}
 	for(var i=0;i<dataset.length;i++){
 		var color=get_color(dataset[i][4])
-		if(dataset[i][6]<.4 & groups.group1.length<=100){groups.group1.push({'text':dataset[i][0],'polarity':dataset[i][4],'genderbias':dataset[i][6],'weight':Math.log(dataset[i][1]),'html':{'class':color,'data-frequency':dataset[i][1],'data-female':dataset[i][2],'data-male':dataset[i][3]}})}
-		if(dataset[i][6]>=.4 & dataset[i][6]<.8 & groups.group2.length<=100){groups.group2.push({'text':dataset[i][0],'polarity':dataset[i][4],'genderbias':dataset[i][6],'weight':Math.log(dataset[i][1]),'html':{'class':color,'data-frequency':dataset[i][1],'data-female':dataset[i][2],'data-male':dataset[i][3]}})}
-		if(dataset[i][6]>=1.25 & dataset[i][6]<2.5 & groups.group4.length<=100){groups.group4.push({'text':dataset[i][0],'polarity':dataset[i][4],'genderbias':dataset[i][6],'weight':Math.log(dataset[i][1]),'html':{'class':color,'data-frequency':dataset[i][1],'data-female':dataset[i][2],'data-male':dataset[i][3]}})}
-		if(dataset[i][6]>=2.5 & groups.group5.length<=100){groups.group5.push({'text':dataset[i][0],'polarity':dataset[i][4],'genderbias':dataset[i][6],'weight':Math.log(dataset[i][1]),'html':{'class':color,'data-frequency':dataset[i][1],'data-female':dataset[i][2],'data-male':dataset[i][3]}})}
+		if(dataset[i][6]<.4 & groups.group1.length<=100){groups.group1.push({'text':dataset[i][0],'polarity':dataset[i][4],'genderbias':dataset[i][6],'weight':dataset[i][1],'html':{'class':color,'data-frequency':dataset[i][1],'data-female':dataset[i][2],'data-male':dataset[i][3]}})}
+		if(dataset[i][6]>=.4 & dataset[i][6]<.8 & groups.group2.length<=100){groups.group2.push({'text':dataset[i][0],'polarity':dataset[i][4],'genderbias':dataset[i][6],'weight':dataset[i][1],'html':{'class':color,'data-frequency':dataset[i][1],'data-female':dataset[i][2],'data-male':dataset[i][3]}})}
+		if(dataset[i][6]>=1.25 & dataset[i][6]<2.5 & groups.group4.length<=100){groups.group4.push({'text':dataset[i][0],'polarity':dataset[i][4],'genderbias':dataset[i][6],'weight':dataset[i][1],'html':{'class':color,'data-frequency':dataset[i][1],'data-female':dataset[i][2],'data-male':dataset[i][3]}})}
+		if(dataset[i][6]>=2.5 & groups.group5.length<=100){groups.group5.push({'text':dataset[i][0],'polarity':dataset[i][4],'genderbias':dataset[i][6],'weight':dataset[i][1],'html':{'class':color,'data-frequency':dataset[i][1],'data-female':dataset[i][2],'data-male':dataset[i][3]}})}
 	}
 
-	// iterate through groups, block fit each one, then draw/place
+	// iterate through groups, generate blocks and append them to appropriate div, then masonry
 	for (var g in groups){
-		var gnum=g.slice(5,6)
+		console.log(g)
+		var rect=$('#rect'+g.slice(5,6))
+		console.log(groups[g])
 		var g=groups[g]
-		if(drawn===0){
-			$('#rect'+gnum).jQCloud(g, {
-				autoResize:true,
-				afterCloudRender:function(){
-					// word hover
-					$('.jqcloud-word').mousemove(function(e){
-						if($(this).hasClass('key')==false){
-							if($(this).attr('data-male')==='0'){
-								var string='never used to<br>describe males'
-							} else if($(this).attr('data-female')==='0'){
-								var string='never used to<br>describe females'
-							} else {
-								if($(this).attr('data-male')>$(this).attr('data-female')){
-									var string='about '+(($(this).attr('data-male')/$(this).attr('data-female')).toFixed(1))+'x more<br>common for males'
-								} else {
-									var string='about '+(($(this).attr('data-female')/$(this).attr('data-male')).toFixed(1))+'x more<br>common for females'
-								}
-							}
-							var menu='#tooltip'
-							$(menu).html($(this).attr('data-frequency')+' uses<br>'+string)
-							if(e.clientX>$(window).width()-200){
-								$(menu).css("left", e.clientX-100);
-							} else {
-								$(menu).css("left", e.clientX-5);
-							}
-							$(menu).css("top", e.clientY-20-$(menu).height());
-							$(this).css('box-shadow','0px 0px 5px black')
-						}
-					})
-
-					$('.jqcloud-word').mouseout(function(e){
-						var menu='#tooltip'
-						$(menu).css("top", -9999);
-						$(this).css('box-shadow','')
-					})
-				}
-			})
-		} else {
-			$('#rect'+gnum).jQCloud('update',g)
+		var startheight=rect.height()
+		
+		for(var i=0;i<g.length;i++){
+			var size=getsize(g[i].weight,q1,q2,q3,q4)
+			var color=get_color(g[i].polarity)
+			var string='<div class="jqcloud-word '+color+'" style="width:'+size[0]+'px;height:'+size[1]+'px;line-height:'+size[1]+'px;font-size:'+size[2]+'em">'+g[i].text+'</div>'
+			rect.append(string)
 		}
+
+		var $grid=rect.masonry({
+			itemSelector:'.jqcloud-word',
+			columnWidth:2,
+			gutter:3,
+		})
+
+		var newheight=rect.height()
+		rect.css('height','')
+		rect.css('padding-top',(startheight-newheight)/2)
+
+		$grid.masonry()
+		rect.css('height','')
 	}
-	drawn=1
+}
+
+function getsize(frequency,q1,q2,q3,q4){
+	if(frequency<q1){
+		return [30,10,.5]
+	}
+
+	if(frequency<q2){
+		return [60,20,1]
+	}
+
+	if(frequency<q3){
+		return [90,30,1.5]
+	}
+
+	if(frequency<q4){
+		return [120,40,2]
+	}
+
+	return [150,50,2.5]
 }
 
 function expand(subrect){
