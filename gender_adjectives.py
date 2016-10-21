@@ -26,7 +26,7 @@ dictionary=enchant.Dict("en_US")
 stemmer=LancasterStemmer()
 
 corpora={}
-folder_loc='/Users/austinc/Desktop/gender_adjectives/'
+folder_loc='/Users/austinclemens/Desktop/gender_adjectives/'
 
 ##### DOWNLOAD TEXTS
 
@@ -181,6 +181,26 @@ def getggate():
 	for text in ggate_list:
 		if text[-3:]=='csv':
 			text=open(folder_loc+"corpora/ggate/"+text,'r').read().decode('ascii','ignore')
+			text=text.split('\n')
+			text=[line for line in text if len(line)>2 and line[0]!='>' and line[0:2]!='">']
+			text=[sent_tokenize(post) for post in text]
+			text2=[]
+			for post in text:
+				for sent in post:
+					text2.append(sent)
+			final=[]
+			for sent in text2:
+				final.append(word_tokenize(sent))
+			out.append(final)
+	return out	
+
+def getmedia():
+	# don't tokenize
+	out=[]
+	media_list=os.listdir(folder_loc+'corpora/media/')
+	for text in media_list:
+		if text[-3:]=='csv':
+			text=open(folder_loc+"corpora/media/"+text,'r').read().decode('ascii','ignore')
 			text=text.split('\n')
 			text=[line for line in text if len(line)>2 and line[0]!='>' and line[0:2]!='">']
 			text=[sent_tokenize(post) for post in text]
