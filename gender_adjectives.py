@@ -456,7 +456,29 @@ def dicts():
 	print 'WORDS'
 	print wordlist
 
+def average_polarity():
+	# get average male and female polarities for each text
+	picklelist=os.listdir(folder_loc+'parsed_pickles/')
 
+	for pick in picklelist:
+		if pick[-2:]=='.p':
+			print pick
+			male_polarity=0
+			female_polarity=0
+			male_density=0
+			female_density=0
+
+			picka=pickle.load(open(folder_loc+"parsed_pickles/"+pick,'rb'))
+			for word in picka.keys():
+				word=picka[word]
+				male_density=male_density+word[3]
+				female_density=female_density+word[2]
+				male_polarity=male_polarity+word[3]*word[4]
+				female_polarity=female_polarity+word[2]*word[4]
+
+			print male_density,female_density
+			print male_polarity,female_polarity
+			print male_polarity/male_density,female_polarity/female_density
 
 
 
