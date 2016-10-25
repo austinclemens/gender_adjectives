@@ -18,7 +18,7 @@
 		.descbutton:hover{border:2px solid #666;background:rgba(0,0,0,.4);color:white;}
 		.ui-autocomplete{max-height:200px;overflow:scroll;}
 		.word{line-height:.9em;vertical-align:center;height:40px;position:absolute;width:100px;display:none;text-align:center;font-family:'Dosis';font-weight:600;color:white;font-size:1em;text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000,1px 0px 0 #000,0px 1px 0 #000,-1px 0px 0 #000,0px -1px 0 #000;}
-
+		.bigword{text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);}
 	</style>
 </head>
 
@@ -81,7 +81,7 @@ $(document).ready(function() {
 start()
 
 function start(){
-	paper.text(120,201,'').attr({'text-anchor':'start','font-family':'Dosis','font-size':'7em','font-weight':600,'fill':'#ddd',bigword:1})
+	paper.text(120,197,'').attr({class:'bigword','text-anchor':'start','font-family':'Dosis','font-size':'100px','font-weight':600,'fill':'#eee',bigword:1})
 
 	paper.line(2,getcoord(2),900,getcoord(2)).attr({'stroke-width':1,stroke:'#ccc','shape-rendering':'crispEdges'})
 	paper.line(2,getcoord(3),900,getcoord(3)).attr({'stroke-width':1,stroke:'#ccc','shape-rendering':'crispEdges'})
@@ -145,7 +145,11 @@ function populate(word){
 		input=1
 	}
 
-	paper.select('[bigword]').attr({text:word})
+	var a=paper.select('[bigword]')
+	a.attr({text:word})
+	while(a.getBBox().x+a.getBBox().width>800){
+		a.attr({'font-size':parseFloat(a.attr('font-size'))-1})
+	}
 
 	var dickensrect=paper.select("[id='dickens']")
 	var austenrect=paper.select("[id='austen']")
@@ -257,6 +261,17 @@ function populate(word){
 	con3.animate({path:'M380,'+(slatey)+' C410,'+(slatey)+' 380,'+(ggatey)+' 410,'+(ggatey)},1000)
 	con4.animate({path:'M510,'+(ggatey)+' C540,'+(ggatey)+' 510,'+(mediay)+' 540,'+(mediay)},1000)
 	con5.animate({path:'M640,'+(mediay)+' C670,'+(mediay)+' 640,'+(tweetsy)+' 670,'+(tweetsy)},1000)
+
+	if(words.indexOf(word)===-1){
+		a.attr({text:'not found'})
+		$('#austentext').text('')
+		$('#dickenstext').text('')
+		$('#slatetext').text('')
+		$('#ggatetext').text('')
+		$('#mediatext').text('')
+		$('#tweettext').text('')
+		return
+	}
 }
 
 function get_color(value){
