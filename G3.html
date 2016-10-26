@@ -29,7 +29,7 @@
 		<div class='descbutton' onclick="populate()">Submit</div>
 	</div>
 
-	<svg viewbox='0 0 800 600' id='svg'>
+	<svg viewbox='0 -25 800 625' id='svg'>
 	</svg>
 </div>
 <br>
@@ -48,7 +48,7 @@ var paper = Snap('#svg')
 var playing=1
 var playedlist=[]
 var position=0
-var wordmasker2=paper.rect(670,461,128,28).attr({'wordmasker':1,fill:'white'})
+var wordmasker2=paper.rect(336,-19.5,128,28).attr({'wordmasker':1,fill:'white'})
 var maskgroup=paper.group()
 maskgroup.attr({mask:wordmasker2})
 
@@ -73,7 +73,7 @@ $(document).ready(function() {
 			}) )
 		}
 	})
-	// populate(words[getRandomInt(0,words.length-1)])
+	populate(words[getRandomInt(0,words.length-1)])
 })
 
 start()
@@ -98,12 +98,12 @@ function start(){
 	paper.line(525,getcoord(.1),525,getcoord(5)).attr({'stroke-width':1,stroke:'#ccc','shape-rendering':'crispEdges'})
 	paper.line(655,getcoord(.1),655,getcoord(5)).attr({'stroke-width':1,stroke:'#ccc','shape-rendering':'crispEdges'})
 
-	paper.text(2,getcoord(2)-2,'2x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#f17741',opacity:.4})
-	paper.text(2,getcoord(3)-2,'3x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#ef6629',opacity:.4})
-	paper.text(2,getcoord(4)-2,'4x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#ed5612',opacity:.4})
-	paper.text(2,getcoord(.5)-2,'2x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#4d4dff',opacity:.4})
-	paper.text(2,getcoord(.333)-2,'3x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#3333ff',opacity:.4})
-	paper.text(2,getcoord(.25)-2,'4x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#1a1aff',opacity:.4})
+	paper.text(2,getcoord(2)-2,'2x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#666',opacity:.4})
+	paper.text(2,getcoord(3)-2,'3x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#666',opacity:.4})
+	paper.text(2,getcoord(4)-2,'4x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#666',opacity:.4})
+	paper.text(2,getcoord(.5)-2,'2x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#666',opacity:.4})
+	paper.text(2,getcoord(.333)-2,'3x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#666',opacity:.4})
+	paper.text(2,getcoord(.25)-2,'4x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#666',opacity:.4})
 	paper.text(2,getcoord(1)-2,'Equal').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'black'})
 
 	paper.text(70,550,'Austen').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'1em'})
@@ -124,19 +124,19 @@ function start(){
 	paper.text(43,500,'Usually').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'1em','fill':'white'})
 	paper.text(43,518,'male').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'1em','fill':'white'})
 
-	paper.rect(2,247,133,40).attr({fill:'#aaa','fill-opacity':.9,'id':'austen'})
-	paper.rect(135,247,130,40).attr({fill:'#aaa','fill-opacity':.9,'id':'dickens'})
-	paper.rect(265,247,130,40).attr({fill:'#aaa','fill-opacity':.9,'id':'slate'})
-	paper.rect(395,247,130,40).attr({fill:'#aaa','fill-opacity':.9,'id':'gamergate'})
-	paper.rect(525,247,130,40).attr({fill:'#aaa','fill-opacity':.9,'id':'media'})
-	paper.rect(655,247,130,40).attr({fill:'#aaa','fill-opacity':.9,'id':'tweets'})
+	paper.rect(42,253,50,30).attr({fill:'#aaa','fill-opacity':.9,'id':'austen'})
+	paper.rect(175,253,50,30).attr({fill:'#aaa','fill-opacity':.9,'id':'dickens'})
+	paper.rect(305,253,50,30).attr({fill:'#aaa','fill-opacity':.9,'id':'slate'})
+	paper.rect(435,253,50,30).attr({fill:'#aaa','fill-opacity':.9,'id':'gamergate'})
+	paper.rect(565,253,50,30).attr({fill:'#aaa','fill-opacity':.9,'id':'media'})
+	paper.rect(695,253,50,30).attr({fill:'#aaa','fill-opacity':.9,'id':'tweets'})
 
-	var wordmasker1=paper.rect(669,460,130,30).attr({fill:'#bbb',stroke:'black','stroke-width':1})
-	var forward=paper.path('M769,501 L769,513 L781,507 L769,501').attr({fill:'#999',cursor:'pointer',front:1})
-	var back=paper.path('M687,507 L699,513 L699,501 L687,507').attr({fill:'#999',cursor:'pointer',front:1})
-	var play=paper.path('M727,498 L727,516 L743,507 L727,498').attr({fill:'#66D066',opacity:0,front:1,play:1})
-	var pause=paper.path('M727,498 L727,516 L734,516 L734,498 L727,498 M738,498 L738,516 L745,516 L745,498 L738,498').attr({fill:'#D06666',opacity:1,front:1,pause:1})
-	var overlay=paper.rect(727,498,18,18).attr({cursor:'pointer',opacity:0,overlay:1,front:1})
+	var wordmasker1=paper.rect(335,-20,130,30).attr({fill:'#bbb',stroke:'black','stroke-width':2,shapeRendering:'crispEdges',strokeDasharray:[130,30,130,30]})
+	var forward=paper.path('M769,-12 L769,0 L781,-6 L769,-12').attr({fill:'#999',cursor:'pointer',front:1})
+	var back=paper.path('M687,-6 L699,0 L699,-12 L687,-6').attr({fill:'#999',cursor:'pointer',front:1})
+	var play=paper.path('M727,-15 L727,3 L743,-6 L727,-15').attr({fill:'#66D066',opacity:0,front:1,play:1})
+	var pause=paper.path('M727,-15 L727,3 L734,3 L734,-15 L727,-15 M738,-15 L738,3 L745,3 L745,-15 L738,-15').attr({fill:'#D06666',opacity:1,front:1,pause:1})
+	var overlay=paper.rect(727,-10,18,18).attr({cursor:'pointer',opacity:0,overlay:1,front:1})
 
 	overlay.click(function(t=0){
 		console.log(t)
@@ -200,7 +200,7 @@ function populate(word,no=1){
 		spans.forEach(function(entry){
 			var lag=getRandomInt(0,200)
 			setTimeout(function(){
-				entry.animate({y:516},400,mina.backin)
+				entry.animate({y:30},400,mina.backin)
 			},lag)
 		})
 		setTimeout(function(){
@@ -209,9 +209,9 @@ function populate(word,no=1){
 	} catch(err){}
 
 	// write word and animate entrance
-	var temp=paper.text(734,400,word).attr({'text-anchor':'middle','font-family':'Cabin','font-size':'25px','font-weight':700,'fill':'#fff',bigword:1})
+	var temp=paper.text(400,400,word).attr({'text-anchor':'middle','font-family':'Cabin','font-size':'25px','font-weight':700,'fill':'#fff',bigword:1})
 	var size=25
-	while(temp.getBBox().x+temp.getBBox().width>790){
+	while(temp.getBBox().x+temp.getBBox().width>465){
 		temp.attr({'font-size':parseFloat(temp.attr('font-size'))-1})
 		size=temp.attr('font-size')
 	}
@@ -219,16 +219,16 @@ function populate(word,no=1){
 	temp.remove()
 
 	var splitword=word.split('')
-	var slider=paper.text(startx,450,splitword).attr({'font-family':'Cabin','font-size':size,'font-weight':700,'fill':'#fff',bigword:1})
+	var slider=paper.text(startx,-30,splitword).attr({'font-family':'Cabin','font-size':size,'font-weight':700,'fill':'#fff',bigword:1})
 	maskgroup.add(slider)
-	slider.selectAll('tspan').attr({y:450})
+	slider.selectAll('tspan').attr({y:-30})
 	var spans1=slider.selectAll("tspan")
 
 	setTimeout(function(){
 		spans1.forEach(function(entry){
 			var lag=getRandomInt(0,300)
 			setTimeout(function(){
-				entry.animate({y:482},400,mina.backout)
+				entry.animate({y:2},400,mina.backout)
 			},lag)
 		})
 	},300)
@@ -246,45 +246,45 @@ function populate(word,no=1){
 
 	try {
 		var dickensy=getcoord(dickens[word][0]/dickens[word][1])
-		dickensrect.animate({fill:get_color(dickens[word][2]),y:-20+dickensy},1000)
+		dickensrect.animate({fill:get_color(dickens[word][0]/dickens[word][1]),y:-15+dickensy},1000,mina.easeinout)
 	} catch(err){
 		var dickensy=267
-		dickensrect.animate({fill:'#aaa',y:dickensy-20},1000)
+		dickensrect.animate({fill:'#aaa',y:dickensy-15},1000)
 	}
 	try {
 		var austeny=getcoord(austen[word][0]/austen[word][1])
-		austenrect.animate({fill:get_color(austen[word][2]),y:-20+austeny},1000)
+		austenrect.animate({fill:get_color(austen[word][0]/austen[word][1]),y:-15+austeny},1000,mina.easeinout)
 	} catch(err){
 		var austeny=267
-		austenrect.animate({fill:'#aaa',y:austeny-20},1000)
+		austenrect.animate({fill:'#aaa',y:austeny-15},1000)
 	}
 	try {
 		var slatey=getcoord(slate[word][0]/slate[word][1])
-		slaterect.animate({fill:get_color(slate[word][2]),y:-20+slatey},1000)
+		slaterect.animate({fill:get_color(slate[word][0]/slate[word][1]),y:-15+slatey},1000,mina.easeinout)
 	} catch(err){
 		var slatey=267
-		slaterect.animate({fill:'#aaa',y:slatey-20},1000)
+		slaterect.animate({fill:'#aaa',y:slatey-15},1000)
 	}
 	try {
 		var ggatey=getcoord(gamergate[word][0]/gamergate[word][1])
-		gamergaterect.animate({fill:get_color(gamergate[word][2]),y:-20+ggatey},1000)
+		gamergaterect.animate({fill:get_color(gamergate[word][0]/gamergate[word][1]),y:-15+ggatey},1000,mina.easeinout)
 	} catch(err){
 		var ggatey=267
-		gamergaterect.animate({fill:'#aaa',y:ggatey-20},1000)
+		gamergaterect.animate({fill:'#aaa',y:ggatey-15},1000)
 	}
 	try {
 		var mediay=getcoord(media[word][0]/media[word][1])
-		mediarect.animate({fill:get_color(media[word][2]),y:-20+mediay},1000)
+		mediarect.animate({fill:get_color(media[word][0]/media[word][1]),y:-15+mediay},1000,mina.easeinout)
 	} catch(err){
 		var mediay=267
-		mediarect.animate({fill:'#aaa',y:mediay-20},1000)
+		mediarect.animate({fill:'#aaa',y:mediay-15},1000)
 	}
 	try {
 		var tweetsy=getcoord(tweets[word][0]/tweets[word][1])
-		twitterrect.animate({fill:get_color(tweets[word][2]),y:-20+tweetsy},1000)
+		twitterrect.animate({fill:get_color(tweets[word][0]/tweets[word][1]),y:-15+tweetsy},1000,mina.easeinout)
 	} catch(err){
 		var tweetsy=267
-		twitterrect.animate({fill:'#aaa',y:tweetsy-20},1000)
+		twitterrect.animate({fill:'#aaa',y:tweetsy-15},1000)
 	}
 
 
@@ -334,24 +334,25 @@ function populate(word,no=1){
 }
 
 function get_color(value){
-	return '#aaa'
-	if(value<-.8){return 'rgb(215,48,39)'}
-	if(value<-.6){return 'rgb(244,109,67)'}
-	if(value<-.4){return 'rgb(253,174,97)'}
-	if(value<-.2){return 'rgb(254,224,139)'}
-	if(value<.2){return 'rgb(255,255,191)'}
-	if(value<.4){return 'rgb(217,239,139)'}
-	if(value<.6){return 'rgb(166,217,106)'}
-	if(value<.8){return 'rgb(102,189,99)'}
-	if(value<=1){return 'rgb(26,152,80)'}
+	if(value===Infinity){return '#ee5f1e'}
+	if(value===0){return '#1414ff'}
+	if(value<.2){return '#3b3bff'}
+	if(value<.25){return '#6262ff'}
+	if(value<.33){return '#8989ff'}
+	if(value<.5){return '#9d9dff'}
+	if(value<1){return '#c4c4ff'}
+	if(value<2){return '#f9c7b0'}
+	if(value<3){return '#f6ad8c'}
+	if(value<4){return '#f49367'}
+	if(value>4){return '#f17943'}
 }
 
 function getratio(ratio){
 	if(ratio===Infinity){
-		return ['only female',-17]
+		return ['∞',-17]
 	}
 	if(ratio===0){
-		return ['only male',-17]
+		return ['∞',-17]
 	}
 
 	if(ratio>1){
