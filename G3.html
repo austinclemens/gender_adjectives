@@ -6,11 +6,10 @@
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cabin:400,700|Dosis:400,700" rel="stylesheet">
 
 	<style>
-		body{margin-top:35px;text-align:center;font-family:'Cabin';font-size:1.2em;letter-spacing:2px;margin-left:auto;margin-right:auto;}
+		body{margin-top:35px;text-align:center;font-family:'Cabin';font-size:1.2em;margin-left:auto;margin-right:auto;}
 		.container{width:800px;margin-right:auto;margin-left:auto;}
 		.controls{text-align:center;margin-bottom:15px;}
 		.adj{background:#eaeaea;border:0;text-align:center;padding-bottom:1px;display:inline-block;width:250px;border-bottom:2px solid black;font-family:'Cabin';font-size:1em;letter-spacing:2px}
@@ -18,28 +17,21 @@
 		.descbutton:hover{border:2px solid #666;background:rgba(0,0,0,.4);color:white;}
 		.ui-autocomplete{max-height:200px;overflow:scroll;}
 		.word{line-height:.9em;vertical-align:center;height:40px;position:absolute;width:100px;display:none;text-align:center;font-family:'Dosis';font-weight:600;color:white;font-size:1em;text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000,1px 0px 0 #000,0px 1px 0 #000,-1px 0px 0 #000,0px -1px 0 #000;}
-		/*.bigword{text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);}*/
+		.bubble{display:inline-block;padding:2px;border-radius:2px;color:white;}
 	</style>
 </head>
 
 <body>
 <div class='container'>
-	Type in a word that you want to track across all the corpora, then hit submit.<br>
+	Type in a word that you want to track across all the corpora, then hit submit. <br>
 	<div class='controls'>
 		<input type="text" name="word" id='word' class='adj'>
 		<div class='descbutton' onclick="populate()">Submit</div>
 	</div>
-	<span id='austentext' class='word'></span>
-	<span id='tweettext' class='word'></span>
-	<span id='ggatetext' class='word'></span>
-	<span id='dickenstext' class='word'></span>
-	<span id='mediatext' class='word'></span>
-	<span id='slatetext' class='word'></span>
 
 	<svg viewbox='0 0 800 600' id='svg'>
 	</svg>
 </div>
-
 <br>
 
 </body>
@@ -55,12 +47,15 @@ var words=['limited', 'sorry', 'worth', 'deplorable', 'tired', 'consistent', 'di
 var paper = Snap('#svg')
 var playing=1
 var playedlist=[]
+var position=0
+var wordmasker2=paper.rect(670,461,128,28).attr({'wordmasker':1,fill:'white'})
+var maskgroup=paper.group()
+maskgroup.attr({mask:wordmasker2})
 
 setInterval(function(){
 	if(playing===1){
 		var randword=words[getRandomInt(0,words.length-1)]
 		populate(randword)
-		playedlist.push(randword)
 	}
 },4000)
 
@@ -78,12 +73,16 @@ $(document).ready(function() {
 			}) )
 		}
 	})
-	populate(words[getRandomInt(0,words.length-1)])
+	// populate(words[getRandomInt(0,words.length-1)])
 })
 
 start()
 
 function start(){
+	var g1=paper.gradient('l(1,1,1,0)rgba(213,77,16,.1)-rgba(213,77,16,0)')
+	var g2=paper.gradient('l(1,0,1,1)rgba(0,0,255,.05)-rgba(0,0,255,0)')
+	// paper.rect(0,getcoord(1)-150,902,150).attr({fill:g1})
+	// paper.rect(0,getcoord(1),902,150).attr({fill:g2})
 
 	paper.line(2,getcoord(2),900,getcoord(2)).attr({'stroke-width':1,stroke:'#ddd','shape-rendering':'crispEdges'})
 	paper.line(2,getcoord(3),900,getcoord(3)).attr({'stroke-width':1,stroke:'#ddd','shape-rendering':'crispEdges'})
@@ -99,12 +98,12 @@ function start(){
 	paper.line(525,getcoord(.1),525,getcoord(5)).attr({'stroke-width':1,stroke:'#ccc','shape-rendering':'crispEdges'})
 	paper.line(655,getcoord(.1),655,getcoord(5)).attr({'stroke-width':1,stroke:'#ccc','shape-rendering':'crispEdges'})
 
-	paper.text(2,getcoord(2)-2,'2x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#bbb'})
-	paper.text(2,getcoord(3)-2,'3x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#bbb'})
-	paper.text(2,getcoord(4)-2,'4x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#bbb'})
-	paper.text(2,getcoord(.5)-2,'2x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#bbb'})
-	paper.text(2,getcoord(.333)-2,'3x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#bbb'})
-	paper.text(2,getcoord(.25)-2,'4x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#bbb'})
+	paper.text(2,getcoord(2)-2,'2x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#f17741',opacity:.4})
+	paper.text(2,getcoord(3)-2,'3x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#ef6629',opacity:.4})
+	paper.text(2,getcoord(4)-2,'4x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#ed5612',opacity:.4})
+	paper.text(2,getcoord(.5)-2,'2x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#4d4dff',opacity:.4})
+	paper.text(2,getcoord(.333)-2,'3x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#3333ff',opacity:.4})
+	paper.text(2,getcoord(.25)-2,'4x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#1a1aff',opacity:.4})
 	paper.text(2,getcoord(1)-2,'Equal').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'black'})
 
 	paper.text(70,550,'Austen').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'1em'})
@@ -114,82 +113,125 @@ function start(){
 	paper.text(590,550,'movies/tv').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'1em'})
 	paper.text(720,550,'Twitter').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'1em'})
 
-	paper.rect(2,10,84,44).attr({fill:'black',opacity:'.8','shape-rendering':'crispEdges'})
-	paper.rect(2,481,84,43).attr({fill:'black',opacity:'.8','shape-rendering':'crispEdges'})
+	paper.rect(2,10,84,44).attr({fill:'#d54d10',opacity:'.8','shape-rendering':'crispEdges'})
+	paper.rect(2,481,84,43).attr({fill:'#0000ff',opacity:'.8','shape-rendering':'crispEdges'})
 
 	paper.line(2,524,900,524).attr({'stroke':'black','stroke-width':2})
 	paper.line(2,10,900,10).attr({'stroke':'black','stroke-width':2})
 
-	paper.text(43,30,'Usually').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'1em','font-weight':600,'fill':'white'})
-	paper.text(43,48,'female').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'1em','font-weight':600,'fill':'white'})
-	paper.text(43,500,'Usually').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'1em','font-weight':600,'fill':'white'})
-	paper.text(43,518,'male').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'1em','font-weight':600,'fill':'white'})
+	paper.text(43,30,'Usually').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'1em','fill':'white'})
+	paper.text(43,48,'female').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'1em','fill':'white'})
+	paper.text(43,500,'Usually').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'1em','fill':'white'})
+	paper.text(43,518,'male').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'1em','fill':'white'})
 
-	// paper.path('M120,267 L150,267').attr({stroke:'#aaa','stroke-width':2,'id':'connector1',fill:'none'})
-	// paper.path('M250,267 L280,267').attr({stroke:'#aaa','stroke-width':2,'id':'connector2',fill:'none'})
-	// paper.path('M380,267 L410,267').attr({stroke:'#aaa','stroke-width':2,'id':'connector3',fill:'none'})
-	// paper.path('M510,267 L540,267').attr({stroke:'#aaa','stroke-width':2,'id':'connector4',fill:'none'})
-	// paper.path('M640,267 L670,267').attr({stroke:'#aaa','stroke-width':2,'id':'connector5',fill:'none'})
+	paper.rect(2,247,133,40).attr({fill:'#aaa','fill-opacity':.9,'id':'austen'})
+	paper.rect(135,247,130,40).attr({fill:'#aaa','fill-opacity':.9,'id':'dickens'})
+	paper.rect(265,247,130,40).attr({fill:'#aaa','fill-opacity':.9,'id':'slate'})
+	paper.rect(395,247,130,40).attr({fill:'#aaa','fill-opacity':.9,'id':'gamergate'})
+	paper.rect(525,247,130,40).attr({fill:'#aaa','fill-opacity':.9,'id':'media'})
+	paper.rect(655,247,130,40).attr({fill:'#aaa','fill-opacity':.9,'id':'tweets'})
 
-	paper.rect(669,460,130,30).attr({fill:'none',stroke:'black','stroke-width':1})
-	var forward=paper.path('M769,501 L769,513 L781,507 L769,501').attr({fill:'#999'})
-	var back=paper.path('M687,507 L699,513 L699,501 L687,507').attr({fill:'#999'})
-	var play=paper.path('M727,498 L727,516 L743,507 L727,498').attr({fill:'#66D066',opacity:0})
-	var pause=paper.path('M727,498 L727,516 L734,516 L734,498 L727,498 M738,498 L738,516 L745,516 L745,498 L738,498').attr({fill:'#D06666',opacity:1})
-	var overlay=paper.rect(727,498,18,18).attr({cursor:'pointer',opacity:0,overlay:1})
+	var wordmasker1=paper.rect(669,460,130,30).attr({fill:'#bbb',stroke:'black','stroke-width':1})
+	var forward=paper.path('M769,501 L769,513 L781,507 L769,501').attr({fill:'#999',cursor:'pointer',front:1})
+	var back=paper.path('M687,507 L699,513 L699,501 L687,507').attr({fill:'#999',cursor:'pointer',front:1})
+	var play=paper.path('M727,498 L727,516 L743,507 L727,498').attr({fill:'#66D066',opacity:0,front:1,play:1})
+	var pause=paper.path('M727,498 L727,516 L734,516 L734,498 L727,498 M738,498 L738,516 L745,516 L745,498 L738,498').attr({fill:'#D06666',opacity:1,front:1,pause:1})
+	var overlay=paper.rect(727,498,18,18).attr({cursor:'pointer',opacity:0,overlay:1,front:1})
 
-	overlay.click(function(){
-		if(playing===1){
+	overlay.click(function(t=0){
+		console.log(t)
+		if(playing===1 | t===1){
 			playing=0
 			play.attr({opacity:1})
 			pause.attr({opacity:0})
 		} else {
 			playing=1
+			position=0
 			play.attr({opacity:0})
 			pause.attr({opacity:1})
 		}
 	})
 
 	back.click(function(){
-
+		if(Math.abs(position)<playedlist.length-1){
+			position=position-1
+			populate(playedlist[playedlist.length-1+position],0)
+		}
 	})
 
 	forward.click(function(){
-
+		try{
+			if(position<0){
+				position=position+1
+				populate(playedlist[playedlist.length-1+position],0)
+			}
+		} catch(err){}
 	})
 
-	// paper.text(120,202,'').attr({class:'bigword',stroke:'black','stroke-width':1,'text-anchor':'start','font-family':'Cabin','font-size':'100px','font-weight':1000,'fill':'#fff',bigword:1})
-
-	paper.rect(0,247,135,40).attr({fill:'#aaa','fill-opacity':.8,'id':'austen'})
-	paper.rect(135,247,130,40).attr({fill:'#aaa','fill-opacity':.8,'id':'dickens'})
-	paper.rect(265,247,130,40).attr({fill:'#aaa','fill-opacity':.8,'id':'slate'})
-	paper.rect(395,247,130,40).attr({fill:'#aaa','fill-opacity':.8,'id':'gamergate'})
-	paper.rect(525,247,130,40).attr({fill:'#aaa','fill-opacity':.8,'id':'media'})
-	paper.rect(655,247,130,40).attr({fill:'#aaa','fill-opacity':.8,'id':'tweets'})
+	paper.append(wordmasker1)
+	paper.append(maskgroup)
 
 }
 
-function populate(word){
+function populate(word,no=1){
 	$('.word').fadeOut(150)
 
 	if(!word){
 		var word=$('#word').val()
 		playing=0
-		paper.select('[overlay]').click()
+		paper.select('[play]').attr({opacity:1})
+		paper.select('[pause]').attr({opacity:0})
 	}
 
-	// var a=paper.select('[bigword]')
-	// a.attr({text:word})
-	// while(a.getBBox().x+a.getBBox().width>800){
-	// 	a.attr({'font-size':parseFloat(a.attr('font-size'))-1})
-	// }
-
-	var temp=paper.text(734,460,word).attr({stroke:'black','stroke-width':1,'text-anchor':'middle','font-family':'Cabin','font-size':'25px','font-weight':1000,'fill':'#fff',bigword:1})
-	while(a.getBBox().x+a.getBBox().width>800){
-		a.attr({'font-size':parseFloat(a.attr('font-size'))-1})
-		var size=a.attr('font-size')
+	if(words.indexOf(word)===-1){
+		var word='N/A'
+	} else {
+		if(no===1){
+			playedlist.push(word)
+		}
 	}
-	var newword=paper.text()
+
+	// animate exit of old word
+	try{
+		var previous=paper.select('[bigword="1"]')
+		previous.attr({bigword:0})
+		var spans=previous.selectAll('tspan')
+
+		spans.forEach(function(entry){
+			var lag=getRandomInt(0,200)
+			setTimeout(function(){
+				entry.animate({y:516},400,mina.backin)
+			},lag)
+		})
+		setTimeout(function(){
+			previous.remove()
+		},900)
+	} catch(err){}
+
+	// write word and animate entrance
+	var temp=paper.text(734,400,word).attr({'text-anchor':'middle','font-family':'Cabin','font-size':'25px','font-weight':700,'fill':'#fff',bigword:1})
+	var size=25
+	while(temp.getBBox().x+temp.getBBox().width>790){
+		temp.attr({'font-size':parseFloat(temp.attr('font-size'))-1})
+		size=temp.attr('font-size')
+	}
+	var startx=temp.getBBox().x
+	temp.remove()
+
+	var splitword=word.split('')
+	var slider=paper.text(startx,450,splitword).attr({'font-family':'Cabin','font-size':size,'font-weight':700,'fill':'#fff',bigword:1})
+	maskgroup.add(slider)
+	slider.selectAll('tspan').attr({y:450})
+	var spans1=slider.selectAll("tspan")
+
+	setTimeout(function(){
+		spans1.forEach(function(entry){
+			var lag=getRandomInt(0,300)
+			setTimeout(function(){
+				entry.animate({y:482},400,mina.backout)
+			},lag)
+		})
+	},300)
 
 	var dickensrect=paper.select("[id='dickens']")
 	var austenrect=paper.select("[id='austen']")
@@ -198,12 +240,9 @@ function populate(word){
 	var mediarect=paper.select("[id='media']")
 	var twitterrect=paper.select("[id='tweets']")
 
-	var con1=paper.select("[id='connector1']")
-	var con2=paper.select("[id='connector2']")
-	var con3=paper.select("[id='connector3']")
-	var con4=paper.select("[id='connector4']")
-	var con5=paper.select("[id='connector5']")
-	var con6=paper.select("[id='connector6']")
+	paper.selectAll('[ontext]').animate({opacity:0},200)
+	paper.selectAll('[ontext]').remove()
+
 
 	try {
 		var dickensy=getcoord(dickens[word][0]/dickens[word][1])
@@ -250,74 +289,52 @@ function populate(word){
 
 
 	setTimeout(function(){
-
 		try{
 			var temp=getratio(austen[word][0]/austen[word][1])
-			$('#austentext').css('left',20+$('#svg').offset().left)
-			$('#austentext').css('top', austeny+$('#svg').offset().top+temp[1])
-			$('#austentext').text(temp[0])
-			$('#austentext').fadeIn(250)
+			var austentext=paper.text(67.5,austeny+8,temp[0]).attr({opacity:0,fontFamily:'Dosis','font-weight':800,fill:'white',stroke:'black','text-anchor':'middle','ontext':1})
+			paper.append(paper.selectAll('[front]'))
+			austentext.animate({opacity:1},200)
 		} catch(err){}
 
 		try{
 			var temp=getratio(dickens[word][0]/dickens[word][1])
-			$('#dickenstext').css('left',150+$('#svg').offset().left)
-			$('#dickenstext').css('top', dickensy+$('#svg').offset().top+temp[1])
-			$('#dickenstext').text(temp[0])
-			$('#dickenstext').fadeIn(250)
+			var dickenstext=paper.text(200,dickensy+8,temp[0]).attr({opacity:0,fontFamily:'Dosis','font-weight':800,fill:'white',stroke:'black','text-anchor':'middle','ontext':1})
+			paper.append(paper.selectAll('[front]'))
+			dickenstext.animate({opacity:1},200)
 		} catch(err){}
 
 		try{
 			var temp=getratio(slate[word][0]/slate[word][1])
-			$('#slatetext').css('left',280+$('#svg').offset().left)
-			$('#slatetext').css('top', slatey+$('#svg').offset().top+temp[1])
-			$('#slatetext').text(temp[0])
-			$('#slatetext').fadeIn(250)
+			var slatetext=paper.text(330,slatey+8,temp[0]).attr({opacity:0,fontFamily:'Dosis','font-weight':800,fill:'white',stroke:'black','text-anchor':'middle','ontext':1})
+			paper.append(paper.selectAll('[front]'))
+			slatetext.animate({opacity:1},200)
 		} catch(err){}
 
 		try{
 			var temp=getratio(gamergate[word][0]/gamergate[word][1])
-			$('#ggatetext').css('left',410+$('#svg').offset().left)
-			$('#ggatetext').css('top', ggatey+$('#svg').offset().top+temp[1])
-			$('#ggatetext').text(temp[0])
-			$('#ggatetext').fadeIn(250)
+			var ggatetext=paper.text(460,ggatey+8,temp[0]).attr({opacity:0,fontFamily:'Dosis','font-weight':800,fill:'white',stroke:'black','text-anchor':'middle','ontext':1})
+			paper.append(paper.selectAll('[front]'))
+			ggatetext.animate({opacity:1},200)
 		} catch(err){}
 
 		try{
 			var temp=getratio(media[word][0]/media[word][1])
-			$('#mediatext').css('left',540+$('#svg').offset().left)
-			$('#mediatext').css('top', mediay+$('#svg').offset().top+temp[1])
-			$('#mediatext').text(temp[0])
-			$('#mediatext').fadeIn(250)
+			var mediatext=paper.text(590,mediay+8,temp[0]).attr({opacity:0,fontFamily:'Dosis','font-weight':800,fill:'white',stroke:'black','text-anchor':'middle','ontext':1})
+			paper.append(paper.selectAll('[front]'))
+			mediatext.animate({opacity:1},200)
 		} catch(err){}
 
 		try{
 			var temp=getratio(tweets[word][0]/tweets[word][1])
-			$('#tweettext').css('left',670+$('#svg').offset().left)
-			$('#tweettext').css('top', tweetsy+$('#svg').offset().top+temp[1])
-			$('#tweettext').text(temp[0])
-			$('#tweettext').fadeIn(250)
+			var tweetstext=paper.text(720,tweetsy+8,temp[0]).attr({opacity:0,fontFamily:'Dosis','font-weight':800,fill:'white',stroke:'black','text-anchor':'middle','ontext':1})
+			paper.append(paper.selectAll('[front]'))
+			tweetstext.animate({opacity:1},200)
 		} catch(err){}
 	},1000)
-	
-	// con2.animate({path:'M250,'+(dickensy)+' C280,'+(dickensy)+' 250,'+(slatey)+' 280,'+(slatey)},1000)
-	// con3.animate({path:'M380,'+(slatey)+' C410,'+(slatey)+' 380,'+(ggatey)+' 410,'+(ggatey)},1000)
-	// con4.animate({path:'M510,'+(ggatey)+' C540,'+(ggatey)+' 510,'+(mediay)+' 540,'+(mediay)},1000)
-	// con5.animate({path:'M640,'+(mediay)+' C670,'+(mediay)+' 640,'+(tweetsy)+' 670,'+(tweetsy)},1000)
-
-	if(words.indexOf(word)===-1){
-		a.attr({text:'not found'})
-		$('#austentext').text('')
-		$('#dickenstext').text('')
-		$('#slatetext').text('')
-		$('#ggatetext').text('')
-		$('#mediatext').text('')
-		$('#tweettext').text('')
-		return
-	}
 }
 
 function get_color(value){
+	return '#aaa'
 	if(value<-.8){return 'rgb(215,48,39)'}
 	if(value<-.6){return 'rgb(244,109,67)'}
 	if(value<-.4){return 'rgb(253,174,97)'}
@@ -331,10 +348,10 @@ function get_color(value){
 
 function getratio(ratio){
 	if(ratio===Infinity){
-		return ['always female',-17]
+		return ['only female',-17]
 	}
 	if(ratio===0){
-		return ['always male',-17]
+		return ['only male',-17]
 	}
 
 	if(ratio>1){
@@ -342,17 +359,14 @@ function getratio(ratio){
 	} else {
 		return [(1/ratio).toFixed(1)+'x',-10]
 	}
-
-
-
 }
 
 function getcoord(ratio){
 	if(ratio===Infinity){
-		return 32
+		return 31
 	}
 	if(ratio===0){
-		return 502
+		return 503
 	}
 
 	// scale to go from 0 to positive multipliers or negative multipliers
@@ -366,10 +380,10 @@ function getcoord(ratio){
 	var coord=267-(ratio/4)*257
 
 	if(coord<32){
-		coord=32
+		coord=31
 	}
 	if(coord>504){
-		coord=502
+		coord=503
 	}
 	return coord
 }
