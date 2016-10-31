@@ -386,7 +386,10 @@ def compare_genders(adjective_dict):
 	biglist.sort(key=lambda x:x[1])
 	biglist.sort(key=lambda x:x[-1])
 	for item in biglist:
-		item.append('')
+		if item[3]==0:
+			item.append('inf')
+		if item[3]!=0:
+			item.append(item[2]/item[3])
 
 	return biglist
 

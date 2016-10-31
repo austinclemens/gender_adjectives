@@ -13,7 +13,7 @@
 		body{margin-top:35px;text-align:center;font-family:'Cabin';font-size:1.2em;margin-left:auto;margin-right:auto;}
 		.container{width:800px;margin-right:auto;margin-left:auto;}
 		.controls{text-align:center;margin-bottom:15px;}
-		.adj{background:#eaeaea;border:0;text-align:center;padding-bottom:1px;display:inline-block;width:250px;border-bottom:2px solid black;font-family:'Cabin';font-size:1em;letter-spacing:1px}
+		.adj{background:#eaeaea;border:0;text-align:center;padding-bottom:1px;display:inline-block;width:250px;border-bottom:2px solid black;font-family:'Dosis';font-size:1.2em;letter-spacing:1px;}
 		.descbutton{background:white;vertical-align:center;margin-top:10px;border:2px solid black;padding:6px;display:inline-block;text-align:center;cursor:pointer;color:black;font-family:'Cabin';}
 		.descbutton:hover{border:2px solid #666;background:rgba(0,0,0,.4);color:white;}
 		.ui-autocomplete{max-height:200px;overflow:scroll;}
@@ -21,21 +21,21 @@
 		.bubble{display:inline-block;padding:2px;border-radius:2px;color:white;}
 		.interior{font-family:'Dosis';font-weight:800;color:'white';font-size:1em}
 		.interior2{font-family:'Dosis';font-weight:800;color:'white';font-size:.7em}
-		.male{padding:1px 4px 1px 4px;border:0px solid black;border-radius:2px;background:#b35806;font-size:.85em;color:white;}
-		.female{padding:1px 4px 1px 4px;border:0px solid black;border-radius:2px;background:#542788;font-size:.85em;color:white;}
-		.submit{padding:1px 4px 1px 4px;border:0px solid black;border-radius:2px;background:white;font-size:.85em;color:black;}
-}
+		.male{margin-right:2px;padding:1px 4px 1px 4px;border:0px solid black;border-radius:2px;background:#b35806;font-size:.85em;color:white;}
+		.female{margin-right:2px;padding:1px 4px 1px 4px;border:0px solid black;border-radius:2px;background:#542788;font-size:.85em;color:white;}
+		.submit{margin-right:2px;padding:1px 4px 1px 4px;border:0px solid black;border-radius:2px;background:white;font-size:.85em;color:black;}
+		.circle{display:inline-block;border-radius:10px;width:18px;height:18px;border:1px solid black;margin-bottom:-4px;}
 	</style>
 </head>
 
 <body>
 <div class='container'>
 	<div style='text-align:left;margin-bottom:8px'>
-	Type in a word that you want to track across all the corpora, then hit <span class='submit'>submit</span>. Each circle shows the gender bias in one body of text. If a circle floats toward the top, that means the word is usually used to describe <span class='female'>females</span>. If it sinks, the word is usually used to describe <span class='male'>males</span>.<br>
+	Type in a word you want to track across texts, then hit <span class='submit'>submit</span>. Each <div class='circle'></div> shows the gender bias in one text. If a <div class='circle'></div> floats toward the top, the word is usually used to describe <span class='female'>females</span>. If it sinks, the word is usually used to describe <span class='male'>males</span>. A larger <div class='circle'></div> mean the word occurs frequently.<br>
 	</div>
 	<div class='controls'>
 		<input type="text" name="word" id='word' class='adj'>
-		<div class='descbutton' onclick="populate()">Submit</div>
+		<div class='descbutton' onclick="populate()">submit</div>
 	</div>
 
 	<svg viewbox='0 -25 785 625' id='svg'>
@@ -137,12 +137,12 @@ function start(){
 	paper.text(6,520.5,'describes males').attr({'text-anchor':'start','font-family':'Cabin','font-size':'1em','fill':'white'})
 	paper.line(2,getcoord(1),900,getcoord(1)).attr({'stroke-width':2,stroke:'black','shape-rendering':'crispEdges'})
 
-	circlemaskgroup.add(paper.circle(70,268,35).attr({fill:'#aaa','fill-opacity':.95,'id':'austen',stroke:'white','stroke-width':0}))
-	circlemaskgroup.add(paper.circle(200,268,35).attr({fill:'#aaa','fill-opacity':.95,'id':'dickens',stroke:'white','stroke-width':0}))
-	circlemaskgroup.add(paper.circle(330,268,35).attr({fill:'#aaa','fill-opacity':.95,'id':'slate',stroke:'white','stroke-width':0}))
-	circlemaskgroup.add(paper.circle(460,268,35).attr({fill:'#aaa','fill-opacity':.95,'id':'gamergate',stroke:'white','stroke-width':0}))
-	circlemaskgroup.add(paper.circle(590,268,35).attr({fill:'#aaa','fill-opacity':.95,'id':'media',stroke:'white','stroke-width':0}))
-	circlemaskgroup.add(paper.circle(720,268,35).attr({fill:'#aaa','fill-opacity':.95,'id':'tweets',stroke:'white','stroke-width':0}))
+	circlemaskgroup.add(paper.circle(70,268,25).attr({fill:'#aaa','fill-opacity':.95,'id':'austen',stroke:'white','stroke-width':0}))
+	circlemaskgroup.add(paper.circle(200,268,25).attr({fill:'#aaa','fill-opacity':.95,'id':'dickens',stroke:'white','stroke-width':0}))
+	circlemaskgroup.add(paper.circle(330,268,25).attr({fill:'#aaa','fill-opacity':.95,'id':'slate',stroke:'white','stroke-width':0}))
+	circlemaskgroup.add(paper.circle(460,268,25).attr({fill:'#aaa','fill-opacity':.95,'id':'gamergate',stroke:'white','stroke-width':0}))
+	circlemaskgroup.add(paper.circle(590,268,25).attr({fill:'#aaa','fill-opacity':.95,'id':'media',stroke:'white','stroke-width':0}))
+	circlemaskgroup.add(paper.circle(720,268,25).attr({fill:'#aaa','fill-opacity':.95,'id':'tweets',stroke:'white','stroke-width':0}))
 	paper.append(circlemaskgroup)
 
 	// var wordmasker1=paper.rect(335,-20,130,30).attr({fill:'#bbb',stroke:'black','stroke-width':2,shapeRendering:'crispEdges',strokeDasharray:[130,30,130,30]})
@@ -247,47 +247,54 @@ function populate(word,no=1){
 	paper.selectAll('[ontext]').remove()
 
 
+
 	try {
+		var dickensfreq=getfrequency(word,dickens)
 		var dickensy=getcoord(dickens[word][0]/dickens[word][1])
-		dickensrect.animate({fill:get_color(dickens[word][0]/dickens[word][1]),cy:dickensy},1000,mina.easeinout)
+		dickensrect.animate({fill:get_color(dickens[word][0]/dickens[word][1]),cy:dickensy,r:dickensfreq[1]},1000,mina.easeinout)
 	} catch(err){
 		var dickensy=267
-		dickensrect.animate({fill:'#aaa',cy:dickensy},1000)
+		dickensrect.animate({fill:'#aaa',cy:dickensy,r:25},1000)
 	}
 	try {
+		var austenfreq=getfrequency(word,austen)
 		var austeny=getcoord(austen[word][0]/austen[word][1])
-		austenrect.animate({fill:get_color(austen[word][0]/austen[word][1]),cy:austeny},1000,mina.easeinout)
+		austenrect.animate({fill:get_color(austen[word][0]/austen[word][1]),cy:austeny,r:austenfreq[1]},1000,mina.easeinout)
 	} catch(err){
 		var austeny=267
-		austenrect.animate({fill:'#aaa',cy:austeny},1000)
+		austenrect.animate({fill:'#aaa',cy:austeny,r:25},1000)
 	}
 	try {
+		var slatefreq=getfrequency(word,slate)
 		var slatey=getcoord(slate[word][0]/slate[word][1])
-		slaterect.animate({fill:get_color(slate[word][0]/slate[word][1]),cy:slatey},1000,mina.easeinout)
+		slaterect.animate({fill:get_color(slate[word][0]/slate[word][1]),cy:slatey,r:slatefreq[1]},1000,mina.easeinout)
 	} catch(err){
 		var slatey=267
-		slaterect.animate({fill:'#aaa',cy:slatey},1000)
+		slaterect.animate({fill:'#aaa',cy:slatey,r:25},1000)
 	}
 	try {
+		var ggatefreq=getfrequency(word,gamergate)
 		var ggatey=getcoord(gamergate[word][0]/gamergate[word][1])
-		gamergaterect.animate({fill:get_color(gamergate[word][0]/gamergate[word][1]),cy:ggatey},1000,mina.easeinout)
+		gamergaterect.animate({fill:get_color(gamergate[word][0]/gamergate[word][1]),cy:ggatey,r:ggatefreq[1]},1000,mina.easeinout)
 	} catch(err){
 		var ggatey=267
-		gamergaterect.animate({fill:'#aaa',cy:ggatey},1000)
+		gamergaterect.animate({fill:'#aaa',cy:ggatey,r:25},1000)
 	}
 	try {
+		var mediafreq=getfrequency(word,media)
 		var mediay=getcoord(media[word][0]/media[word][1])
-		mediarect.animate({fill:get_color(media[word][0]/media[word][1]),cy:mediay},1000,mina.easeinout)
+		mediarect.animate({fill:get_color(media[word][0]/media[word][1]),cy:mediay,r:mediafreq[1]},1000,mina.easeinout)
 	} catch(err){
 		var mediay=267
-		mediarect.animate({fill:'#aaa',cy:mediay},1000)
+		mediarect.animate({fill:'#aaa',cy:mediay,r:25},1000)
 	}
 	try {
+		var tweetfreq=getfrequency(word,tweets)
 		var tweetsy=getcoord(tweets[word][0]/tweets[word][1])
-		twitterrect.animate({fill:get_color(tweets[word][0]/tweets[word][1]),cy:tweetsy},1000,mina.easeinout)
+		twitterrect.animate({fill:get_color(tweets[word][0]/tweets[word][1]),cy:tweetsy,r:tweetfreq[1]},1000,mina.easeinout)
 	} catch(err){
 		var tweetsy=267
-		twitterrect.animate({fill:'#aaa',cy:tweetsy},1000)
+		twitterrect.animate({fill:'#aaa',cy:tweetsy,r:25},1000)
 	}
 
 
@@ -299,7 +306,7 @@ function populate(word,no=1){
 			} else {
 				var austentext=paper.text(70,austeny-2,temp[0]).attr({opacity:0,class:'interior',textAnchor:'middle',ontext:1})
 			}
-			var austentext2=paper.text(70,austeny+12,getfrequency(word,austen)).attr({opacity:0,class:'interior2',textAnchor:'middle',ontext:1})
+			var austentext2=paper.text(70,austeny+12,austenfreq[0]).attr({opacity:0,class:'interior2',textAnchor:'middle',ontext:1})
 			paper.append(paper.selectAll('[front]'))
 			austentext.animate({opacity:1},200)
 			austentext2.animate({opacity:1},200)
@@ -313,7 +320,7 @@ function populate(word,no=1){
 			} else {
 				var dickenstext=paper.text(200,dickensy-2,temp[0]).attr({opacity:0,class:'interior',textAnchor:'middle',ontext:1})
 			}
-			var dickenstext2=paper.text(200,dickensy+12,getfrequency(word,dickens)).attr({opacity:0,class:'interior2',textAnchor:'middle',ontext:1})
+			var dickenstext2=paper.text(200,dickensy+12,dickensfreq[0]).attr({opacity:0,class:'interior2',textAnchor:'middle',ontext:1})
 			paper.append(paper.selectAll('[front]'))
 			dickenstext.animate({opacity:1},200)
 			dickenstext2.animate({opacity:1},200)
@@ -326,7 +333,7 @@ function populate(word,no=1){
 			} else {
 				var slatetext=paper.text(330,slatey-2,temp[0]).attr({opacity:0,class:'interior',textAnchor:'middle',ontext:1})
 			}
-			var slatetext2=paper.text(330,slatey+12,getfrequency(word,slate)).attr({opacity:0,class:'interior2',textAnchor:'middle',ontext:1})
+			var slatetext2=paper.text(330,slatey+12,slatefreq[0]).attr({opacity:0,class:'interior2',textAnchor:'middle',ontext:1})
 			paper.append(paper.selectAll('[front]'))
 			slatetext.animate({opacity:1},200)
 			slatetext2.animate({opacity:1},200)
@@ -339,7 +346,7 @@ function populate(word,no=1){
 			} else {
 				var ggatetext=paper.text(460,ggatey-2,temp[0]).attr({opacity:0,class:'interior',textAnchor:'middle',ontext:1})
 			}
-			var ggatetext2=paper.text(460,ggatey+12,getfrequency(word,gamergate)).attr({opacity:0,class:'interior2',textAnchor:'middle',ontext:1})
+			var ggatetext2=paper.text(460,ggatey+12,ggatefreq[0]).attr({opacity:0,class:'interior2',textAnchor:'middle',ontext:1})
 			paper.append(paper.selectAll('[front]'))
 			ggatetext.animate({opacity:1},200)
 			ggatetext2.animate({opacity:1},200)
@@ -352,7 +359,7 @@ function populate(word,no=1){
 			} else {
 				var mediatext=paper.text(590,mediay-2,temp[0]).attr({opacity:0,class:'interior',textAnchor:'middle',ontext:1})
 			}
-			var mediatext2=paper.text(590,mediay+12,getfrequency(word,media)).attr({opacity:0,class:'interior2',textAnchor:'middle',ontext:1})
+			var mediatext2=paper.text(590,mediay+12,mediafreq[0]).attr({opacity:0,class:'interior2',textAnchor:'middle',ontext:1})
 			paper.append(paper.selectAll('[front]'))
 			mediatext.animate({opacity:1},200)
 			mediatext2.animate({opacity:1},200)
@@ -365,7 +372,7 @@ function populate(word,no=1){
 			} else {
 				var tweetstext=paper.text(720,tweetsy-2,temp[0]).attr({opacity:0,class:'interior',textAnchor:'middle',ontext:1})
 			}
-			var tweetstext2=paper.text(720,tweetsy+12,getfrequency(word,tweets)).attr({opacity:0,class:'interior2',textAnchor:'middle',ontext:1})
+			var tweetstext2=paper.text(720,tweetsy+12,tweetfreq[0]).attr({opacity:0,class:'interior2',textAnchor:'middle',ontext:1})
 			paper.append(paper.selectAll('[front]'))
 			tweetstext.animate({opacity:1},200)
 			tweetstext2.animate({opacity:1},200)
@@ -399,7 +406,7 @@ function getratio(ratio){
 		return [ratio.toFixed(1)+'x',-10]
 	} else {
 		if(ratio<.1){
-			return [ratio.toFixed(0)+'x',-10]
+			return [(1/ratio).toFixed(0)+'x',-10]
 		}
 		return [(1/ratio).toFixed(1)+'x',-10]
 	}
@@ -412,9 +419,9 @@ function getfrequency(word,corpus){
 	}
 
 	freqs.sort(function(a, b){return a-b});
-	if(corpus[word][3]<=freqs[freqs.length/3]){return 'rare'}
-	if(corpus[word][3]<=freqs[2*freqs.length/3]){return 'uncommon'}
-	else{return 'common'}
+	if(corpus[word][3]<=freqs[freqs.length/3]){return ['rare',25]}
+	if(corpus[word][3]<=freqs[2*freqs.length/3]){return ['uncommon',35]}
+	else{return ['common',45]}
 }
 
 function getcoord(ratio){
