@@ -25,6 +25,7 @@
 		.female{margin-right:2px;padding:1px 4px 1px 4px;border:0px solid black;border-radius:2px;background:#542788;font-size:.85em;color:white;}
 		.submit{margin-right:2px;padding:1px 4px 1px 4px;border:0px solid black;border-radius:2px;background:white;font-size:.85em;color:black;}
 		.circle{display:inline-block;border-radius:10px;width:18px;height:18px;border:1px solid black;margin-bottom:-4px;}
+		.fa{font-family: FontAwesome;}
 	</style>
 </head>
 
@@ -120,13 +121,14 @@ function start(){
 	paper.text(2,getcoord(.25)-2,'4x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#666',opacity:.4})
 	paper.text(2,getcoord(1)-2,'Equal').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'black'})
 
-	paper.text(70,550,'Austen').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'1em'})
-	paper.text(200,550,'Dickens').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'1em'})
-	paper.text(330,550,'Slate').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'1em'})
-	paper.text(460,550,'gamergate').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'1em'})
-	paper.text(590,550,'movies/tv').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'1em'})
-	paper.text(720,550,'Twitter').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'1em'})
-
+	paper.text(70,550,'Austen').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'.95em'})
+	paper.text(200,550,'Dickens').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'.95em'})
+	paper.text(330,550,'Slate').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'.95em'})
+	var ggtext=paper.text(460,550,['\uf281',' gamergate']).attr({'text-anchor':'middle','font-family':'FontAwesome','font-size':'.95em'})
+	ggtext.selectAll("tspan:not(:first-child)").attr({fontFamily:'Cabin'})
+	var mtext=paper.text(590,550,['\uf281',' movies/tv']).attr({'text-anchor':'middle','font-family':'FontAwesome','font-size':'.95em'})
+	mtext.selectAll("tspan:not(:first-child)").attr({fontFamily:'Cabin'})
+	paper.text(720,550,'Twitter').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'.95em'})
 	paper.rect(2,-11,153,22,4,4).attr({fill:mfscale[8],opacity:'.95','shape-rendering':'crispEdges'})
 	paper.rect(2,503,139,22,4,4).attr({fill:mfscale[0],opacity:'.95','shape-rendering':'crispEdges'})
 
@@ -152,8 +154,12 @@ function start(){
 	var pause=paper.path('M727,-15 L727,3 L734,3 L734,-15 L727,-15 M738,-15 L738,3 L745,3 L745,-15 L738,-15').attr({fill:'#D06666',opacity:1,front:1,pause:1,stroke:'black',strokeWidth:0})
 	var overlay=paper.rect(727,-10,18,18).attr({cursor:'pointer',opacity:0,overlay:1,front:1})
 
-	overlay.click(function(t=0){
-		console.log(t)
+	overlay.click(function(t){
+
+	    if (t === undefined) {
+	        t = 1;
+	    }
+
 		if(playing===1 | t===1){
 			playing=0
 			play.attr({opacity:1})
@@ -185,7 +191,12 @@ function start(){
 	paper.append(maskgroup)
 }
 
-function populate(word,no=1){
+function populate(word,no){
+
+    if (no === undefined) {
+        no = 1;
+    }
+
 	$('.word').fadeOut(150)
 
 	if(!word){
