@@ -4,7 +4,8 @@
 	<title>gendered adjectives by corpus</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="lib/jquery.mixitup.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+	<script src="lib/jquery.color.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
 	<link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
 	
@@ -12,47 +13,49 @@
 		p{width:650px;margin-right:auto;margin-left:auto;}
 		html,body{margin:0;max-width:1000px;margin-left:auto;margin-right:auto;margin-top:7px;}
 
-		#femcontainer,#median,#malecontainer{padding:1%;text-align:center;}
+		#femcontainer,#median,#malecontainer{padding:1%;}
 		#median{text-align:center;line-height:70px;height:70px;border-top:2px dashed #ccc;border-bottom:2px dashed #ccc;margin-top:5px;margin-bottom:5px;font-size:2em;font-family:'Dosis';}
-		.word{min-width:20px;display:inline-block;padding:2px 5px 2px 5px;border-radius:2px;font-family:'Dosis';margin:2px;color:white;font-size:1.2em;}
+		.word{min-width:20px;display:inline-block;padding:2px 5px 2px 5px;border-radius:2px;font-family:'Dosis';margin:2px;color:white;font-size:1.15em;}
 		.controls{padding:1%;font-family:'Cabin';font-size:1.2em;}
 
 		/* buttons */
-		.sort{font-size:1em;background:white;vertical-align:center;margin-top:10px;border:2px solid black;padding:6px;display:inline-block;text-align:center;cursor:pointer;color:black;font-family:'Cabin';}
+		.sort{font-size:.8em;background:white;vertical-align:center;margin-top:10px;border:2px solid black;padding:3px 6px 3px 6px;display:inline-block;text-align:center;cursor:pointer;color:black;font-family:'Cabin';}
 		.sort:hover{border:2px solid #666;background:rgba(0,0,0,.4);color:white;}
+		.sort2{font-size:.8em;background:white;vertical-align:center;margin-top:10px;border:2px solid black;padding:3px 6px 3px 6px;display:inline-block;text-align:center;cursor:pointer;color:black;font-family:'Cabin';}
+		.sort2:hover{border:2px solid #666;background:rgba(0,0,0,.4);color:white;}
 		.active{border:2px solid #666;background:rgba(0,0,0,.4);color:white;}
 		.expand{font-size:12px;cursor:pointer;background:#000;color:white;font-family:Sans-Serif;padding:4px 5px 4px 5px;position:absolute;right:0;bottom:0;border-radius:2px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;}
 		.tooltip{text-align:center;padding:3px 5px 3px 5px;border-radius:2px;top:-9999px;background:rgba(0,0,0,.8);border:1px solid black;color:white;font-family:'Cabin';position: fixed;z-index: 100}
 		.expand:hover{background:#bc0f10;}
-		.leftcontrols{display:inline-block;width:39%;}
-		.rightcontrols{display:inline-block;width:59%;text-align:right;}
+		.leftcontrols{display:inline-block;}
+		.rightcontrols{display:inline-block;width:49%;text-align:right;}
+		.desc{margin-top:35px;margin-bottom:5px;font-family:'Cabin';font-size:1.2em;margin-left:auto;margin-right:auto;}
+		.female{margin-right:2px;padding:1px 4px 1px 4px;border:0px solid black;border-radius:2px;background:#542788;font-size:.85em;color:white;}
+		.submit{margin-right:2px;padding:1px 4px 1px 4px;border:0px solid black;border-radius:2px;background:white;font-size:.85em;color:black;}
 	</style>
 </head>
 
 <body>
 
+<div class='desc'>Words that disproportionately describe <span class='female'>females</span> (top) and <span class='males'>males</span>, sorted by <span id='sorted'>bias towards one gender</span>. <span style='color:#542788;'>darker</span> colors mean more gender bias. Click a <span class='submit'>button</span> below to sort by word frequency or word sentiment, or to color the words based on sentiment instead of bias.</div>
+
 <div class='controls'>
 	<div class='leftcontrols'>
 		Sort by:
-		<button class="sort" data-sort="freqorder:asc">Frequency</button>
-		<button class="sort" data-sort="biasorder:asc">Gender Bias</button>
+		<button class="sort" data-sort="freqorder:asc">frequency</button>
+		<button class="sort" data-sort="biasorder:asc">gender bias</button>
+		<button class="sort" data-sort="sentimentorder:asc">word sentiment</button> 
+		<span style='margin-left:15px'>Coloring:</span>
+		<button class="sort2" onclick='recolor("gender")'>gender bias</button>
+		<button class="sort2" onclick='recolor("sentiment")'>sentiment</button>
+		<span style='margin-left:15px'>Filter:</span>
+		<button class="sort2" onclick='recolor("gender")'>>2x bias only</button>
+		<!-- <button class="sort2" onclick='recolor("sentiment")'>sentiment</button> -->
 	</div>
-	<div class='rightcontrols'>
-		Coloring: 
-		<button class="sort" data-sort="freqorder:asc">Gender Bias</button>
-		<button class="sort" data-sort="biasorder:asc">Sentiment</button>
-	</div>
-<!-- 	<div style='text-align:right;margin-top:4px;width:98%'>
-		<div class='rightcontrols'>
-			<div id='key' style='display:inline-block'>
-				<div class='word' style='background:#542788;margin:1px'>females</div><div class='word' style='text-indent: -9999px;background:#8073ac;margin:1px'>s</div><div class='word' style='text-indent: -9999px;background:#b2abd2;margin:1px'>s</div><div class='word' style='text-indent: -9999px;background:#fdb863;margin:1px'>s</div><div class='word' style=';background:#e08214;margin:1px'>s</div><div class='word' style='background:#b35806;margin:1px'>males</div>
-			</div>
-		</div>
-	</div> -->
 </div>
 
 <div id='femcontainer'></div>
-<div id='median'>neutral words</div>
+<div id='median'>neutral adjectives &uarr;</div>
 <div id='malecontainer'></div>
 
 </body>
@@ -74,39 +77,72 @@ function setupcorpus(corpus,cb){
 	maletweets=[]
 
 	fembias=[]
-	malebiase=[]
+	malebias=[]
 
 	for(var i=0;i<corpus.length;i++){
-		if(corpus[i][2]>corpus[i][3]){femtweets.push(corpus[i])}
-		else{maletweets.push(corpus[i])}
+		if(corpus[i][2]>corpus[i][3]){
+			femtweets.push(corpus[i])
+			fembias.push(corpus[i][5])
+		} else {
+			maletweets.push(corpus[i])
+			malebias.push(corpus[i][5])
+		}
 	}
+
+	fembias.sort(function(a,b){return b-a})
+	malebias.sort(function(a,b){return b-a})
 
 	// push divs to appropriate containers
-	for(var i=0;i<150;i++){
-		$('#femcontainer').append("<div class='word mix' style='background:"+getcolor(femtweets[i][5],'bias')+"' data-freqorder="+i+" data-biasorder="+getRandomInt(0,femtweets.length)+">"+femtweets[i][0]+"</div>")
+	for(var i=0;i<100;i++){
+		try{
+			var biasrank=fembias.indexOf(femtweets[i][5])
+			if(femtweets[i][5]=='inf'){biasrank=0}
+			var biascolor=getcolor(femtweets[i][5],'bias')
+			var sentimentcolor=getcolor(femtweets[i][4],'sentiment')
+			$('#femcontainer').append("<div class='word mix' style='background:"+biascolor+"' data-freqorder="+i+" data-biasorder="+biasrank+" data-sentimentorder="+(-femtweets[i][4])+" data-gender='female' data-biascolor='"+biascolor+"' data-sentimentcolor='"+sentimentcolor+"'>"+femtweets[i][0]+"</div>")
+		} catch(err){}
 	}
 
-	for(var i=0;i<150;i++){
-		$('#malecontainer').append("<div class='word mix' style='background:"+getcolor(maletweets[i][5],'bias')+"' data-freqorder="+i+" data-biasorder="+getRandomInt(0,maletweets.length)+">"+maletweets[i][0]+"</div>")
+	for(var i=0;i<100;i++){
+		try{
+			var biascolor=getcolor(maletweets[i][5],'bias')
+			var sentimentcolor=getcolor(maletweets[i][4],'sentiment')
+			$('#malecontainer').append("<div class='word mix' style='background:"+getcolor(maletweets[i][5],'bias')+"' data-freqorder="+i+" data-biasorder="+malebias.indexOf(maletweets[i][5])+" data-sentimentorder="+(maletweets[i][4])+" data-gender='male' data-biascolor='"+biascolor+"' data-sentimentcolor='"+sentimentcolor+"'>"+maletweets[i][0]+"</div>")
+		} catch(err){}
 	}
 
-	cb
+	postsetup()
 }
 
 function postsetup(){
-
 	$(function(){
-	  $('#femcontainer').mixItUp();
+	  $('#femcontainer').mixItUp({
+	  	animation:{
+	  		effects: '',
+	  		// animateResizeContainer: true
+	  	},
+	  	load:{
+	  		sort:'biasorder:asc'
+	  	}
+	  });
 	});
 
 	$(function(){
-	  $('#malecontainer').mixItUp();
+	  $('#malecontainer').mixItUp({
+	  	animation:{
+	  		effects: '',
+	  		// animateResizeContainer: true
+	  	},
+	  	load:{
+	  		sort:'biasorder:asc'
+	  	}
+	  });
 	});
 }
 
 function getcolor(value,type){
 	if(type==='bias'){
-		if(value==='Infinity' | value>3){return mfscale[8]}
+		if(value==='inf' | value>3){return mfscale[8]}
 		if(value<.333){return mfscale[0]}
 		if(value<.6){return mfscale[1]}
 		if(value<.8){return mfscale[2]}
@@ -116,13 +152,39 @@ function getcolor(value,type){
 		if(value<3){return mfscale[7]}
 	} else {
 		// for sentiment instead of bias
-		if(1===1){}
+		if(value<=-.75){return sentimentscale[0]}
+		if(value<=-.5){return sentimentscale[1]}
+		if(value<=-.25){return sentimentscale[2]}
+		if(value<=0){return sentimentscale[3]}
+		if(value<=.25){return sentimentscale[5]}
+		if(value<=.5){return sentimentscale[6]}
+		if(value<=.75){return sentimentscale[7]}
+		if(value>=.75){return sentimentscale[8]}
+	}
+}
+
+function recolor(type){
+	if(type=='sentiment'){
+		$('.mix').each(function(){
+			$(this).animate({
+				backgroundColor:$(this).attr('data-sentimentcolor')
+			})
+		})
+	} else {
+		$('.mix').each(function(){
+			$(this).animate({
+				backgroundColor:$(this).attr('data-biascolor')
+			})
+		})
 	}
 }
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+setupcorpus(gamergate)
+
 
 </script>
 </html>
