@@ -14,8 +14,8 @@
 		html,body{margin:0;max-width:1000px;margin-left:auto;margin-right:auto;margin-top:20px;padding-left:1%;padding-right:1%;}
 
 		#femcontainer,#median,#malecontainer{}
-		#median{text-align:center;line-height:35px;height:70px;border-top:2px dashed #ccc;border-bottom:2px dashed #ccc;margin-top:5px;margin-bottom:5px;font-size:1.3em;font-family:'Dosis';}
-		.word{min-width:20px;display:inline-block;padding:2px 5px 2px 5px;border-radius:2px;font-family:'Dosis';margin:2px;color:white;font-size:1.15em;}
+		#median{padding:5px;text-align:center;line-height:35px;height:70px;border-top:2px dashed #ccc;border-bottom:2px dashed #ccc;margin-top:5px;margin-bottom:5px;font-size:1.3em;font-family:'Dosis';}
+		.word{min-width:20px;display:hidden;padding:2px 5px 2px 5px;border-radius:2px;font-family:'Dosis';margin:2px;color:white;font-size:1.15em;}
 		.controls{padding-bottom:10px;font-family:'Cabin';font-size:1.2em;}
 
 		/* buttons */
@@ -51,7 +51,7 @@
 	<button class="sort2 corpusbutton corp" id='tweets' onclick='setupcorpus(tweets,"tweets")'><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</button>
 </div>
 
-<div class='desc'><div class='number'>2</div> Words that disproportionately describe <span class='female'>females</span> and <span class='male'>males</span>, sorted by <span id='sorted'><span class='submit corpusbutton' id='bias'>gender bias <span style='font-family:"FontAwesome";font-size:.8em'>&#xf29c;</span></span>. <span class='darker'>Darker</span> colors mean more gender bias. Click a button below to sort by word <span class='submit corpusbutton' id='frequency'>frequency <span style='font-family:"FontAwesome";font-size:.8em'>&#xf29c;</span></span> or word <span class='submit corpusbutton' id='sentiment'>sentiment <span style='font-family:"FontAwesome";font-size:.8em'>&#xf29c;</span></span>, or to color the words based on <span class='submit corpusbutton' id='sentiment'>sentiment <span style='font-family:"FontAwesome";font-size:.8em'>&#xf29c;</span></span>.</div>
+<div class='desc'><div class='number' style='left:0'>2</div> Words that disproportionately describe <span class='female'>females</span> and <span class='male'>males</span>, sorted by <span id='sort1'><span class='submit corpusbutton' id='bias'>gender bias <span style='font-family:"FontAwesome";font-size:.8em'>&#xf29c;</span></span></span>. <span class='darker'>Darker</span> colors mean more gender bias. Click a button below to sort by <span id='sort2'>word <span class='submit corpusbutton' id='frequency'>frequency <span style='font-family:"FontAwesome";font-size:.8em'>&#xf29c;</span></span> or word <span class='submit corpusbutton' id='sentiment'>sentiment <span style='font-family:"FontAwesome";font-size:.8em'>&#xf29c;</span></span></span>, or to color the words based on <span id='color1'><span class='submit corpusbutton' id='sentiment'>sentiment <span style='font-family:"FontAwesome";font-size:.8em'>&#xf29c;</span></span></span>.</div>
 
 <div class='controls'>
 	<div class='leftcontrols'>
@@ -62,8 +62,6 @@
 		<span style='margin-left:15px'>Coloring:</span>
 		<button class="sort2 active" id='biascolor' onclick='recolor("gender")'>gender bias</button>
 		<button class="sort2" id='sentimentcolor' onclick='recolor("sentiment")'>sentiment</button>
-		<span style='margin-left:15px'>Filter:</span>
-		<button class="sort2" onclick='recolor("gender")'>>2x bias only</button>
 	</div>
 </div>
 
@@ -123,31 +121,41 @@ function setupcorpus(corpus,name){
 	malebias.sort(function(a,b){return b-a})
 
 	// push divs to appropriate containers
-	for(var i=0;i<100;i++){
+	for(var i=0;i<120;i++){
 		try{
+			if(i<12){
+				var filter='filterme'
+			} else {
+				var filter='unfilter'
+			}
 			var biasrank=fembias.indexOf(femtweets[i][5])
 			if(femtweets[i][5]=='inf'){biasrank=0}
 			var biascolor=getcolor(femtweets[i][5],'bias')
 			var sentimentcolor=getcolor(femtweets[i][4],'sentiment')
 			if($('#biascolor').hasClass('active')){
-				usecolor=biascolor
+				var usecolor=biascolor
 			} else {
-				usecolor=sentimentcolor
+				var usecolor=sentimentcolor
 			}
-			$('#femcontainer').append("<div class='word mix' style='background:"+usecolor+"' data-freqorder="+i+" data-biasorder="+biasrank+" data-sentimentorder="+(-femtweets[i][4])+" data-gender='female' data-biascolor='"+biascolor+"' data-sentimentcolor='"+sentimentcolor+"'>"+femtweets[i][0]+"</div>")
+			$('#femcontainer').append("<div class='word mix "+filter+"' style='background:"+usecolor+"' data-freqorder="+i+" data-biasorder="+biasrank+" data-sentimentorder="+(-femtweets[i][4])+" data-gender='female' data-biascolor='"+biascolor+"' data-sentimentcolor='"+sentimentcolor+"'>"+femtweets[i][0]+"</div>")
 		} catch(err){}
 	}
 
-	for(var i=0;i<100;i++){
+	for(var i=0;i<120;i++){
 		try{
+			if(i<12){
+				var filter='filterme'
+			} else {
+				var filter='unfilter'
+			}
 			var biascolor=getcolor(maletweets[i][5],'bias')
 			var sentimentcolor=getcolor(maletweets[i][4],'sentiment')
 			if($('#biascolor').hasClass('active')){
-				usecolor=biascolor
+				var usecolor=biascolor
 			} else {
-				usecolor=sentimentcolor
+				var usecolor=sentimentcolor
 			}
-			$('#malecontainer').append("<div class='word mix' style='background:"+usecolor+"' data-freqorder="+i+" data-biasorder="+malebias.indexOf(maletweets[i][5])+" data-sentimentorder="+(maletweets[i][4])+" data-gender='male' data-biascolor='"+biascolor+"' data-sentimentcolor='"+sentimentcolor+"'>"+maletweets[i][0]+"</div>")
+			$('#malecontainer').append("<div class='word mix "+filter+"' style='background:"+usecolor+"' data-freqorder="+i+" data-biasorder="+malebias.indexOf(maletweets[i][5])+" data-sentimentorder="+(maletweets[i][4])+" data-gender='male' data-biascolor='"+biascolor+"' data-sentimentcolor='"+sentimentcolor+"'>"+maletweets[i][0]+"</div>")
 		} catch(err){}
 	}
 
@@ -167,7 +175,7 @@ function postsetup(){
 
 	$('#femcontainer').mixItUp({
 		animation:{
-			effects: '',
+			// effects: '',
 			// animateResizeContainer: true
 		},
 		load:{
@@ -178,7 +186,7 @@ function postsetup(){
 
 	$('#malecontainer').mixItUp({
 		animation:{
-			effects: '',
+			// effects: '',
 			// animateResizeContainer: true
 		},
 		load:{
@@ -186,6 +194,48 @@ function postsetup(){
 		}
 	});
 }
+
+$('.sort').on('click',function(){
+	if($('#sentimentorder').hasClass('active')){
+		$('#sort1').html("<span id='sorted'><span class='submit corpusbutton' id='sentiment'>sentiment <span style='font-family:\"FontAwesome\";font-size:.8em'>&#xf29c;</span></span>")
+		$('#sort2').html("<span id='sort2'>word <span class='submit corpusbutton' id='frequency'>frequency <span style='font-family:\"FontAwesome\";font-size:.8em'>&#xf29c;</span></span> or <span class='submit corpusbutton' id='bias'>bias <span style='font-family:\"FontAwesome\";font-size:.8em'>&#xf29c;</span></span>")
+	}
+	if($('#biasorder').hasClass('active')){
+		$('#sort1').html("<span id='sorted'><span class='submit corpusbutton' id='bias'>bias <span style='font-family:\"FontAwesome\";font-size:.8em'>&#xf29c;</span></span>")
+		$('#sort2').html("<span id='sort2'>word <span class='submit corpusbutton' id='frequency'>frequency <span style='font-family:\"FontAwesome\";font-size:.8em'>&#xf29c;</span></span> or <span class='submit corpusbutton' id='sentiment'>sentiment <span style='font-family:\"FontAwesome\";font-size:.8em'>&#xf29c;</span></span>")
+	}
+	if($('#frequencysort').hasClass('active')){
+		$('#sort1').html("<span id='sorted'><span class='submit corpusbutton' id='frequency'>frequency <span style='font-family:\"FontAwesome\";font-size:.8em'>&#xf29c;</span></span>")
+		$('#sort2').html("<span id='sort2'>word <span class='submit corpusbutton' id='sentiment'>sentiment <span style='font-family:\"FontAwesome\";font-size:.8em'>&#xf29c;</span></span> or <span class='submit corpusbutton' id='bias'>bias <span style='font-family:\"FontAwesome\";font-size:.8em'>&#xf29c;</span></span>")
+	}
+
+	// button hover
+	$('.corpusbutton').mousemove(function(e){
+		var menu='#tooltip'
+		$(menu).html(dicts[$(this).attr('id')].desc)
+		$(menu).css("left", e.clientX-5);
+		$(menu).css("top", e.clientY-15-$(menu).height());
+	})
+
+	$('.corpusbutton').mouseout(function(e){
+		var menu='#tooltip'
+		$(menu).css("top", -9999);
+	})
+
+	function filter(){
+		if($('#filter').hasClass('active')){
+			$('#filter').removeClass('active')
+			$('#malecontainer').mixItUp('filter','.unfilter .filterme')
+			$('#femcontainer').mixItUp('filter','.unfilter .filterme')
+		} else {
+			$('#filter').addClass('active')
+			$('#malecontainer').mixItUp('filter','.unfilter')
+			$('#femcontainer').mixItUp('filter','.unfilter')
+		}
+	}
+
+
+})
 
 function getcolor(value,type){
 	if(type==='bias'){
@@ -214,6 +264,7 @@ function recolor(type){
 	if(type=='sentiment'){
 		$('#biascolor').removeClass('active')
 		$('#sentimentcolor').addClass('active')
+		$('#color1').html("<span class='submit corpusbutton' id='sentiment'>sentiment <span style='font-family:\"FontAwesome\";font-size:.8em'>&#xf29c;</span></span>")
 		$('.mix').each(function(){
 			$(this).animate({
 				backgroundColor:$(this).attr('data-sentimentcolor')
@@ -222,6 +273,7 @@ function recolor(type){
 	} else {
 		$('#sentimentcolor').removeClass('active')
 		$('#biascolor').addClass('active')
+		$('#color1').html("<span class='submit corpusbutton' id='bias'>bias <span style='font-family:\"FontAwesome\";font-size:.8em'>&#xf29c;</span></span>")
 		$('.mix').each(function(){
 			$(this).animate({
 				backgroundColor:$(this).attr('data-biascolor')
@@ -246,6 +298,18 @@ $('.corpusbutton').mouseout(function(e){
 	var menu='#tooltip'
 	$(menu).css("top", -9999);
 })
+
+function filter(){
+	if($('#filter').hasClass('active')){
+		$('#filter').removeClass('active')
+		$('#malecontainer').mixItUp('filter','.unfilter .filterme')
+		$('#femcontainer').mixItUp('filter','.unfilter .filterme')
+	} else {
+		$('#filter').addClass('active')
+		$('#malecontainer').mixItUp('filter','.unfilter')
+		$('#femcontainer').mixItUp('filter','.unfilter')
+	}
+}
 
 
 </script>

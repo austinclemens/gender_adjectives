@@ -1,2 +1,4 @@
-g3:
-add more text to each corpus?
+other
+average sentiment after removing bullshit stuff (90th+ percentile in frequency?)
+write the damn thing
+browser compatibility
