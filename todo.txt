@@ -1,4 +1,6 @@
 other
 average sentiment after removing bullshit stuff (90th+ percentile in frequency?)
 write the damn thing
-browser compatibility
+browser compatibility - safari svg scaling (runs over on right)
+hitting the back/forward buttons should pause
+responsive tooltips
