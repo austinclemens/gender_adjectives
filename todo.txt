@@ -1,5 +1,5 @@
 other
-average sentiment after removing bullshit stuff (90th+ percentile in frequency?)
+average sentiment graphs
 write the damn thing
-browser compatibility - safari svg scaling (runs over on right)
 responsive tooltips
+re-run all corpora and check to see if this fixes the problem with sentiment on, for example, 'mean'
