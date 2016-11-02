@@ -26,7 +26,7 @@ dictionary=enchant.Dict("en_US")
 stemmer=LancasterStemmer()
 
 corpora={}
-folder_loc='/Users/austinc/Desktop/gender_adjectives/'
+folder_loc='/Users/austinclemens/Desktop/gender_adjectives/'
 
 ##### DOWNLOAD TEXTS
 
@@ -459,8 +459,9 @@ def dicts():
 	print 'WORDS'
 	print wordlist
 
-def average_polarity():
+def average_polarity(thresshold=1):
 	# get average male and female polarities for each text
+	# specify thresshold<1 to eliminate super high frequency words ('much', 'own', etc)
 	picklelist=os.listdir(folder_loc+'parsed_pickles/')
 
 	for pick in picklelist:
@@ -470,19 +471,58 @@ def average_polarity():
 			female_polarity=0
 			male_density=0
 			female_density=0
-
 			picka=pickle.load(open(folder_loc+"parsed_pickles/"+pick,'rb'))
+			freqs=[]
+
+			for word in picka.keys():
+				freqs.append(picka[word][1])
+
+			freqs=sorted(freqs)
+
 			for word in picka.keys():
 				word=picka[word]
-				male_density=male_density+word[3]
-				female_density=female_density+word[2]
-				male_polarity=male_polarity+word[3]*word[4]
-				female_polarity=female_polarity+word[2]*word[4]
+				if word[1]<freqs[int(len(freqs)*thresshold-1)]:
+					male_density=male_density+word[3]
+					female_density=female_density+word[2]
+					male_polarity=male_polarity+word[3]*word[4]
+					female_polarity=female_polarity+word[2]*word[4]
 
 			print male_density,female_density
 			print male_polarity,female_polarity
 			print male_polarity/male_density,female_polarity/female_density
 
+def average_polarity2(thresshold=1.2):
+	# get average male and female polarities for each text
+	# this one excludes words if they do not have a *strong* male/female bias
+	picklelist=os.listdir(folder_loc+'parsed_pickles/')
+
+	for pick in picklelist:
+		if pick[-2:]=='.p':
+			print pick
+			male_polarity=0
+			female_polarity=0
+			male_density=0
+			female_density=0
+			picka=pickle.load(open(folder_loc+"parsed_pickles/"+pick,'rb'))
+			freqs=[]
+
+			for word in picka.keys():
+				freqs.append(picka[word][1])
+
+			freqs=sorted(freqs)
+
+			for word in picka.keys():
+				word=picka[word]
+				if word[3]!=0:
+					if word[2]/word[3]>thresshold or word[2]/word[3]<(1/thresshold):
+						male_density=male_density+word[3]
+						female_density=female_density+word[2]
+						male_polarity=male_polarity+word[3]*word[4]
+						female_polarity=female_polarity+word[2]*word[4]
+
+			print male_density,female_density
+			print male_polarity,female_polarity
+			print male_polarity/male_density,female_polarity/female_density
 
 
 
