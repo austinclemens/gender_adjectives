@@ -65,8 +65,9 @@
 		.custom-select option {font-weight:normal;}
 
 		/* g3 */
+		svg{width:100%;}
 		.g3sub{max-width:800px;margin-right:auto;margin-left:auto;padding-left:10px;padding-right:10px;}
-		.g3{padding-bottom:40px;padding-top:40px;margin-top:25px;text-align:center;font-family:'Cabin';font-size:1.3em;margin-left:auto;margin-right:auto;padding-left:1%;padding-right:1%;}
+		.g3{padding-bottom:40px;padding-top:40px;margin-top:25px;text-align:center;font-family:'Cabin';font-size:1.3em;margin-left:auto;margin-right:auto;}
 		.container{max-width:800px;}
 		.controlsg3{text-align:center;margin-bottom:15px;}
 		.adjg3{background:#eaeaea;border:0;text-align:center;padding-bottom:1px;display:inline-block;width:250px;border-bottom:2px solid black;font-family:'Dosis';font-size:1.2em;letter-spacing:1px;}
@@ -81,11 +82,15 @@
 		.fa{font-family: FontAwesome;}
 		.descbuttong3{background:white;vertical-align:center;margin-top:10px;border:2px solid black;padding:6px;display:inline-block;text-align:center;cursor:pointer;color:black;font-family:'Cabin';}
 		.descbuttong3:hover{border:2px solid #666;background:rgba(0,0,0,.4);color:white;}
+		.labels{font-size:.95em}
 
 		@media only screen and (max-width: 700px){
 		    p{width:94%;margin-right:auto;margin-left:auto;}
 			body{font-family:'Oxygen';font-size:16px;margin-top:10px;}
 			h1{width:94%;margin-right:auto;margin-left:auto;font-family:'Oxygen';font-weight:600;color:#b7541b;}
+
+			#median{font-size:.9em;line-height:25px;height:50px}
+
 			.custom-select{font-size:.8em;}
 			.descbutton{font-size:.8em;}
 			.g2{font-size:.8em;letter-spacing:0px;}
@@ -94,7 +99,7 @@
 			.custom-select select {letter-spacing:0px;}
 			.descbutton{border:1px solid black;}
 			.custom-select {border: 1px solid black}
-			.word{font-size:.7em;}
+			.word{font-size:.7em;margin:.1px;}
 			.desc{font-size:.8em;padding-left:18px;text-indent:-18px}
 			.controls{font-size:.9em;}
 			.number{height:13px;width:13px;line-height:13px;font-size:.6em;}
@@ -104,10 +109,10 @@
 			.descbuttong3{font-size:.8em;border:1px solid black;border-radius:0px;}
 			.adjg3{border-bottom:1px solid black;max-width:200px;}
 			.circle{width:12px;height:12px;border-radius:7px;margin-bottom:-2px;}
-			.interior{font-size:1.4em;}
-			.interior2{font-size:.9em;}
+			.interior{font-size:1.5em;}
+			.interior2{font-size:1em;}
 			.g3sub{padding-top:10px;}
-			#median{font-size:.9em;line-height:25px;height:50px}
+			.labels{font-size:1.3em;}
 		}
 	</style>
 </head>
@@ -608,23 +613,27 @@ function start(){
 	paper.text(2,getcoord(.25)-2,'4x').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'#666',opacity:.4})
 	paper.text(2,getcoord(1)-2,'Equal').attr({'text-anchor':'start','font-family':'Cabin','font-size':'.6em',fill:'black'})
 
-	paper.text(70,550,'Austen').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'.95em'})
-	paper.text(200,550,'Dickens').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'.95em'})
-	paper.text(330,550,'Slate').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'.95em'})
-	var ggtext=paper.text(460,550,['\uf281',' gamergate']).attr({'text-anchor':'middle','font-family':'FontAwesome','font-size':'.95em'})
+	paper.text(70,550,'Austen').attr({'text-anchor':'middle','font-family':'Cabin',class:'labels'})
+	paper.text(200,550,'Dickens').attr({'text-anchor':'middle','font-family':'Cabin',class:'labels'})
+	paper.text(330,550,'Slate').attr({'text-anchor':'middle','font-family':'Cabin',class:'labels'})
+	var ggtext=paper.text(460,550,['\uf281',' gamergate']).attr({'text-anchor':'middle','font-family':'FontAwesome',class:'labels'})
 	ggtext.selectAll("tspan:not(:first-child)").attr({fontFamily:'Cabin'})
-	var mtext=paper.text(590,550,['\uf281',' movies/tv']).attr({'text-anchor':'middle','font-family':'FontAwesome','font-size':'.95em'})
+	var mtext=paper.text(590,550,['\uf281',' movies/tv']).attr({'text-anchor':'middle','font-family':'FontAwesome',class:'labels'})
 	mtext.selectAll("tspan:not(:first-child)").attr({fontFamily:'Cabin'})
-	paper.text(720,550,'Twitter').attr({'text-anchor':'middle','font-family':'Cabin','font-size':'.95em'})
-	paper.rect(2,-11,146,22,4,4).attr({fill:mfscale[8],opacity:'.95','shape-rendering':'crispEdges'})
-	paper.rect(2,503,132,22,4,4).attr({fill:mfscale[0],opacity:'.95','shape-rendering':'crispEdges'})
+	paper.text(720,550,'Twitter').attr({'text-anchor':'middle','font-family':'Cabin',class:'labels'})
+
+	var desc1=paper.text(6,6.5,'describes females').attr({'text-anchor':'start','font-family':'Cabin','font-size':'1em','fill':'white'})
+	var desc2=paper.text(6,520.5,'describes males').attr({'text-anchor':'start','font-family':'Cabin','font-size':'1em','fill':'white'})
+	paper.line(2,getcoord(1),900,getcoord(1)).attr({'stroke-width':2,stroke:'black','shape-rendering':'crispEdges'})
+
+	paper.rect(2,-11,desc1.getBBox().x2+2,22,4,4).attr({fill:mfscale[8],opacity:'.95','shape-rendering':'crispEdges'})
+	paper.rect(2,503,desc2.getBBox().x2+2,22,4,4).attr({fill:mfscale[0],opacity:'.95','shape-rendering':'crispEdges'})
+
+	paper.add(desc1)
+	paper.add(desc2)
 
 	paper.line(2,524,900,524).attr({'stroke':'black','stroke-width':2})
 	paper.line(2,10,900,10).attr({'stroke':'black','stroke-width':2})
-
-	paper.text(6,6.5,'describes females').attr({'text-anchor':'start','font-family':'Cabin','font-size':'1em','fill':'white'})
-	paper.text(6,520.5,'describes males').attr({'text-anchor':'start','font-family':'Cabin','font-size':'1em','fill':'white'})
-	paper.line(2,getcoord(1),900,getcoord(1)).attr({'stroke-width':2,stroke:'black','shape-rendering':'crispEdges'})
 
 	circlemaskgroup.add(paper.circle(70,268,25).attr({fill:'#aaa','fill-opacity':.95,'id':'austeng3',stroke:'white','stroke-width':0}))
 	circlemaskgroup.add(paper.circle(200,268,25).attr({fill:'#aaa','fill-opacity':.95,'id':'dickensg3',stroke:'white','stroke-width':0}))
@@ -659,6 +668,9 @@ function start(){
 	})
 
 	back.click(function(){
+		playing=0
+		play.attr({opacity:1})
+		pause.attr({opacity:0})
 		if(Math.abs(position)<playedlist.length-1){
 			position=position-1
 			populateg3(playedlist[playedlist.length-1+position],0)
@@ -666,6 +678,9 @@ function start(){
 	})
 
 	forward.click(function(){
+		playing=0
+		play.attr({opacity:1})
+		pause.attr({opacity:0})
 		try{
 			if(position<0){
 				position=position+1
