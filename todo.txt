@@ -1,4 +1,4 @@
 other
 write the damn thing
-responsive tooltips
 re-run all corpora and check to see if this fixes the problem with sentiment on, for example, 'mean'
+tooltips for g1 words?

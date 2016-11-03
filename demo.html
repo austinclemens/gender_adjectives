@@ -21,6 +21,7 @@
 		body{font-family:'Oxygen';font-size:14px;margin-top:30px;}
 		h1{width:600px;margin-right:auto;margin-left:auto;font-family:'Oxygen';color:#b7541b;}
 		h2{width:600px;margin-right:auto;margin-left:auto;font-family:'Oxygen';color:black;font-size:1.3em;}
+		img {display: block;max-width:650px;width: auto;height: auto;margin-left:auto;margin-right:auto;width:100%;}
 
 		#median{padding:5px;text-align:center;line-height:35px;height:70px;border-top:2px dashed #ccc;border-bottom:2px dashed #ccc;margin-top:5px;margin-bottom:5px;font-size:1.3em;font-family:'Dosis';}
 		#femcontainer, #malecontainer{overflow:hidden;}
@@ -28,7 +29,7 @@
 		.iframe{width:100%;margin-bottom:30px;margin-top:30px;padding-top:30px;padding-bottom:30px;background:#eaeaea;}
 
 		/* g1 */
-		.g1{padding-left:1%;padding-right:1%;}
+		.g1{}
 		.g1sub{max-width:900px;margin-right:auto;margin-left:auto;padding:10px;}		
 		.word{display:hidden;padding:2px 5px 2px 5px;border-radius:2px;font-family:'Dosis';margin:2px;color:white;font-size:1.15em;}
 		.controls{padding-bottom:10px;font-family:'Cabin';font-size:1.2em;}
@@ -50,11 +51,11 @@
 
 		/* g2 */
 		.g2sub{max-width:750px;margin-right:auto;margin-left:auto;padding:10px}
-		.g2{padding-top:20px;font-family:'Cabin';font-size:1.3em;letter-spacing:2px;margin-left:auto;margin-right:auto;text-align:left;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;-o-user-select: none;user-select: none;padding-left:1%;padding-right:1%;}
+		.g2{padding-top:20px;font-family:'Cabin';font-size:1.3em;letter-spacing:2px;margin-left:auto;margin-right:auto;text-align:left;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;-o-user-select: none;user-select: none;}
 		.adj{text-align:center;vertical-align:top;height:1.2em;padding-bottom:1px;display:inline-block;width:160px;border-bottom:2px solid black;font-family:'Dosis';font-size:1.2em;}
-		.descbutton{background:white;vertical-align:top;margin-top:10px;border:2px solid black;padding:6px;display:inline-block;text-align:center;cursor:pointer;border-radius:2px;color:black;font-family:'Cabin';}
+		.descbutton{background:white;vertical-align:top;margin-top:9px;border:2px solid black;padding:6px;display:inline-block;text-align:center;cursor:pointer;color:black;font-family:'Cabin';}
 		.descbutton:hover{background:#bbb;color:white;}
-		.button {border: 2px solid black;border-radius: 2px;box-shadow: 0 1px 0 1px rgba(0,0,0,.04);background: #f3f3f3;background: #fff -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5));background: #fff -webkit-linear-gradient(top, #ffffff 0%,#e5e5e5 100%);background: #fff linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);}
+		.button {border: 2px solid black;box-shadow: 0 1px 0 1px rgba(0,0,0,.04);background: #f3f3f3;background: #fff -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5));background: #fff -webkit-linear-gradient(top, #ffffff 0%,#e5e5e5 100%);background: #fff linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);}
 		.custom-select {margin-top: 0.5em;}
 		.custom-select select {font-weight: 400;color: black;border-radius: 2px;font-family:'Cabin';font-size:1em;padding:5px;vertical-align:center;border-radius:2px;letter-spacing:2px;cursor:pointer;}
 		.custom-select::after {width: 0;height: 0;border-left: 4px solid transparent;border-right: 4px solid transparent;border-top: 7px solid black;margin-top: -3px;}
@@ -85,22 +86,24 @@
 		.descbuttong3:hover{border:2px solid #666;background:rgba(0,0,0,.4);color:white;}
 		.labels{font-size:.95em}
 
-		.images{width:650px;margin-right:auto;margin-left:auto;}
-
 		@media only screen and (max-width: 700px){
 		    p{width:94%;margin-right:auto;margin-left:auto;}
-			body{font-family:'Oxygen';font-size:16px;margin-top:10px;}
-			h1{width:94%;margin-right:auto;margin-left:auto;font-family:'Oxygen';font-weight:600;color:#b7541b;}
+			body{font-family:'Oxygen';font-size:16px;margin-top:10px;width:100%;}
+			h1{width:94%;margin-right:auto;margin-left:auto;font-family:'Oxygen';font-weight:600;color:#b7541b;font-size:1.4em;}
+			h2{width:94%;margin-left:20px;font-size:1.0em;}
 
 			#median{font-size:.9em;line-height:25px;height:50px}
 
+			.leftcontrols{font-size:font-size:.8em;text-align:left;margin-left:30px;}
+			.sort2{font-size:.7em;}
+			.sort{font-size:.7em;}
 			.custom-select{font-size:.8em;}
-			.descbutton{font-size:.8em;}
+			.descbutton{font-size:.8em;margin-}
 			.g2{font-size:.8em;letter-spacing:0px;}
-			.adj{border-bottom:1px solid black;font-size:.9em;height:1em;max-width:80px;}
+			.adj{border-bottom:1px solid black;font-size:.9em;height:1em;max-width:70px;}
 			.g2sub{padding-top:0px;}
-			.custom-select select {letter-spacing:0px;}
-			.descbutton{border:1px solid black;}
+			.custom-select select {letter-spacing:0px;font-size:.9em;padding:4px 4px 4px 4px;}
+			.descbutton{border:1px solid black;margin-top:5px;padding:4px;}
 			.custom-select {border: 1px solid black}
 			.word{font-size:.7em;margin:.1px;}
 			.desc{font-size:.8em;padding-left:18px;text-indent:-18px}
@@ -116,6 +119,8 @@
 			.interior2{font-size:1em;}
 			.g3sub{padding-top:10px;}
 			.labels{font-size:1.3em;}
+			.images{max-width:100%;}
+			.tooltip{font-size:.7em;}
 		}
 	</style>
 </head>
@@ -236,7 +241,7 @@
 <div class='iframe'>
 	<div class='images'>
 		<h2>Average sentiment of text by gender</h2>
-		<img src="graphs/100p.png" width=650 />
+		<img src="graphs/100p.png" >
 	</div>
 </div>
 
@@ -245,11 +250,11 @@
 <div class='iframe'>
 	<div class='images'>
 		<h2>Average sentiment after removing words above the 99th percentile in frequency</h2>
-		<img src="graphs/99p.png" width=650 />
+		<img src="graphs/99p.png" />
 		<h2>... above the 98th percentile in frequency</h2>
-		<img src="graphs/98p.png" width=650 />
+		<img src="graphs/98p.png" />
 		<h2>... above the 97th percentile in frequency</h2>
-		<img src="graphs/97p.png" width=650 />
+		<img src="graphs/97p.png" />
 	</div>
 </div>
 
@@ -295,6 +300,14 @@ circlemaskgroup.attr({mask:circlemasker})
 maskgroup.attr({mask:wordmasker2})
 
 setupcorpus(austen,'austen')
+
+document.onclick = function () {
+	// change div
+}
+
+$(document).on('tap',function(){
+    $('#tooltip').css("top", "-9999");
+})
 
 function setupcorpus(corpus,name){
 	$('.corp').removeClass('active')
@@ -421,9 +434,17 @@ $('.sort').on('click',function(){
 	// button hover
 	$('.corpusbutton').mousemove(function(e){
 		var menu='#tooltip'
-		$(menu).html(dicts[$(this).attr('id')].desc)
-		$(menu).css("left", e.clientX-5);
-		$(menu).css("top", e.clientY-15-$(menu).height());
+		console.log(e.clientX)
+		if($(window).width()-e.clientX<150){
+			$(menu).html(dicts[$(this).attr('id')].desc)
+			$(menu).css("left", e.clientX-175);
+			$(menu).css("top", e.clientY-15-$(menu).height());	
+		} else {
+			var menu='#tooltip'
+			$(menu).html(dicts[$(this).attr('id')].desc)
+			$(menu).css("left", e.clientX-5);
+			$(menu).css("top", e.clientY-15-$(menu).height());
+		}
 	})
 
 	$('.corpusbutton').mouseout(function(e){
@@ -492,9 +513,16 @@ function recolor(type){
 // button hover
 $('.corpusbutton').mousemove(function(e){
 	var menu='#tooltip'
-	$(menu).html(dicts[$(this).attr('id')].desc)
-	$(menu).css("left", e.clientX-5);
-	$(menu).css("top", e.clientY-15-$(menu).height());
+	console.log(e.clientX)
+	if($(window).width()-e.clientX<150){
+		$(menu).html(dicts[$(this).attr('id')].desc)
+		$(menu).css("left", e.clientX-175);
+		$(menu).css("top", e.clientY-15-$(menu).height());	
+	} else {
+		$(menu).html(dicts[$(this).attr('id')].desc)
+		$(menu).css("left", e.clientX-5);
+		$(menu).css("top", e.clientY-15-$(menu).height());
+	}
 })
 
 $('.corpusbutton').mouseout(function(e){
