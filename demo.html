@@ -48,6 +48,8 @@
 		.submit{white-space: pre;margin-right:2px;padding:1px 4px 1px 4px;border:0px solid black;border-radius:2px;background:white;font-size:.85em;color:black;cursor:help;}
 		.darker{white-space: pre;margin-right:2px;padding:1px 4px 1px 4px;border:0px solid black;border-radius:2px;background:black;font-size:.85em;color:white}
 		.number{text-align:center;text-indent:0px;font-size:.85em;color:white;display:inline-block;border-radius:50%;background:#000;height:22px;width:22px;line-height:22px;margin-top:-5px;}
+		.positive{white-space: pre;margin-right:2px;padding:1px 4px 1px 4px;border:0px solid black;border-radius:2px;background:#2166ac;font-size:.85em;color:white}
+		.negative{white-space: pre;margin-right:2px;padding:1px 4px 1px 4px;border:0px solid black;border-radius:2px;background:#b2182b;font-size:.85em;color:white}
 
 		/* g2 */
 		.g2sub{max-width:750px;margin-right:auto;margin-left:auto;padding:10px}
@@ -146,7 +148,7 @@
 			<button class="sort2 corpusbutton corp" id='tweets' onclick='setupcorpus(tweets,"tweets")'><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</button>
 		</div>
 
-		<div class='desc'><div class='number' style='left:0'>2</div> Words that disproportionately describe <span class='female'>females</span> and <span class='male'>males</span>, sorted by <span id='sort1'><span class='submit corpusbutton' id='bias'>gender bias <span style='font-family:"FontAwesome";font-size:.8em'>&#xf29c;</span></span></span>. <span class='darker'>Darker</span> colors mean more gender bias. Click a button below to sort by <span id='sort2'>word <span class='submit corpusbutton' id='frequency'>frequency <span style='font-family:"FontAwesome";font-size:.8em'>&#xf29c;</span></span> or word <span class='submit corpusbutton' id='sentiment'>sentiment <span style='font-family:"FontAwesome";font-size:.8em'>&#xf29c;</span></span></span>, or to color the words based on <span id='color1'><span class='submit corpusbutton' id='sentiment'>sentiment <span style='font-family:"FontAwesome";font-size:.8em'>&#xf29c;</span></span></span>.</div>
+		<div class='desc'><div class='number' style='left:0'>2</div> Words that disproportionately describe <span class='female'>females</span> and <span class='male'>males</span>, sorted by <span id='sort1'><span class='submit corpusbutton' id='bias'>gender bias <span style='font-family:"FontAwesome";font-size:.8em'>&#xf29c;</span></span></span>. <span id='key'><span class='darker'>Darker</span> colors mean more gender bias.</span> Click a button below to sort by <span id='sort2'>word <span class='submit corpusbutton' id='frequency'>frequency <span style='font-family:"FontAwesome";font-size:.8em'>&#xf29c;</span></span> or word <span class='submit corpusbutton' id='sentiment'>sentiment <span style='font-family:"FontAwesome";font-size:.8em'>&#xf29c;</span></span></span>, or to color the words based on <span id='color1'><span class='submit corpusbutton' id='sentiment'>sentiment <span style='font-family:"FontAwesome";font-size:.8em'>&#xf29c;</span></span></span>.</div>
 
 		<div class='controls'>
 			<div class='leftcontrols'>
@@ -381,7 +383,7 @@ function postsetup(){
 	if($('#biasorder').hasClass('active')){
 		var sortline='biasorder:asc'
 	}
-	if($('#frequencyorder').hasClass('active')){
+	if($('#frequencysort').hasClass('active')){
 		var sortline='freqorder:asc'
 	}
 	if($('#sentimentorder').hasClass('active')){
@@ -486,6 +488,7 @@ function recolor(type){
 		$('#biascolor').removeClass('active')
 		$('#sentimentcolor').addClass('active')
 		$('#color1').html("<span class='submit corpusbutton' id='bias'>bias <span style='font-family:\"FontAwesome\";font-size:.8em'>&#xf29c;</span></span>")
+		$('#key').html("<span class='positive'>Blue</span> shades indicate positive sentiment, while <span class='negative'>red</span> shades indicate negative sentiment.")
 		$('.mix').each(function(){
 			$(this).animate({
 				backgroundColor:$(this).attr('data-sentimentcolor')
@@ -495,6 +498,7 @@ function recolor(type){
 		$('#sentimentcolor').removeClass('active')
 		$('#biascolor').addClass('active')
 		$('#color1').html("<span class='submit corpusbutton' id='sentiment'>sentiment <span style='font-family:\"FontAwesome\";font-size:.8em'>&#xf29c;</span></span>")
+		$('#key').html("<span class='darker'>Darker</span> colors mean more gender bias.")
 		$('.mix').each(function(){
 			$(this).animate({
 				backgroundColor:$(this).attr('data-biascolor')

@@ -1,7 +1,43 @@
 outlining:
 INTRO. It took root first in the Democratic primary, with supporters of Hillary Clinton chronicling the bad behavior of "Bernie bros," which led to an extended debate in the pundit class over whether a significant number of such bros existed. The general election has made this debate seem quaint. Clinton's general election opponent is... I'm just going to outsource the end of this sentence to <a href="http://theslot.jezebel.com/every-word-jezebel-used-to-describe-donald-trump-in-201-1746957022">Jezebel.com</a>.
 
-This research project isn't about Trump. It's about how people talk about Hillary Clinton. A month ago I was reading a critique of Clinton from the left and was struck by the author describing Clinton as aloof. Aloofness or something like it gets ascribed to Clinton a lot. My memory of the 2012 election is fuzzy, and I can't recall if Mitt Romney, who seems like a more apt target for this kind of criticism, was similarly described. The whole line of attack felt gendered to me, like Clinton is being punished because she doesn't meet our standards for female figures as empathetic and nurturing.[1. I feel the same way about calling Clinton 'calculating' or similar. Not because it isn't fair; I have read many of her emails and she is calculating, but this is just a euphemism for political triangulation, and I honestly can't tell if we are similarly critical of male politicians who are basically just practicing politics.]
+This research project isn't about Trump. It's about how people talk about Hillary Clinton. A month ago I was reading a critique of Clinton from the left that described her as aloof. Aloofness or something like it gets ascribed to Clinton a lot. My memory of the 2012 election is fuzzy, and I can't recall if Mitt Romney, who seems like a more apt target for this kind of criticism, was similarly described. This line of attack has always felt uncomfortably gendered to me, like Clinton is being punished because she doesn't meet our standards for female figures as empathetic and nurturing.[1. I feel the same way about calling Clinton 'calculating' or similar. Not because it isn't fair; I have read many of her emails and her approach to politics is pretty darn political, but calculating is just a euphemism for political triangulation, and I honestly can't tell if we are similarly critical of male politicians who are basically just practicing politics.]
+
+So I really started working on this project because I personally wanted to come to grips with gendered language in cultural discourse. In particular, I wanted to see how males and females are commonly described. So I collected a huge amount of text and in each one I looked for adjectives used in the same sentence as a male/female name, pronoun, or gendered noun (see more in the methodology section). Here are the six texts I used:
+
+<ul>
+	<li>All of Jane Austen's books. Austen's books amount to about 650k words and were collected from the Gutenberg Project.</li>
+	<li>All of Charles Dickens's books. The considerably more verbose and longer-lived Dickens produced about 4 million words, also collected from the Gutenberg Project.</li>
+	<li>Slate articles from 1996-2000. This is the one corpus I didn't collect - it is part of the <a href="http://www.anc.org/data/oanc/contents/">Open American National Corpus</a> and contains about 4 million words worth of old Slate articles.</li>
+	<li>gamergate on Reddit. I scraped the last two years worth of comments from the kotakuinaction subreddit on reddit.com. The kotakuinaction subreddit is a hub for the gamergate community. I excluded quoted comments as best I could. This corpus is about 89 million words.</li>
+	<li>tv/movies on Reddit. I scraped about 3 months of comments in 2016 in two popular subreddits: tv and movies. This corpus is about 4 million words.</li>
+	<li>Twitter. My largest corpus is composed of several million tweets I collected in September and October of this year. It is about 139 million words.</li>
+</ul>
+
+My methodology is detailed at the end of this piece, but a brief overview is given here.
+<ol>
+	<li>First the text was tokenized, which just means that texts were divided into sentences and each sentence was divided into words.</li>
+	<li>Each word was assigned a part of speech like noun, adjective, verb, and so forth.</li>
+	<li>Each sentence was searched for a pronoun, name, or gendered noun. If one was found, all adjectives in the sentence were collected.</li>
+	<li>Adjectives were stemmed. This is an automated process by which words are reduced to some root form so that they can be combined with other forms of themselves. For example, 'intelligently' and 'intelligent'. This doesn't always work, so you'll still see some duplicate cases like this in the data.</li>
+</ol>
+
+Below, you'll find several interactive ways explore the resulting data. The first shows adjectives in each text that commonly describe males and females. Click the buttons at the top to switch between texts and to sort the words.
+
+
+G1
+
+
+You might notice that the most common adjectives for both men and women are positive (try sorting by gender bias and coloring the blocks by sentiment). But while the most common male adjectives don't follow any particular theme--creative, brutal, excellent, decent, iconic, genuine, etc.--the most frequent adjectives for females are almost exclusively concerned with physical appearance. Austen's books are an exception but across the rest of the texts women are commonly described as beautiful, attractive, sexy, hot, gorgeous, and so on. You'll see these words at the top of every wordlist in the visualization above. Look at the bottom pane and try to find similar adjectives for males. Aside from 'handsome', few of the most male-biased adjectives are about appearance.
+
+Try sorting by frequency and then looking for the first highly gender-biased word (dark purple coloring) for each sex. Again, there's not much of a pattern for men but for women it is likely an appearance focused adjective, a description of sexual availability (single/married are very common for women), or 'pregnant'. The most frequent words are often not very interesting (much, very, more). These are common adjectives that may not even be describing people in many cases. In many cases, they might be adverbs used to modify another another adjective that were incorrectly tagged as adjectives by my script.
+
+For a more whimsical look at the data, try the random description machine below. You may have to click it a few times to get something interesting, but this can be a useful way to get a snapshot look at each body of text.
+
+
+G2
+
+
 
 
 
