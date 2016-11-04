@@ -2,3 +2,5 @@ other
 write the damn thing
 re-run all corpora and check to see if this fixes the problem with sentiment on, for example, 'mean'
 tooltips for g1 words?
+
+boring has different sentiments as do some other words. This is... odd also mean

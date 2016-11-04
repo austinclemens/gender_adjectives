@@ -1,11 +1,37 @@
 outlining:
-- opening line about the election being concerned with sexism
-	- Bernie bros, bernie v hillary
-	- various behaviors of mr trump
+INTRO. It took root first in the Democratic primary, with supporters of Hillary Clinton chronicling the bad behavior of "Bernie bros," which led to an extended debate in the pundit class over whether a significant number of such bros existed. The general election has made this debate seem quaint. Clinton's general election opponent is... I'm just going to outsource the end of this sentence to <a href="http://theslot.jezebel.com/every-word-jezebel-used-to-describe-donald-trump-in-201-1746957022">Jezebel.com</a>.
+
+This research project isn't about Trump. It's about how people talk about Hillary Clinton. A month ago I was reading a critique of Clinton from the left and was struck by the author describing Clinton as aloof. Aloofness or something like it gets ascribed to Clinton a lot. My memory of the 2012 election is fuzzy, and I can't recall if Mitt Romney, who seems like a more apt target for this kind of criticism, was similarly described. The whole line of attack felt gendered to me, like Clinton is being punished because she doesn't meet our standards for female figures as empathetic and nurturing.[1. I feel the same way about calling Clinton 'calculating' or similar. Not because it isn't fair; I have read many of her emails and she is calculating, but this is just a euphemism for political triangulation, and I honestly can't tell if we are similarly critical of male politicians who are basically just practicing politics.]
+
+
+
+
+
+
 	- societal stuff put on Hillary
 		- David Frum and smiles
 		- “But she is aloof,” comes the rejoinder. And look, maybe she is, and I don’t want to prevent anyone from using the full range of the English language, but I personally don't have enough information to make a nuanced character assessment of a woman who I really only know through CNN.[1. Even basically fair characterizations are hard to disentangle from cultural gender biases. Clinton is often called calculating, and that’s certainly the impression her emails give, but ‘calculating’ in this case is basically a euphemism for political triangulation and I’m honestly not sure if I would use the same word to describe a male politician.] It sounds like part of a narrative that lazily ascribes gender stereotypes to a woman who is in the news.
 		- Romney might have been labeled out of touch or similar even when he said really clearly aloof things like this: http://www.slate.com/articles/news_and_politics/politics/2012/02/romney_is_not_concerned_about_the_very_poor_.html
-- I collected 
+- I collected six bodies of text to explore how these biases manifest in different communities. Here are the texts:
+	- Jane Austen
+	- Charles Dickens
+	- Slate
+	- gamergate
+	- movies/tv
+	- Twitter
+- In each body of text I looked for adjectives used in the same sentence as a male/female name, pronoun, or gendered noun (see more in methodology).
+	- below, in the first interactive, you can see which adjectives occurred commonly in each text. The colors show which words are usually used to describe males (shades of purple) or males (shades of orange). Click the buttons to toggle between this view and views sorted by word sentiment (a measure of how positive/negative a word is) or the frequency with which the word occurs in the text.
+
+
+- Although the 
+
+
 
 https://twitter.com/femscriptintros
+
+
+distraught
+messianic
+vapid
+credible - sort of the same thing as black people being called articulate
+entertaining

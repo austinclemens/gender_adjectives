@@ -31,7 +31,7 @@
 		/* g1 */
 		.g1{}
 		.g1sub{max-width:900px;margin-right:auto;margin-left:auto;padding:10px;}		
-		.word{display:hidden;padding:2px 5px 2px 5px;border-radius:2px;font-family:'Dosis';margin:2px;color:white;font-size:1.15em;}
+		.word{display:hidden;padding:2px 5px 2px 5px;border-radius:2px;font-family:'Dosis';margin:2px 0px 2px 0px;color:white;font-size:1.15em;}
 		.controls{padding-bottom:10px;font-family:'Cabin';font-size:1.2em;}
 		.sort{font-size:.8em;background:white;vertical-align:center;margin-top:10px;border:2px solid black;padding:3px 6px 3px 6px;display:inline-block;text-align:center;cursor:pointer;color:black;font-family:'Cabin';}
 		.sort:hover{border:2px solid #666;background:rgba(0,0,0,.4);color:white;}
@@ -91,9 +91,7 @@
 			body{font-family:'Oxygen';font-size:16px;margin-top:10px;width:100%;}
 			h1{width:94%;margin-right:auto;margin-left:auto;font-family:'Oxygen';font-weight:600;color:#b7541b;font-size:1.4em;}
 			h2{width:94%;margin-left:20px;font-size:1.0em;}
-
 			#median{font-size:.9em;line-height:25px;height:50px}
-
 			.leftcontrols{font-size:font-size:.8em;text-align:left;margin-left:30px;}
 			.sort2{font-size:.7em;}
 			.sort{font-size:.7em;}
@@ -144,7 +142,7 @@
 			<button class="sort2 corpusbutton corp" id='dickens' onclick='setupcorpus(dickens,"dickens")'>Dickens</button>
 			<button class="sort2 corpusbutton corp" id='slate' onclick='setupcorpus(slate,"slate")'>Slate</button>
 			<button class="sort2 corpusbutton corp" id='gamergate' onclick='setupcorpus(gamergate,"gamergate")'><i class="fa fa-reddit-alien" aria-hidden="true"></i> gamergate</button>
-			<button class="sort2 corpusbutton corp" id='media' onclick='setupcorpus(media,"media")'><i class="fa fa-reddit-alien" aria-hidden="true"></i> movies/tv</button>
+			<button class="sort2 corpusbutton corp" id='media' onclick='setupcorpus(media,"media")'><i class="fa fa-reddit-alien" aria-hidden="true"></i> tv/movies</button>
 			<button class="sort2 corpusbutton corp" id='tweets' onclick='setupcorpus(tweets,"tweets")'><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</button>
 		</div>
 
@@ -298,15 +296,10 @@ var maskgroup=paper.group()
 var circlemaskgroup=paper.group()
 circlemaskgroup.attr({mask:circlemasker})
 maskgroup.attr({mask:wordmasker2})
-
 setupcorpus(austen,'austen')
 
-document.onclick = function () {
-	// change div
-}
-
 $(document).on('tap',function(){
-    $('#tooltip').css("top", "-9999");
+    $('#tooltip').css("top", -9999);
 })
 
 function setupcorpus(corpus,name){
@@ -667,7 +660,7 @@ function start(){
 	paper.text(330,550,'Slate').attr({'text-anchor':'middle','font-family':'Cabin',class:'labels'})
 	var ggtext=paper.text(460,550,['\uf281',' gamergate']).attr({'text-anchor':'middle','font-family':'FontAwesome',class:'labels'})
 	ggtext.selectAll("tspan:not(:first-child)").attr({fontFamily:'Cabin'})
-	var mtext=paper.text(590,550,['\uf281',' movies/tv']).attr({'text-anchor':'middle','font-family':'FontAwesome',class:'labels'})
+	var mtext=paper.text(590,550,['\uf281',' tv/movies']).attr({'text-anchor':'middle','font-family':'FontAwesome',class:'labels'})
 	mtext.selectAll("tspan:not(:first-child)").attr({fontFamily:'Cabin'})
 	paper.text(720,550,'Twitter').attr({'text-anchor':'middle','font-family':'Cabin',class:'labels'})
 
