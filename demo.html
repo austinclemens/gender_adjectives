@@ -9,7 +9,7 @@
 	<script src="lib/jquery.mixitup.js"></script>
 	<script src="lib/jquery.color.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Cabin|Dosis|Oxygen:400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Cabin|Dosis|Oxygen:400,700|PT+Serif" rel="stylesheet">
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">	
 	<link rel="stylesheet" href="lib/select-css.css">
 	<link rel="stylesheet" href="lib/select-css-compat.css">
@@ -17,25 +17,35 @@
 
 	<style>
 		html,body{margin:0}
-		p{width:600px;margin-right:auto;margin-left:auto;}
-		body{font-family:'Oxygen';font-size:14px;margin-top:30px;}
-		h1{width:600px;margin-right:auto;margin-left:auto;font-family:'Oxygen';color:#b7541b;}
-		h2{width:600px;margin-right:auto;margin-left:auto;font-family:'Oxygen';color:black;font-size:1.3em;}
+		p{width:700px;margin-right:auto;margin-left:auto;font-size:19px;line-height:150%;}
+		body{font-family:'PT Serif';font-size:14px;margin-top:30px;margin-bottom:80px;}
+		h1{width:700px;margin-right:auto;margin-left:auto;font-family:'Oxygen';color:#b7541b;}
+		h2{width:700px;margin-right:auto;margin-left:auto;font-family:'Oxygen';color:black;font-size:1.3em;}
+		h3{margin-top:40px;text-align:center;width:700px;margin-right:auto;margin-left:auto;font-family:'Oxygen';color:black;font-size:1.6em;}
 		img {display: block;max-width:650px;width: auto;height: auto;margin-left:auto;margin-right:auto;width:100%;}
+		ul{width:700px;margin-right:auto;margin-left:auto;list-style:none;padding:0;font-size:18px;}
+		li{margin-left:30px;padding-top:5px;padding-left:1em;text-indent:-.7em;}
+		li:before{content:"• ";color:#888;}
+		a:link{color:#bc6262}
+		a:visited{color:#633107}
+		a:active{color:#999}
+		sup{vertical-align:baseline;position:relative;top:-.5em;font-size:.7em;}
 
 		#median{padding:5px;text-align:center;line-height:35px;height:70px;border-top:2px dashed #ccc;border-bottom:2px dashed #ccc;margin-top:5px;margin-bottom:5px;font-size:1.3em;font-family:'Dosis';}
 		#femcontainer, #malecontainer{overflow:hidden;}
 
 		.iframe{width:100%;margin-bottom:30px;margin-top:30px;padding-top:30px;padding-bottom:30px;background:#eaeaea;}
+		.footnote{margin-bottom:10px;width:600px;margin-right:auto;margin-left:auto;font-size:14px;line-height:130%;}
+		.back{text-decoration:none;}
 
 		/* g1 */
 		.g1{}
 		.g1sub{max-width:900px;margin-right:auto;margin-left:auto;padding:10px;}		
-		.word{display:hidden;padding:2px 5px 2px 5px;border-radius:2px;font-family:'Dosis';margin:2px 0px 2px 0px;color:white;font-size:1.15em;}
+		.word{display:hidden;padding:2px 5px 2px 5px;border-radius:2px;font-family:'Dosis';margin:2px 0px 2px 0px;color:white;font-size:1.25em;}
 		.controls{padding-bottom:10px;font-family:'Cabin';font-size:1.2em;}
-		.sort{font-size:.8em;background:white;vertical-align:center;margin-top:10px;border:2px solid black;padding:3px 6px 3px 6px;display:inline-block;text-align:center;cursor:pointer;color:black;font-family:'Cabin';}
+		.sort{font-size:.9em;background:white;vertical-align:center;margin-top:10px;border:2px solid black;padding:3px 6px 3px 6px;display:inline-block;text-align:center;cursor:pointer;color:black;font-family:'Cabin';}
 		.sort:hover{border:2px solid #666;background:rgba(0,0,0,.4);color:white;}
-		.sort2{font-size:.8em;background:white;vertical-align:center;margin-top:10px;border:2px solid black;padding:3px 6px 3px 6px;display:inline-block;text-align:center;cursor:pointer;color:black;font-family:'Cabin';}
+		.sort2{font-size:.9em;background:white;vertical-align:center;margin-top:10px;border:2px solid black;padding:3px 6px 3px 6px;display:inline-block;text-align:center;cursor:pointer;color:black;font-family:'Cabin';}
 		.sort2:hover{border:2px solid #666;background:rgba(0,0,0,.4);color:white;}
 		.active{border:2px solid #666;background:rgba(0,0,0,.4);color:white;}
 		.expand{font-size:12px;cursor:pointer;background:#000;color:white;font-family:Sans-Serif;padding:4px 5px 4px 5px;position:absolute;right:0;bottom:0;border-radius:2px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;}
@@ -89,10 +99,12 @@
 		.labels{font-size:.95em}
 
 		@media only screen and (max-width: 700px){
-		    p{width:94%;margin-right:auto;margin-left:auto;}
+		    p{width:94%;margin-right:auto;margin-left:auto;font-size:17px;}
+		    ul{width:94%;margin-right:auto;margin-left:auto;}
 			body{font-family:'Oxygen';font-size:16px;margin-top:10px;width:100%;}
 			h1{width:94%;margin-right:auto;margin-left:auto;font-family:'Oxygen';font-weight:600;color:#b7541b;font-size:1.4em;}
 			h2{width:94%;margin-left:20px;font-size:1.0em;}
+			h3{width:94%;font-size:1.3em;}
 			#median{font-size:.9em;line-height:25px;height:50px}
 			.leftcontrols{font-size:font-size:.8em;text-align:left;margin-left:30px;}
 			.sort2{font-size:.7em;}
@@ -121,6 +133,7 @@
 			.labels{font-size:1.3em;}
 			.images{max-width:100%;}
 			.tooltip{font-size:.7em;}
+			.footnote{width:80%;margin-left:auto;margin-right:auto;}
 		}
 	</style>
 </head>
@@ -131,9 +144,31 @@
 
 <h1>Dummy header dummy header dummy header</h1>
 <div>
-<p>1Subway tile vape sustainable la croix hoodie tilde. Hella VHS vegan flexitarian portland pitchfork. Raclette intelligentsia fap, retro keytar lomo fixie. Vegan shabby chic schlitz, green juice messenger bag yr kickstarter cardigan ennui glossier crucifix migas food truck pork belly. Tote bag literally tacos, banjo actually chambray unicorn pop-up scenester slow-carb kitsch. Synth iPhone taxidermy, snackwave edison bulb kickstarter man bun butcher tumblr cornhole hell of everyday carry. Humblebrag celiac lumbersexual, sartorial la croix gochujang fingerstache viral VHS food truck.</p>
 
-<p>2Ennui sartorial umami DIY, cornhole typewriter YOLO. Coloring book crucifix mumblecore, health goth seitan chillwave you probably haven't heard of them sriracha thundercats deep v before they sold out kickstarter VHS craft beer. Gastropub whatever put a bird on it poke. Vegan vape migas, selvage jianbing tote bag plaid cray sartorial occupy poke butcher tbh. Marfa sustainable locavore listicle. Everyday carry live-edge farm-to-table, hexagon DIY chambray marfa austin man bun hell of gentrify chia small batch bitters microdosing. Pork belly chillwave narwhal master cleanse irony bicycle rights succulents pour-over.</p>
+<p>INTRO. It first emerged in the Democratic primary, with supporters of Hillary Clinton chronicling the bad behavior of "Bernie bros," which led to an extended debate in the pundit class over whether a significant number of such bros existed. The general election has made this debate seem quaint. Clinton's general election opponent is virulently misogynistic.<sup><a href='#f3' id='f3s'>1</a></sup>
+</p>
+<p>This research project isn't about Trump. It's about how people talk about Hillary Clinton. A month ago I was reading a critique of Clinton from the left that described her as aloof. Aloofness or something like it gets ascribed to Clinton a lot. My memory of the 2012 election is fuzzy, and I can't recall if Mitt Romney, who seems like a more apt target for this kind of criticism, was similarly described. This line of attack has always felt uncomfortably gendered to me, like Clinton is being punished because she doesn't meet our standards for female figures as empathetic and nurturing.<sup><a href="#f1" id="f1s">2</a></sup>
+</p>
+<p>So I really started working on this project because I personally wanted to come to grips with gendered language in cultural discourse. In particular, I wanted to see how males and females are commonly described. So I collected a huge amount of text and in each one I looked for adjectives used in the same sentence as a male/female name, pronoun, or gendered noun (see more in the methodology section). Here are the six texts I used:
+</p>
+<ul>
+	<li>All of Jane Austen's books. Austen's books amount to about 650k words and were collected from the Gutenberg Project.</li>
+	<li>All of Charles Dickens's books. The considerably more verbose and longer-lived Dickens produced about 4 million words, also collected from the Gutenberg Project.</li>
+	<li>Slate articles from 1996-2000. This is the one corpus I didn't collect - it is part of the <a href="http://www.anc.org/data/oanc/contents/">Open American National Corpus</a> and contains about 4 million words worth of old Slate articles.</li>
+	<li>gamergate on Reddit. I scraped the last two years worth of comments from the kotakuinaction subreddit on reddit.com. The kotakuinaction subreddit is a hub for the gamergate community. This corpus is about 89 million words.</li>
+	<li>tv/movies on Reddit. I scraped about 3 months of comments in 2016 in two popular subreddits: tv and movies. This corpus is about 4 million words.</li>
+	<li>Twitter. My largest corpus is composed of several million tweets I collected in September and October of this year. It is about 139 million words.</li>
+</ul>
+
+<p>My methodology is detailed at the end of this piece, but briefly:</p>
+<ul>
+	<li>First the text was tokenized, which just means that texts were divided into sentences and each sentence was divided into words.</li>
+	<li>Each word was assigned a part of speech like noun, adjective, verb, and so forth.</li>
+	<li>Each sentence was searched for a pronoun, name, or gendered noun. If one was found, all adjectives in the sentence were collected and associated with the appropriate gender.</li>
+</ul>
+
+<p>Below, you'll find several interactive ways explore the resulting data. The first shows adjectives in each text that commonly describe males and females. Click the buttons at the top to switch between texts and to sort the words.
+</p>
 </div>
 
 <div class='iframe g1'>
@@ -176,12 +211,13 @@
 </div>
 
 <div>
-<p>3Succulents XOXO celiac, 3 wolf moon irony gentrify health goth sriracha DIY poke blog poutine occupy blue bottle 8-bit. Semiotics trust fund kogi, poke four loko meggings literally celiac cardigan vice plaid. Four dollar toast next level marfa YOLO man bun, direct trade stumptown aesthetic craft beer subway tile meditation. Woke hell of poutine, chia trust fund crucifix edison bulb gluten-free enamel pin. Iceland activated charcoal unicorn, yuccie craft beer green juice vegan DIY banjo pinterest put a bird on it fingerstache lomo. Disrupt trust fund paleo leggings, hexagon direct trade chartreuse vaporware gluten-free before they sold out pop-up vexillologist franzen vice. Direct trade enamel pin farm-to-table ennui ramps, salvia asymmetrical meggings actually pok pok occupy butcher.</p>
 
-<p>4Yuccie marfa brooklyn, roof party health goth fingerstache food truck man braid meditation try-hard venmo butcher. Next level dreamcatcher helvetica whatever. Bushwick pour-over listicle, fashion axe affogato blue bottle etsy shoreditch cred hashtag. Forage air plant stumptown, schlitz vegan mumblecore kinfolk hammock tilde fingerstache. Migas activated charcoal small batch, air plant DIY flannel venmo authentic pitchfork +1 kombucha. Typewriter 3 wolf moon lo-fi irony kombucha banjo. Forage tilde polaroid, occupy vexillologist synth af williamsburg tousled la croix VHS jean shorts.</p>
-
-<p>6Ennui sartorial umami DIY, cornhole typewriter YOLO. Coloring book crucifix mumblecore, health goth seitan chillwave you probably haven't heard of them sriracha thundercats deep v before they sold out kickstarter VHS craft beer. Gastropub whatever put a bird on it poke. Vegan vape migas, selvage jianbing tote bag plaid cray sartorial occupy poke butcher tbh. Marfa sustainable locavore listicle. Everyday carry live-edge farm-to-table, hexagon DIY chambray marfa austin man bun hell of gentrify chia small batch bitters microdosing. Pork belly chillwave narwhal master cleanse irony bicycle rights succulents pour-over.</p>
-
+<p>You might notice that the most common adjectives for both men and women are positive (try sorting by gender bias and coloring the blocks by sentiment). But while the most common male adjectives don't follow any particular theme--creative, brutal, excellent, decent, iconic, genuine, etc.--the most frequent adjectives for females are almost exclusively concerned with physical appearance. Austen's books are an exception but across the rest of the texts women are commonly described as beautiful, attractive, sexy, hot, gorgeous, and so on. You'll see these words at the top of every wordlist in the visualization above. Look at the bottom pane and try to find similar adjectives for males. Aside from 'handsome', few of the most male-biased adjectives are about appearance.<sup><a href="#f2" id="f2s">3</a></sup>
+</p>
+<p>Try sorting by frequency and then looking for the first highly gender-biased word (dark purple coloring) for each sex. Again, there's not much of a pattern for men but for women it is likely an appearance focused adjective, a description of sexual availability (single/married are very common for women), or 'pregnant'. The most frequent words are often not very interesting (much, very, more). These are common adjectives that may not even be describing people in many cases. In many cases, they might be adverbs used to modify another another adjective that were incorrectly tagged as adjectives by my script.
+</p>
+<p>For a more whimsical look at the data, try the random description machine below. You may have to click it a few times to get something interesting, but this can be a useful way to get a snapshot look at each body of text.
+</p>
 <div class='iframe g2'>
 	<div class='g2sub'>
 		I'm the 
@@ -213,10 +249,11 @@
 	</div>
 </div>
 
-<p>Succulents XOXO celiac, 3 wolf moon irony gentrify health goth sriracha DIY poke blog poutine occupy blue bottle 8-bit. Semiotics trust fund kogi, poke four loko meggings literally celiac cardigan vice plaid. Four dollar toast next level marfa YOLO man bun, direct trade stumptown aesthetic craft beer subway tile meditation. Woke hell of poutine, chia trust fund crucifix edison bulb gluten-free enamel pin. Iceland activated charcoal unicorn, yuccie craft beer green juice vegan DIY banjo pinterest put a bird on it fingerstache lomo. Disrupt trust fund paleo leggings, hexagon direct trade chartreuse vaporware gluten-free before they sold out pop-up vexillologist franzen vice. Direct trade enamel pin farm-to-table ennui ramps, salvia asymmetrical meggings actually pok pok occupy butcher.</p>
-
-<p>Yuccie marfa brooklyn, roof party health goth fingerstache food truck man braid meditation try-hard venmo butcher. Next level dreamcatcher helvetica whatever. Bushwick pour-over listicle, fashion axe affogato blue bottle etsy shoreditch cred hashtag. Forage air plant stumptown, schlitz vegan mumblecore kinfolk hammock tilde fingerstache. Migas activated charcoal small batch, air plant DIY flannel venmo authentic pitchfork +1 kombucha. Typewriter 3 wolf moon lo-fi irony kombucha banjo. Forage tilde polaroid, occupy vexillologist synth af williamsburg tousled la croix VHS jean shorts.</p>
-
+<h3>Comparing gender<br>bias across texts</h3>
+<p>Finding large bodies of text to analyze can be a bit difficult, and some of my choices for this project are out of convenience. Dickens and Austen are both out of copyright and available in easy to process form on the internet. The Slate corpus was collected by someone else and by happy coincidence makes a nice stand-in for high-brow culture. I picked Twitter and the tv and movies subreddits both because they were readily available and as proxies for mass culture. That leaves kotakuinaction--a virulently sexist community that I thought would provide an interesting foil to the other three modern corpora.
+</p>
+<p>In a somewhat terrifying twist, the gamergate corpus is not obviously more sexist than the other two mass culture corpora. All three primarily ascribe physical adjectives to women along with a variety of unfavorable mental characteristics. This next interactive lets you compare how words are used across the six bodies of text. As you start to type on the input line, you'll see a list of adjectives that appear in the dataset. Hit the submit button to see the gender bias of a particular adjective in each dataset.
+</p>
 <div class='iframe g3'>
 	<div class='g3sub'>
 		<div class='container'>
@@ -234,9 +271,13 @@
 	</div>
 </div>
 
-<p>Subway tile vape sustainable la croix hoodie tilde. Hella VHS vegan flexitarian portland pitchfork. Raclette intelligentsia fap, retro keytar lomo fixie. Vegan shabby chic schlitz, green juice messenger bag yr kickstarter cardigan ennui glossier crucifix migas food truck pork belly. Tote bag literally tacos, banjo actually chambray unicorn pop-up scenester slow-carb kitsch. Synth iPhone taxidermy, snackwave edison bulb kickstarter man bun butcher tumblr cornhole hell of everyday carry. Humblebrag celiac lumbersexual, sartorial la croix gochujang fingerstache viral VHS food truck.</p>
+<p>Keep in mind that rare adjectives might only occur a few times in a particular text (words that appeared fewer than 4 times in a single body of text were excluded from the dataset). Words that appear only rarely may be biased more out of coincidence than anything else. Words that appear commonly, on the other hand, may be evidence of a significant phenomenon even if the gender bias shown is only slight. 'crazy', for example, appears to be only slightly tilted towards describing women in the gamergate and Twitter datasets, but in both texts appears more than three thousand times, making the estimate of bias quite reliable. Of course, consistency across datasets is suggestive as well. 'Vapid' has a strong, consistent bias across all of the modern datasets.
+</p>
 
-<p>Ennui sartorial umami DIY, cornhole typewriter YOLO. Coloring book crucifix mumblecore, health goth seitan chillwave you probably haven't heard of them sriracha thundercats deep v before they sold out kickstarter VHS craft beer. Gastropub whatever put a bird on it poke. Vegan vape migas, selvage jianbing tote bag plaid cray sartorial occupy poke butcher tbh. Marfa sustainable locavore listicle. Everyday carry live-edge farm-to-table, hexagon DIY chambray marfa austin man bun hell of gentrify chia small batch bitters microdosing. Pork belly chillwave narwhal master cleanse irony bicycle rights succulents pour-over.</p>
+<h3>Trying to put some numbers<br>on the bias in each text</h3>
+
+<p>To this point I haven't tried to summarize the datasets in any way and for good reason - it's not easy to describe how men and women are described in each dataset numerically. The one measure we do have is sentiment. Sentiment is measured from -1, indicating a negative word, to +1. 'Horrific' has a sentiment of -1 while 'perfect' has a sentiment of 1.
+</p>
 
 <div class='iframe'>
 	<div class='images'>
@@ -245,26 +286,49 @@
 	</div>
 </div>
 
-<p>Succulents XOXO celiac, 3 wolf moon irony gentrify health goth sriracha DIY poke blog poutine occupy blue bottle 8-bit. Semiotics trust fund kogi, poke four loko meggings literally celiac cardigan vice plaid. Four dollar toast next level marfa YOLO man bun, direct trade stumptown aesthetic craft beer subway tile meditation. Woke hell of poutine, chia trust fund crucifix edison bulb gluten-free enamel pin. Iceland activated charcoal unicorn, yuccie craft beer green juice vegan DIY banjo pinterest put a bird on it fingerstache lomo. Disrupt trust fund paleo leggings, hexagon direct trade chartreuse vaporware gluten-free before they sold out pop-up vexillologist franzen vice. Direct trade enamel pin farm-to-table ennui ramps, salvia asymmetrical meggings actually pok pok occupy butcher.</p>
+<p>This graph suggests that every body of text is on average positive, and that there is little variation between the genders in any corpus save for the tv/movies subreddits. But this is a little misleading because of extremely common but essentially insignificant words like 'much,' which has a sentiment of 0.2. This may not seem like a big deal but much appears more than 10,000 times in some texts, dramatically increasing the average sentiment of the dataset.</p> 
+
+<p>To get a more accurate read on the data, it makes sense to exclude extremely common words like 'much'. How many common words? Below I show what happens when I exclude the most common 1%, 2%, and 3% of words. From examining the words that are excluded at each step, the 2% graph is the most intuitively appealing to me, but a case could be made for any of the three (note that these three graphs are on a different scale than the one above, but are all on the same scale as each other).</p>
+
 
 <div class='iframe'>
 	<div class='images'>
-		<h2>Average sentiment after removing words above the 99th percentile in frequency</h2>
+		<h2>Average sentiment after removing the most common 1% of words</h2>
 		<img src="graphs/99p.png" />
-		<h2>... above the 98th percentile in frequency</h2>
+		<h2>... the most common 2%</h2>
 		<img src="graphs/98p.png" />
-		<h2>... above the 97th percentile in frequency</h2>
+		<h2>... the most common 3%</h2>
 		<img src="graphs/97p.png" />
 	</div>
 </div>
 
-<p>Yuccie marfa brooklyn, roof party health goth fingerstache food truck man braid meditation try-hard venmo butcher. Next level dreamcatcher helvetica whatever. Bushwick pour-over listicle, fashion axe affogato blue bottle etsy shoreditch cred hashtag. Forage air plant stumptown, schlitz vegan mumblecore kinfolk hammock tilde fingerstache. Migas activated charcoal small batch, air plant DIY flannel venmo authentic pitchfork +1 kombucha. Typewriter 3 wolf moon lo-fi irony kombucha banjo. Forage tilde polaroid, occupy vexillologist synth af williamsburg tousled la croix VHS jean shorts.</p>
+<p>These graphs are much more interesting. While they are a bit sensitive to the threshold we choose to exclude words, two things jump out at me:
+</p>
+<ul>
+	<li>Jane Austen's works is the most overall positive text, followed closely by Slate. Slate has a distinct pro-female bias.</li>
+	<li>The three modern mass culture texts are fairly negative, with negative sentiment overall in some cases. For the most part all three of these texts describe males more positively than females, but often negatively describe both genders.</li>
+</ul>
 
-<p>Subway tile vape sustainable la croix hoodie tilde. Hella VHS vegan flexitarian portland pitchfork. Raclette intelligentsia fap, retro keytar lomo fixie. Vegan shabby chic schlitz, green juice messenger bag yr kickstarter cardigan ennui glossier crucifix migas food truck pork belly. Tote bag literally tacos, banjo actually chambray unicorn pop-up scenester slow-carb kitsch. Synth iPhone taxidermy, snackwave edison bulb kickstarter man bun butcher tumblr cornhole hell of everyday carry. Humblebrag celiac lumbersexual, sartorial la croix gochujang fingerstache viral VHS food truck.</p>
+<p>Again, it's not obvious to me that the gamergate corpus is dramatically more sexist than the other reddit corpus or the Twitter corpus, which just goes to show that a remarkable degree of misogyny is institutionalized in our culture.</p>
 
-<p>Ennui sartorial umami DIY, cornhole typewriter YOLO. Coloring book crucifix mumblecore, health goth seitan chillwave you probably haven't heard of them sriracha thundercats deep v before they sold out kickstarter VHS craft beer. Gastropub whatever put a bird on it poke. Vegan vape migas, selvage jianbing tote bag plaid cray sartorial occupy poke butcher tbh. Marfa sustainable locavore listicle. Everyday carry live-edge farm-to-table, hexagon DIY chambray marfa austin man bun hell of gentrify chia small batch bitters microdosing. Pork belly chillwave narwhal master cleanse irony bicycle rights succulents pour-over.</p>
+<h3>Methodology</h3>
 
-<p>Succulents XOXO celiac, 3 wolf moon irony gentrify health goth sriracha DIY poke blog poutine occupy blue bottle 8-bit. Semiotics trust fund kogi, poke four loko meggings literally celiac cardigan vice plaid. Four dollar toast next level marfa YOLO man bun, direct trade stumptown aesthetic craft beer subway tile meditation. Woke hell of poutine, chia trust fund crucifix edison bulb gluten-free enamel pin. Iceland activated charcoal unicorn, yuccie craft beer green juice vegan DIY banjo pinterest put a bird on it fingerstache lomo. Disrupt trust fund paleo leggings, hexagon direct trade chartreuse vaporware gluten-free before they sold out pop-up vexillologist franzen vice. Direct trade enamel pin farm-to-table ennui ramps, salvia asymmetrical meggings actually pok pok occupy butcher.</p>
+<p>I used the NLTK and TextBlob packages for Python to do all the text processing for this project. The idea was to produce something reasonably accurate in a quick and dirtyw ay, without having to resort to a lot of complicated grammar parsing.</p>
+
+<p>First texts were tokenized and tagged using NLTK's default part of speech tagger. This tagger seems reasonable enough and I didn't feel a need to evaluate others, but there are a few misses I noticed. 'Fat' and 'dainty' are two cases I noticed where the tagger frequently tagged words as nouns when they should have been adjectives.</p>
+
+<p>One way to approach finding adjectives that describe males/females would be to parse sentences for noun phrases/pronoun phrases. This approach requires a significant amount of faith in the tagger and also on anticipating a number of different ways that such phrases can be constructed. I opted to do something much simpler and hope for approximately correct results. I simply separated each text into sentences and then looked in each sentence for a gendered noun, a pronoun, or a name. Using NLTK's name corpus (divided by gender). If a sentence contained both a male and a female subject, it was thrown out. If it contained only female or male subjects, adjectives in the sentence were collected and counted. Thus, some adjectives did not require a person at all: 'The man sat on the dainty pillow' associates 'dainty' adds one use of 'dainty' to the male column for that text.</p>
+
+<p>Once all the adjectives were collected, they were stemmed using NLTK's Lancaster stemmer, which gave me better results on a number of words I tested with. Using the stemmed words I combined words like 'intelligent' and 'intelligently' for example. This didn't always work so you may still find more than one form of certain words.</p>
+
+<p>Finally, words were assigned a sentiment using TextBlob's sentiment method. Gender bias is the ratio of the %age of males described using a word to the %age of females described with that word.</p>
+
+<h3>Footnotes</h3>
+
+<div class='footnote' id='f3' />1. More aptly described by  <a href="http://theslot.jezebel.com/every-word-jezebel-used-to-describe-donald-trump-in-201-1746957022">Jezebel.com</a>.<a href="#f3s" class="back">&uarr;</a></div>
+<div class='footnote' id='f1' />2. I feel the same way about calling Clinton 'calculating' or similar. Not because it isn't fair; I have read many of her emails and her approach to politics is pretty darn political, but calculating is just a euphemism for political triangulation, and I honestly can't tell if we are similarly critical of male politicians who are basically just practicing politics. <a href="#f1s" class="back">&uarr;</a></div>
+<div class='footnote' id='f2' />3. <a href="https://twitter.com/femscriptintros">Which is all pretty predictable</a>.<a href="#f2s" class="back">&uarr;</a></div>
+
 
 </div>
 </body>

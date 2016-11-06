@@ -38,7 +38,36 @@ For a more whimsical look at the data, try the random description machine below.
 G2
 
 
+<h3>Comparing gender<br>bias across texts</h3>
 
+Finding large bodies of text to analyze can be a bit difficult, and some of my choices for this project are out of convenience. Dickens and Austen are both out of copyright and available in easy to process form on the internet. The Slate corpus was collected by someone else and by happy coincidence makes a nice stand-in for high-brow culture. I picked Twitter and the tv and movies subreddits both because they were readily available and as proxies for mass culture. That leaves kotakuinaction--a virulently sexist community that I thought would provide an interesting foil to the other three modern corpora.
+
+In a somewhat terrifying twist, the gamergate corpus is not obviously more sexist than the other two mass culture corpora. All three primarily ascribe physical adjectives to women along with a variety of unfavorable mental characteristics. This next interactive lets you compare how words are used across the six bodies of text. As you start to type on the input line, you'll see a list of adjectives that appear in the dataset. Hit the submit button to see the gender bias of a particular adjective in each dataset.
+
+
+G3
+
+
+Keep in mind that rare adjectives might only occur a few times in a particular text (words that appeared fewer than 4 times in a single body of text were excluded from the dataset). Words that appear only rarely may be biased more out of coincidence than anything else. Words that appear commonly, on the other hand, may be evidence of a significant phenomenon even if the gender bias shown is only slight. 'crazy', for example, appears to be only slightly tilted towards describing women in the gamergate and Twitter datasets, but in both texts appears more than three thousand times, making the estimate of bias quite reliable. Of course, consistency across datasets is suggestive as well. 'Vapid' has a strong, consistent bias across all of the modern datasets.
+
+To this point I haven't tried to summarize the datasets in any way and for good reason - it's not easy to describe how men and women are described in each dataset numerically. The one measure we do have is sentiment. Sentiment is measured from -1, indicating a negative word, to +1. 'Horrific' has a sentiment of -1 while 'perfect' has a sentiment of 1.
+
+
+G4
+
+
+This graph suggests that every body of text is on average positive, and that there is little variation between the genders in any corpus save for the tv/movies subreddits. But this is a little misleading because of extremely common but essentially insignificant words like 'much,' which has a sentiment of 0.2. This may not seem like a big deal but much appears more than 10,000 times in some texts, dramatically increasing the average sentiment of the dataset. To get a more accurate read on the data, it makes sense to exclude extremely common words like this one. How many common words? Below I show what happens when I exclude the most common 1%, 2%, and 3% of words. From examining the words that are excluded at each step, the 2% graph is the most intuitively appealing to me, but a case could be made for any of the three (note that these three graphs are on a different scale than the one above, but are all on the same scale as each other).
+
+
+G5
+
+
+These graphs are much more interesting. While they are a bit sensitive to the thresshold we choose to exclude words, two things jump out at me:
+
+<ul>
+	<li>Jane Austen's works is the most overall positive text, followed closely by Slate. Slate has a distinct pro-female bias.</li>
+	<li>The three modern mass culture texts are fairly negative, with negative sentiment overall in some cases. For the most part all three of these texts describe males more positively than females, but often negatively describe both genders.</li>
+</ul>
 
 
 
