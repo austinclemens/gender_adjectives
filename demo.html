@@ -54,11 +54,11 @@ html,body{margin:0}
 
 		#median{padding:5px;text-align:center;line-height:35px;height:70px;border-top:2px dashed #ccc;border-bottom:2px dashed #ccc;margin-top:5px;margin-bottom:5px;font-size:1.3em;font-family:'Dosis';}
 		#femcontainer, #malecontainer{overflow:hidden;}
-		#social{cursor:pointer;top:50%;left:calc(50% + 440px);z-index:1;position:fixed;float:left;margin-right:auto;margin-left:auto;text-align:center;font-size:2em;}
+		#social{cursor:pointer;top:50%;left:calc(50% + 440px);z-index:999;position:fixed;float:left;margin-right:auto;margin-left:auto;text-align:center;font-size:2em;}
 
 		.graph{max-width:650px}
 		.head{max-width:850px;margin-left:auto;margin-right:auto;padding:20px;text-align:center;}
-		.iframe{position:relative;z-index:2;width:100%;margin-bottom:30px;margin-top:30px;padding-top:30px;padding-bottom:30px;background:#eaeaea;}
+		.iframe{position:relative;z-index:1;width:100%;margin-bottom:30px;margin-top:30px;padding-top:30px;padding-bottom:30px;background:#eaeaea;}
 		.footnote{margin-bottom:10px;width:600px;margin-right:auto;margin-left:auto;font-size:14px;line-height:130%;}
 		.back{text-decoration:none;}
 		.jssocials-share{font-size:.7em;cursor:pointer;display:block;text-align:center;margin-left:auto;margin-right:auto;background:white;border-radius:50%;height:35px;width:35px;padding-top:8px;}
@@ -72,7 +72,7 @@ html,body{margin:0}
 		.box1{min-width:150px;}
 
 		/* g1 */
-		.g1{overflow:hidden;}
+		.g1{overflow:hidden;z-index:9999;}
 		.g1sub{max-width:900px;margin-right:auto;margin-left:auto;padding:10px;}		
 		.word{display:hidden;padding:2px 5px 2px 5px;border-radius:2px;font-family:'Dosis';margin:2px 0px 2px 0px;color:white;font-size:1.25em;}
 		.controls{padding-bottom:10px;font-family:'Cabin';font-size:1.2em;}
@@ -95,8 +95,8 @@ html,body{margin:0}
 		.negative{white-space: pre;margin-right:2px;padding:1px 4px 1px 4px;border:0px solid black;border-radius:2px;background:#b2182b;font-size:.85em;color:white}
 
 		/* g2 */
-		.g2sub{max-width:750px;margin-right:auto;margin-left:auto;padding:10px}
-		.g2{z-index:-2;padding-top:20px;font-family:'Cabin';font-size:1.3em;letter-spacing:2px;margin-left:auto;margin-right:auto;text-align:left;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;-o-user-select: none;user-select: none;}
+		.g2sub{max-width:750px;margin-right:auto;margin-left:auto;padding:10px;position:relative;}
+		.g2{padding-top:20px;font-family:'Cabin';font-size:1.3em;letter-spacing:2px;margin-left:auto;margin-right:auto;text-align:left;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;-o-user-select: none;user-select: none;}
 		.adj{text-align:center;vertical-align:top;height:1.2em;padding-bottom:1px;display:inline-block;width:160px;border-bottom:2px solid black;font-family:'Dosis';font-size:1.2em;}
 		.descbutton{background:white;vertical-align:top;margin-top:9px;border:2px solid black;padding:6px;display:inline-block;text-align:center;cursor:pointer;color:black;font-family:'Cabin';}
 		.descbutton:hover{background:#bbb;color:white;}

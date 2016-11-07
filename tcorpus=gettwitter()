@@ -1,0 +1,14 @@
+tcorpus=gettwitter()
+tparsed=parse(tcorpus)
+
+dcorpus=getdickens()
+dparsed=parse(dcorpus)
+
+acorpus=getausten()
+aparsed=parse(acorpus)
+
+scorpus=getslate()
+sparsed=parse(scorpus)
+
+scorpus=getmedia()
+sparsed=parse(scorpus)

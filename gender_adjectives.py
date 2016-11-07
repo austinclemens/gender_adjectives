@@ -354,7 +354,7 @@ def parse(corpora,tokenize=0):
 
 		# replace stemmed adjective with most popular unstemmed option
 		unstemmed_opt=adjective_dict[key][4][0][adjective_dict[key][4][1].index(max(adjective_dict[key][4][1]))]
-		final_dict[unstemmed_opt]=[unstemmed_opt,adjective_dict[key][0],adjective_dict[key][1],adjective_dict[key][2],adjective_dict[key][3]]
+		final_dict[unstemmed_opt]=[unstemmed_opt,adjective_dict[key][0],adjective_dict[key][1],adjective_dict[key][2],adjective_dict[key][3],adjective_dict[key][4][0]]
 
 	print "FEMALES FOUND: ",total_females
 	print "MALES FOUND: ",total_males
