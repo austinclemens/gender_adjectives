@@ -14,7 +14,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js"></script>
 	<meta property=”og:title” content=”Exploring Gendered Language in Mass Culture, the Media, and Victorian Literature”/>
 	<meta property=”og:type” content=”article”/>
-	<meta property=”og:image” content="graphs/social.png”/>
+	<meta property=”og:image” content="graphs/social.png"/>
 	<meta property=”og:description” content=”A data-driven look at the adjectives we use to describe women and men.”/>
 	<link href="https://fonts.googleapis.com/css?family=Overlock|Cabin|Dosis|Oxygen:400,700|PT+Serif" rel="stylesheet">
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">	
@@ -114,7 +114,7 @@
 		/* g3 */
 		svg{width:100%;}
 		.g3sub{max-width:800px;margin-right:auto;margin-left:auto;padding-left:10px;padding-right:10px;}
-		.g3{z-index:-2;padding-bottom:40px;padding-top:40px;margin-top:25px;text-align:center;font-family:'Cabin';font-size:1.3em;margin-left:auto;margin-right:auto;}
+		.g3{padding-bottom:40px;padding-top:40px;margin-top:25px;text-align:center;font-family:'Cabin';font-size:1.3em;margin-left:auto;margin-right:auto;}
 		.container{max-width:800px;}
 		.controlsg3{text-align:center;margin-bottom:15px;}
 		.adjg3{background:#eaeaea;border:0;text-align:center;padding-bottom:1px;display:inline-block;width:250px;border-bottom:2px solid black;font-family:'Dosis';font-size:1.2em;letter-spacing:1px;}
@@ -138,6 +138,8 @@
 			h1{width:94%;margin-right:auto;margin-left:auto;font-family:'Oxygen';font-weight:600;font-size:1.4em;}
 			h2{width:94%;margin-left:20px;font-size:1.0em;}
 			h3{width:94%;font-size:1.3em;}
+			img{max-width:100%;}
+			.graph{max-width:100%;}
 			.list{width:94%;margin-right:auto;margin-left:auto;list-style:none;padding:0;font-size:17px;line-height:150%;}
 			#median{font-size:.9em;line-height:25px;height:50px}
 			#social{display:hidden;}
@@ -433,9 +435,9 @@ $("#sbox").jsSocials({
     shares: ["twitter", "facebook", "linkedin"]
 });
 
-document.addEventListener('touchstart',function(){
-	$('#tooltip').css("top", -9999);
-},false)
+// document.addEventListener('touchstart',function(){
+// 	$('#tooltip').css("top", -9999);
+// },false)
 
 function setupcorpus(corpus,name){
 	$('.corp').removeClass('active')
