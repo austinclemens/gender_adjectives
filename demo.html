@@ -36,7 +36,7 @@
 	</script>
 
 	<style>
-		html,body{margin:0}
+html,body{margin:0}
 		p{width:700px;margin-right:auto;margin-left:auto;font-size:19px;line-height:150%;}
 		body{font-family:'PT Serif';font-size:14px;margin-top:30px;margin-bottom:80px;}
 		h1{font-size:2.5em;margin-right:auto;margin-left:auto;font-family:'Oxygen';color:black;margin-bottom:5px;}
@@ -63,7 +63,7 @@
 		.back{text-decoration:none;}
 		.jssocials-share{font-size:.7em;cursor:pointer;display:block;text-align:center;margin-left:auto;margin-right:auto;background:white;border-radius:50%;height:35px;width:35px;padding-top:8px;}
 		.sharelabel{color:#888;font-family:"Cabin";text-align:center;font-size:.6em;margin-left:auto;margin-right:auto;}
-		.quote{padding-top:10px;padding-bottom:0px;display:flex;align-items:center;width:600px;margin-left:auto;margin-right:auto;font-size:2em;font-family:'Overlock';margin-top:30px;}
+		.quote{padding-top:10px;padding-bottom:0px;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:600px;margin-left:auto;margin-right:auto;font-size:2em;font-family:'Overlock';margin-top:30px;}
 		.quotesource{padding-left:50px;padding-bottom:0px;margin-left:auto;margin-right:auto;font-size:.7em;font-family:'Cabin';color:#555;margin-top:7px;}
 		.gimg{z-index:-2;}
 		.hwomen{white-space: pre;margin-right:2px;padding:1px 4px 1px 4px;border:0px solid black;border-radius:2px;background:#542788;font-size:.9em;color:white}
@@ -145,11 +145,11 @@
 			#social{display:hidden;}
 			.quote{font-size:1.2em;width:90%;}
 			hr.style-two{width:90%;}
-			.leftcontrols{font-size:font-size:.8em;text-align:left;margin-left:30px;}
+			.leftcontrols{font-size:.8em;text-align:left;margin-left:30px;}
 			.sort2{font-size:.7em;}
 			.sort{font-size:.7em;}
 			.custom-select{font-size:.8em;}
-			.descbutton{font-size:.8em;margin-}
+			.descbutton{font-size:.8em;}
 			.g2{font-size:.8em;letter-spacing:0px;}
 			.adj{border-bottom:1px solid black;font-size:.9em;height:1em;max-width:70px;}
 			.g2sub{padding-top:0px;}
@@ -214,7 +214,7 @@
 </div>
 <hr class='style-two'>
 
-<p>This is a description of the Artful Dodger. Because there is a male pronoun "he" in the sentence and no other pronoun, adjectives in this sentence describe males. A part-of-speech tagger is used to label each word in the sentence as a noun, verb, adjective, and so forth. 'Short' and 'little' are both adjectives in this sentence that will be marked down as describing a male. 'Ugly' will not be, because the part-of-speech tagger identified it as an adverb.</p>
+<p>This is a description of the Artful Dodger. Because there is a male pronoun "he" in the sentence and no other pronoun, adjectives in this sentence describe males. A part-of-speech tagger is used to label each word in the sentence as a noun, verb, adjective, and so forth. 'Short', 'little', and 'sharp' are all adjectives in this sentence that will be marked down as describing a male. 'Ugly' will not be, because the part-of-speech tagger identified it as an adverb.<sup><a href="#f8" id="f8s">3</a></sup></p>
 
 <p>Here are the six text I subjected to this analysis:</p>
 
@@ -222,7 +222,7 @@
 	<li>All of Jane Austen's books. Austen's books amount to about 650k words and were collected from the Gutenberg Project.</li>
 	<li>All of Charles Dickens's books. The considerably more verbose and longer-lived Dickens produced about 4 million words, also collected from the Gutenberg Project.</li>
 	<li>Slate articles from 1996-2000. This is the one corpus I didn't collect - it is part of the <a href="http://www.anc.org/data/oanc/contents/">Open American National Corpus</a> and contains about 4 million words worth of old Slate articles.</li>
-	<li>gamergate<sup><a href='#f6' id='f6s'>3</a></sup> on Reddit. I scraped the last two years worth of comments from the kotakuinaction subreddit on reddit.com. The kotakuinaction subreddit is a hub for the gamergate community. This corpus is about 89 million words.</li>
+	<li>gamergate<sup><a href='#f6' id='f6s'>4</a></sup> on Reddit. I scraped the last two years worth of comments from the kotakuinaction subreddit on reddit.com. The kotakuinaction subreddit is a hub for the gamergate community. This corpus is about 89 million words.</li>
 	<li>tv/movies on Reddit. I scraped about 3 months of comments in 2016 in two popular subreddits: tv and movies. This corpus is about 4 million words.</li>
 	<li>Twitter. My largest corpus is composed of several million tweets I collected in September and October of this year. It is about 137 million words.</li>
 </ul>
@@ -272,9 +272,9 @@
 
 <div>
 
-<p>You might notice that the most gender-biased adjectives for both men and women are positive (try sorting by gender bias and coloring the blocks by sentiment). But while the most common male adjectives don't follow any particular theme&mdash;creative, brutal, excellent, decent, iconic, genuine, etc.&mdash;<b>the most frequent adjectives for females are almost exclusively concerned with physical appearance</b>. Austen's books are an exception but across the rest of the texts women are commonly described as beautiful, attractive, sexy, hot, gorgeous, and so on. This is predictable but the extent of it surprised me. You'll see these words at the top of every wordlist in the visualization above. Look at the bottom pane and try to find similar adjectives for males. Aside from 'handsome', few of the most male-biased adjectives are about appearance.<sup><a href="#f2" id="f2s">4</a></sup>
+<p>You might notice that the most gender-biased adjectives for both men and women are positive (try sorting by gender bias and coloring the blocks by sentiment). But while the most common male adjectives don't follow any particular theme&mdash;creative, brutal, excellent, decent, iconic, genuine, etc.&mdash;<b>the most frequent adjectives for females are almost exclusively concerned with physical appearance</b>. Austen's books are an exception but across the rest of the texts women are commonly described as beautiful, attractive, sexy, hot, gorgeous, and so on. This is predictable but the extent of it surprised me. You'll see these words at the top of every wordlist in the visualization above. Look at the bottom pane and try to find similar adjectives for males. Aside from 'handsome', few of the most male-biased adjectives are about appearance.<sup><a href="#f2" id="f2s">5</a></sup>
 </p>
-<p>Try sorting by frequency and then looking for the first highly gender-biased word (dark purple/orange coloring) for each sex.<sup><a href="#f4" id="f4s">5</a></sup> Again, there's not much of a pattern for men but for women it is likely an appearance-focused adjective, a description of sexual availability (single/married are very common descriptors for women), or 'pregnant'.</p>
+<p>Try sorting by frequency and then looking for the first highly gender-biased word (dark purple/orange coloring) for each sex.<sup><a href="#f4" id="f4s">6</a></sup> Again, there's not much of a pattern for men but for women it is likely an appearance-focused adjective, a description of sexual availability (single/married are very common descriptors for women), or 'pregnant'.</p>
 
 </p>
 <p>For a more whimsical look at the data, try the random description machine below. Switch between hero/heroine and villain/villainess to get descriptions that use positive or negative words, respectively. Try a few descriptions in each text to get a snapshot look at the language that text uses (and if you're wondering why you get some boring, non-descriptive words, check footnote 5).
@@ -339,7 +339,7 @@
 
 <h3>Average sentiment varies across texts: mass culture texts are meaner</h3>
 
-<p>To this point I haven't tried to summarize the datasets in any way. It's not easy to summarize how men and women are described in each dataset numerically. The one measure we do have is sentiment. Sentiment is measured from -1, indicating a negative word, to +1. 'Horrific' has a sentiment of -1 while 'perfect' has a sentiment of 1.<sup><a href="#f7" id="f7s">6</a></sup> The bar graph below shows average sentiment in each text by gender.
+<p>To this point I haven't tried to summarize the datasets in any way. It's not easy to summarize how men and women are described in each dataset numerically. The one measure we do have is sentiment. Sentiment is measured from -1, indicating a negative word, to +1. 'Horrific' has a sentiment of -1 while 'perfect' has a sentiment of 1.<sup><a href="#f7" id="f7s">7</a></sup> The bar graph below shows average sentiment in each text by gender.
 </p>
 
 <div class='iframe gimg'>
@@ -349,7 +349,7 @@
 	</div>
 </div>
 
-<p>This graph suggests that every text is on average positive, and that there is little variation between the genders in any corpus save for the tv/movies subreddits. But this is a little misleading because of extremely common but essentially insignificant words like 'much,' which has a sentiment of 0.2. This may not seem like a big deal but 'much' appears more than 10,000 times in some texts, dramatically increasing the average sentiment of the dataset.<sup><a href="#f5" id="f5s">7</a></sup></p> 
+<p>This graph suggests that every text is on average positive, and that there is little variation between the genders in any corpus save for the tv/movies subreddits. But this is a little misleading because of extremely common but essentially insignificant words like 'much,' which has a sentiment of 0.2. This may not seem like a big deal but 'much' appears more than 10,000 times in some texts, dramatically increasing the average sentiment of the dataset.<sup><a href="#f5" id="f5s">8</a></sup></p> 
 
 <p>To get a more accurate read on the data, it makes sense to exclude extremely common words like 'much'. How many common words? Below I show what happens when I exclude the most common 1%, 2%, and 3% of words. From examining the words that are excluded at each step, the 2% graph is the most intuitively appealing to me, but a case could be made for any of the three (note that these three graphs are on a different scale than the one above, but are all on the same scale as each other).</p>
 
@@ -390,11 +390,12 @@
 
 <div class='footnote' id='f3' />1. More aptly described by  <a href="http://theslot.jezebel.com/every-word-jezebel-used-to-describe-donald-trump-in-201-1746957022">Jezebel.com</a>.<a href="#f3s" class="back">&uarr;</a></div>
 <div class='footnote' id='f1' />2. PBS did a nice job of <a href="http://www.pbs.org/newshour/features/hidden-sexism/">summarizing some of the sociology research behind this attitude</a>. To be fair, it is hard to know what is and is not bias! I have read my share of Clinton's emails and it is true that her approach to politics is very cautious, maybe even paranoid, and heavily reliant on political triangulation (for my part, I am annoyed that she has adopted such a weak stance on climate change, evidently because of polling data on the issue). But that's politics! Lots of politicians take this approach but I don't see them constantly derided for being calculating or inherently untrustworthy (politicians as a whole yes). I like <a href="http://www.theatlantic.com/magazine/archive/2016/10/fear-of-a-female-president/497564/">this exploration of the topic</a> at the Atlantic as well, in particular the idea that Clinton may feel like she has to be this cautious because of the misogyny directed at her.<a href="#f1s" class="back">&uarr;</a></div>
-<div class='footnote' id='f6' />3. For the unitiated, gamergate is a movement inside the video gaming community formed to <a href="https://www.theguardian.com/commentisfree/2015/aug/21/gamergate-sexism-games-industry-women-trolls">harass women who talk</a> <a href="http://www.recode.net/2014/10/20/11632060/debunking-the-idea-that-gamergate-isnt-about-sexism">about sexism in video games</a>. A more charitable description from a political conservative viewpoint is that it is about excessive political corectness. What it is absolutely and definitely not about is <a href="http://knowyourmeme.com/memes/actually-it-s-about-ethics">ethics in video game journalism.</a> <a href="https://en.wikipedia.org/wiki/Gamergate">It is also a type of ant</a>. <a href="#f6s" class="back">&uarr;</a></div>
-<div class='footnote' id='f2' />4. When I first started exploring the dataset visually I was reminded of <a href="https://twitter.com/femscriptintros">female script intros</a>.<a href="#f2s" class="back">&uarr;</a></div>
-<div class='footnote' id='f4' />5. The most frequent words are often not very interesting (much, very, more). These are common adjectives that are either being used as adverbs to modify another adjective or which are describing something else in the sentence, a detail that is lost on my naive approach to parsing the text. See the section on average sentiment for more.<a href="#f4s" class="back">&uarr;</a></div>
-<div class='footnote' id='f7' />6. The sentiment score a word receives has nothing to do with me. I used the TextBlob package for Python to assign sentiment. The way this works is that a human goes through a text and codes sentences as having positive or negative tone. Then a computer looks at all those human codings and tries to decide which words must be negative (because they appear in negative sentences a lot) or positive.<a href="#f7s" class="back">&uarr;</a></div>
-<div class='footnote' id='f5' />7. It just so happens that these modifier words mostly have positive sentiment. Reflecting the fact that they don't really describe people, you can see that the male/female ratio for these words (try 'many', own', 'much', and 'other') is generally close to one.<a href="#f5s" class="back">&uarr;</a></div>
+<div class='footnote' id='f8' />3. I don't know why. It's clearly wrong. Unfortunately this happens a fair bit but including adverbs would have introduced a bunch of other problems. <a href="#f8s" class="back">&uarr;</a></div>
+<div class='footnote' id='f6' />4. For the unitiated, gamergate is a movement inside the video gaming community formed to <a href="https://www.theguardian.com/commentisfree/2015/aug/21/gamergate-sexism-games-industry-women-trolls">harass women who talk</a> <a href="http://www.recode.net/2014/10/20/11632060/debunking-the-idea-that-gamergate-isnt-about-sexism">about sexism in video games</a>. A more charitable description from a political conservative viewpoint is that it is about excessive political corectness. What it is absolutely and definitely not about is <a href="http://knowyourmeme.com/memes/actually-it-s-about-ethics">ethics in video game journalism.</a> <a href="https://en.wikipedia.org/wiki/Gamergate">It is also a type of ant</a>. <a href="#f6s" class="back">&uarr;</a></div>
+<div class='footnote' id='f2' />5. When I first started exploring the dataset visually I was reminded of <a href="https://twitter.com/femscriptintros">female script intros</a>.<a href="#f2s" class="back">&uarr;</a></div>
+<div class='footnote' id='f4' />6. The most frequent words are often not very interesting (much, very, more). These are common adjectives that are either being used as adverbs to modify another adjective or which are describing something else in the sentence, a detail that is lost on my naive approach to parsing the text. See the section on average sentiment for more.<a href="#f4s" class="back">&uarr;</a></div>
+<div class='footnote' id='f7' />7. The sentiment score a word receives has nothing to do with me. I used the TextBlob package for Python to assign sentiment. The way this works is that a human goes through a text and codes sentences as having positive or negative tone. Then a computer looks at all those human codings and tries to decide which words must be negative (because they appear in negative sentences a lot) or positive.<a href="#f7s" class="back">&uarr;</a></div>
+<div class='footnote' id='f5' />8. It just so happens that these modifier words mostly have positive sentiment. Reflecting the fact that they don't really describe people, you can see that the male/female ratio for these words (try 'many', own', 'much', and 'other') is generally close to one.<a href="#f5s" class="back">&uarr;</a></div>
 
 </div>
 </body>
@@ -435,9 +436,9 @@ $("#sbox").jsSocials({
     shares: ["twitter", "facebook", "linkedin"]
 });
 
-// document.addEventListener('touchstart',function(){
-// 	$('#tooltip').css("top", -9999);
-// },false)
+document.addEventListener('touchstart',function(){
+	$('#tooltip').css("top", -9999);
+},false)
 
 function setupcorpus(corpus,name){
 	$('.corp').removeClass('active')
