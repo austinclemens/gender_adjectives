@@ -2,30 +2,39 @@
 
 <head>
 
-	<title>demo container</title>
+	<title>CHANGE ME TO THE RIGHT THING</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<meta name=”description” content=”FILL ME OUT”>
+	<meta charset="utf-8"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="lib/jquery.mixitup.js"></script>
 	<script src="lib/jquery.color.js"></script>
+	<script src="lib/jssocials.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.4.1/snap.svg-min.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Cabin|Dosis|Oxygen:400,700|PT+Serif" rel="stylesheet">
+	<meta property=”og:title” content=”TITLE HERE”/>
+	<meta property=”og:type” content=”article”/>
+	<meta property=”og:image” content=”lib/social.png”/>
+	<meta property=”og:description” content=”LONGER DESCRIPTION HERE”/>
+	<link href="https://fonts.googleapis.com/css?family=Overlock|Cabin|Dosis|Oxygen:400,700|PT+Serif" rel="stylesheet">
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">	
 	<link rel="stylesheet" href="lib/select-css.css">
 	<link rel="stylesheet" href="lib/select-css-compat.css">
+	<link rel="stylesheet" href="lib/jssocials.css">
+	<link rel="stylesheet" href="lib/jssocials-theme-minima.css">
 	<link rel="stylesheet" href="font-awesome-4.6.3/css/font-awesome.min.css">
 
 	<style>
 		html,body{margin:0}
 		p{width:700px;margin-right:auto;margin-left:auto;font-size:19px;line-height:150%;}
 		body{font-family:'PT Serif';font-size:14px;margin-top:30px;margin-bottom:80px;}
-		h1{width:700px;margin-right:auto;margin-left:auto;font-family:'Oxygen';color:#b7541b;}
+		h1{font-size:2.5em;width:700px;margin-right:auto;margin-left:auto;font-family:'Oxygen';color:black;}
 		h2{width:700px;margin-right:auto;margin-left:auto;font-family:'Oxygen';color:black;font-size:1.3em;}
 		h3{margin-top:40px;text-align:center;width:700px;margin-right:auto;margin-left:auto;font-family:'Oxygen';color:black;font-size:1.6em;}
-		img {display: block;max-width:650px;width: auto;height: auto;margin-left:auto;margin-right:auto;width:100%;}
-		ul{width:700px;margin-right:auto;margin-left:auto;list-style:none;padding:0;font-size:18px;}
-		li{margin-left:30px;padding-top:5px;padding-left:1em;text-indent:-.7em;}
-		li:before{content:"• ";color:#888;}
+		img {display: block;max-width:650px;height: auto;margin-left:auto;margin-right:auto;}
+		.list{width:700px;margin-right:auto;margin-left:auto;list-style:none;padding:0;font-size:18px;}
+		.list>li{margin-left:30px;padding-top:5px;padding-left:1em;text-indent:-.7em;}
+		.list>li:before{content:"• ";color:#888;}
 		a:link{color:#bc6262}
 		a:visited{color:#633107}
 		a:active{color:#999}
@@ -33,13 +42,20 @@
 
 		#median{padding:5px;text-align:center;line-height:35px;height:70px;border-top:2px dashed #ccc;border-bottom:2px dashed #ccc;margin-top:5px;margin-bottom:5px;font-size:1.3em;font-family:'Dosis';}
 		#femcontainer, #malecontainer{overflow:hidden;}
+		#social{cursor:pointer;left:calc(50% - 440px);z-index:1;position:fixed;float:left;margin-right:auto;margin-left:auto;text-align:center;font-size:2em;}
 
-		.iframe{width:100%;margin-bottom:30px;margin-top:30px;padding-top:30px;padding-bottom:30px;background:#eaeaea;}
+		.iframe{position:relative;z-index:200;width:100%;margin-bottom:30px;margin-top:30px;padding-top:30px;padding-bottom:30px;background:#eaeaea;}
 		.footnote{margin-bottom:10px;width:600px;margin-right:auto;margin-left:auto;font-size:14px;line-height:130%;}
 		.back{text-decoration:none;}
+		.jssocials-share{cursor:pointer;display:block;text-align:center;margin-left:auto;margin-right:auto;}
+		.sharelabel{color:#888;font-family:"Cabin";text-align:center;font-size:.6em;margin-left:auto;margin-right:auto;}
+		.quote{padding-top:10px;padding-bottom:0px;display:flex;align-items:center;width:600px;margin-left:auto;margin-right:auto;font-size:2em;font-family:'Overlock';}
+		.quotesource{padding-left:50px;padding-bottom:0px;margin-left:auto;margin-right:auto;font-size:.7em;font-family:'Cabin';color:#555;margin-top:7px;}
+		hr.style-two {margin:0;width:600px;margin-right:auto;margin-left:auto;border: 0;height: 2px;background: black;}
+		.gimg{z-index:-2;}
 
 		/* g1 */
-		.g1{}
+		.g1{overflow:hidden;}
 		.g1sub{max-width:900px;margin-right:auto;margin-left:auto;padding:10px;}		
 		.word{display:hidden;padding:2px 5px 2px 5px;border-radius:2px;font-family:'Dosis';margin:2px 0px 2px 0px;color:white;font-size:1.25em;}
 		.controls{padding-bottom:10px;font-family:'Cabin';font-size:1.2em;}
@@ -63,7 +79,7 @@
 
 		/* g2 */
 		.g2sub{max-width:750px;margin-right:auto;margin-left:auto;padding:10px}
-		.g2{padding-top:20px;font-family:'Cabin';font-size:1.3em;letter-spacing:2px;margin-left:auto;margin-right:auto;text-align:left;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;-o-user-select: none;user-select: none;}
+		.g2{z-index:-2;padding-top:20px;font-family:'Cabin';font-size:1.3em;letter-spacing:2px;margin-left:auto;margin-right:auto;text-align:left;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;-o-user-select: none;user-select: none;}
 		.adj{text-align:center;vertical-align:top;height:1.2em;padding-bottom:1px;display:inline-block;width:160px;border-bottom:2px solid black;font-family:'Dosis';font-size:1.2em;}
 		.descbutton{background:white;vertical-align:top;margin-top:9px;border:2px solid black;padding:6px;display:inline-block;text-align:center;cursor:pointer;color:black;font-family:'Cabin';}
 		.descbutton:hover{background:#bbb;color:white;}
@@ -106,6 +122,9 @@
 			h2{width:94%;margin-left:20px;font-size:1.0em;}
 			h3{width:94%;font-size:1.3em;}
 			#median{font-size:.9em;line-height:25px;height:50px}
+			#social{display:hidden;}
+			.quote{font-size:1.3em;width:90%;}
+			hr.style-two{width:90%;}
 			.leftcontrols{font-size:font-size:.8em;text-align:left;margin-left:30px;}
 			.sort2{font-size:.7em;}
 			.sort{font-size:.7em;}
@@ -142,6 +161,8 @@
 
 <body>
 
+<div id='social'><div class='sharelabel'>share</div><div id='sbox'></div></div>
+
 <h1>Dummy header dummy header dummy header</h1>
 <div>
 
@@ -149,9 +170,16 @@
 </p>
 <p>This research project isn't about Trump. It's about how people talk about Hillary Clinton. A month ago I was reading a critique of Clinton from the left that described her as aloof. Aloofness or something like it gets ascribed to Clinton a lot. My memory of the 2012 election is fuzzy, and I can't recall if Mitt Romney, who seems like a more apt target for this kind of criticism, was similarly described. This line of attack has always felt uncomfortably gendered to me, like Clinton is being punished because she doesn't meet our standards for female figures as empathetic and nurturing.<sup><a href="#f1" id="f1s">2</a></sup>
 </p>
+
+<div class='quote'><img src="graphs/dickens.png" width='150px' style='margin-left:0px;display:inline-block'/>
+	<div class='quoteholder'>
+	<div style='padding:20px;display:inline-block;'>"It was the best of times, it was the worst of times or some such thing."</div><br><span class='quotesource'>-Charles Dickens, Great Expectations</span></div>
+</div>
+<hr class='style-two'>
+
 <p>So I really started working on this project because I personally wanted to come to grips with gendered language in cultural discourse. In particular, I wanted to see how males and females are commonly described. So I collected a huge amount of text and in each one I looked for adjectives used in the same sentence as a male/female name, pronoun, or gendered noun (see more in the methodology section). Here are the six texts I used:
 </p>
-<ul>
+<ul class='list'>
 	<li>All of Jane Austen's books. Austen's books amount to about 650k words and were collected from the Gutenberg Project.</li>
 	<li>All of Charles Dickens's books. The considerably more verbose and longer-lived Dickens produced about 4 million words, also collected from the Gutenberg Project.</li>
 	<li>Slate articles from 1996-2000. This is the one corpus I didn't collect - it is part of the <a href="http://www.anc.org/data/oanc/contents/">Open American National Corpus</a> and contains about 4 million words worth of old Slate articles.</li>
@@ -161,7 +189,7 @@
 </ul>
 
 <p>My methodology is detailed at the end of this piece, but briefly:</p>
-<ul>
+<ul class='list'>
 	<li>First the text was tokenized, which just means that texts were divided into sentences and each sentence was divided into words.</li>
 	<li>Each word was assigned a part of speech like noun, adjective, verb, and so forth.</li>
 	<li>Each sentence was searched for a pronoun, name, or gendered noun. If one was found, all adjectives in the sentence were collected and associated with the appropriate gender.</li>
@@ -212,11 +240,12 @@
 
 <div>
 
-<p>You might notice that the most common adjectives for both men and women are positive (try sorting by gender bias and coloring the blocks by sentiment). But while the most common male adjectives don't follow any particular theme--creative, brutal, excellent, decent, iconic, genuine, etc.--the most frequent adjectives for females are almost exclusively concerned with physical appearance. Austen's books are an exception but across the rest of the texts women are commonly described as beautiful, attractive, sexy, hot, gorgeous, and so on. You'll see these words at the top of every wordlist in the visualization above. Look at the bottom pane and try to find similar adjectives for males. Aside from 'handsome', few of the most male-biased adjectives are about appearance.<sup><a href="#f2" id="f2s">3</a></sup>
+<p>You might notice that the most gender-biased adjectives for both men and women are positive (try sorting by gender bias and coloring the blocks by sentiment). But while the most common male adjectives don't follow any particular theme&mdash;creative, brutal, excellent, decent, iconic, genuine, etc.&mdash;the most frequent adjectives for females are almost exclusively concerned with physical appearance. Austen's books are an exception but across the rest of the texts women are commonly described as beautiful, attractive, sexy, hot, gorgeous, and so on. This is predictable but the extent of it surprised me. You'll see these words at the top of every wordlist in the visualization above. Look at the bottom pane and try to find similar adjectives for males. Aside from 'handsome', few of the most male-biased adjectives are about appearance.<sup><a href="#f2" id="f2s">3</a></sup>
 </p>
-<p>Try sorting by frequency and then looking for the first highly gender-biased word (dark purple coloring) for each sex. Again, there's not much of a pattern for men but for women it is likely an appearance focused adjective, a description of sexual availability (single/married are very common for women), or 'pregnant'. The most frequent words are often not very interesting (much, very, more). These are common adjectives that may not even be describing people in many cases. In many cases, they might be adverbs used to modify another another adjective that were incorrectly tagged as adjectives by my script.
+<p>Try sorting by frequency and then looking for the first highly gender-biased word (dark purple/orange coloring) for each sex.<sup><a href="#f4" id="f4s">4</a></sup> Again, there's not much of a pattern for men but for women it is likely an appearance-focused adjective, a description of sexual availability (single/married are very common descriptors for women), or 'pregnant'.</p>
+
 </p>
-<p>For a more whimsical look at the data, try the random description machine below. You may have to click it a few times to get something interesting, but this can be a useful way to get a snapshot look at each body of text.
+<p>For a more whimsical look at the data, try the random description machine below. Switch between hero/heroine and villain/villainess to get descriptions that use positive or negative words, respectively. Try a few descriptions in each text to get a snapshot look at the language that text uses (and if you're wondering why you get some boring nonsensical words, check footnote 4).
 </p>
 <div class='iframe g2'>
 	<div class='g2sub'>
@@ -250,9 +279,9 @@
 </div>
 
 <h3>Comparing gender<br>bias across texts</h3>
-<p>Finding large bodies of text to analyze can be a bit difficult, and some of my choices for this project are out of convenience. Dickens and Austen are both out of copyright and available in easy to process form on the internet. The Slate corpus was collected by someone else and by happy coincidence makes a nice stand-in for high-brow culture. I picked Twitter and the tv and movies subreddits both because they were readily available and as proxies for mass culture. That leaves kotakuinaction--a virulently sexist community that I thought would provide an interesting foil to the other three modern corpora.
+<p>Finding large bodies of text to analyze can be a bit difficult, and some of my choices for this project are out of convenience. Dickens and Austen are both out of copyright and available in easy to process form on the internet. The Slate corpus was collected by someone else and by happy coincidence makes a nice stand-in for media. I picked Twitter and the tv and movies subreddits both because they were readily available and as proxies for mass culture. That leaves kotakuinaction: a community more or less founded around members' deep-seated sexism that I thought would provide an interesting comparison to the other three modern corpora.
 </p>
-<p>In a somewhat terrifying twist, the gamergate corpus is not obviously more sexist than the other two mass culture corpora. All three primarily ascribe physical adjectives to women along with a variety of unfavorable mental characteristics. This next interactive lets you compare how words are used across the six bodies of text. As you start to type on the input line, you'll see a list of adjectives that appear in the dataset. Hit the submit button to see the gender bias of a particular adjective in each dataset.
+<p>In a somewhat terrifying twist, the gamergate corpus is not obviously more sexist than the other two mass culture corpora. All three primarily ascribe physical adjectives to women along with a variety of unfavorable mental characteristics. This next interactive lets you compare how words are used across the six bodies of text. As you start to type on the input line, you'll see a list of adjectives that appear in the dataset. Hit the submit button to see the gender bias of a particular adjective in each dataset. You can also just watch as it displays random words.
 </p>
 <div class='iframe g3'>
 	<div class='g3sub'>
@@ -271,27 +300,27 @@
 	</div>
 </div>
 
-<p>Keep in mind that rare adjectives might only occur a few times in a particular text (words that appeared fewer than 4 times in a single body of text were excluded from the dataset). Words that appear only rarely may be biased more out of coincidence than anything else. Words that appear commonly, on the other hand, may be evidence of a significant phenomenon even if the gender bias shown is only slight. 'crazy', for example, appears to be only slightly tilted towards describing women in the gamergate and Twitter datasets, but in both texts appears more than three thousand times, making the estimate of bias quite reliable. Of course, consistency across datasets is suggestive as well. 'Vapid' has a strong, consistent bias across all of the modern datasets.
+<p>Keep in mind that rare adjectives might only occur a few times in a particular text (words that appeared fewer than four times in a single body of text were excluded from the dataset). Words that appear only rarely may be biased more out of coincidence than anything else. Consistency across datasets, on the other hand, is suggestive of a significant trend. 'Vapid' has a strong, consistent bias across all of the modern datasets.
 </p>
 
-<h3>Trying to put some numbers<br>on the bias in each text</h3>
+<h3>Average sentiment varies across texts:<br>mass culture texts are meaner</h3>
 
-<p>To this point I haven't tried to summarize the datasets in any way and for good reason - it's not easy to describe how men and women are described in each dataset numerically. The one measure we do have is sentiment. Sentiment is measured from -1, indicating a negative word, to +1. 'Horrific' has a sentiment of -1 while 'perfect' has a sentiment of 1.
+<p>To this point I haven't tried to summarize the datasets in any way. It's not easy to summarize how men and women are described in each dataset numerically. The one measure we do have is sentiment. Sentiment is measured from -1, indicating a negative word, to +1. 'Horrific' has a sentiment of -1 while 'perfect' has a sentiment of 1. The bar graph below shows average sentiment in each text by gender.
 </p>
 
-<div class='iframe'>
+<div class='iframe gimg'>
 	<div class='images'>
 		<h2>Average sentiment of text by gender</h2>
 		<img src="graphs/100p.png" >
 	</div>
 </div>
 
-<p>This graph suggests that every body of text is on average positive, and that there is little variation between the genders in any corpus save for the tv/movies subreddits. But this is a little misleading because of extremely common but essentially insignificant words like 'much,' which has a sentiment of 0.2. This may not seem like a big deal but much appears more than 10,000 times in some texts, dramatically increasing the average sentiment of the dataset.</p> 
+<p>This graph suggests that every text is on average positive, and that there is little variation between the genders in any corpus save for the tv/movies subreddits. But this is a little misleading because of extremely common but essentially insignificant words like 'much,' which has a sentiment of 0.2. This may not seem like a big deal but 'much' appears more than 10,000 times in some texts, dramatically increasing the average sentiment of the dataset.<sup><a href="#f5" id="f5s">5</a></sup></p> 
 
 <p>To get a more accurate read on the data, it makes sense to exclude extremely common words like 'much'. How many common words? Below I show what happens when I exclude the most common 1%, 2%, and 3% of words. From examining the words that are excluded at each step, the 2% graph is the most intuitively appealing to me, but a case could be made for any of the three (note that these three graphs are on a different scale than the one above, but are all on the same scale as each other).</p>
 
 
-<div class='iframe'>
+<div class='iframe gimg'>
 	<div class='images'>
 		<h2>Average sentiment after removing the most common 1% of words</h2>
 		<img src="graphs/99p.png" />
@@ -302,33 +331,34 @@
 	</div>
 </div>
 
-<p>These graphs are much more interesting. While they are a bit sensitive to the threshold we choose to exclude words, two things jump out at me:
+<p>These graphs are much more interesting. While they are a bit sensitive to the threshold we choose to exclude words, two observations seem safe:
 </p>
-<ul>
+<ul class='list'>
 	<li>Jane Austen's works is the most overall positive text, followed closely by Slate. Slate has a distinct pro-female bias.</li>
-	<li>The three modern mass culture texts are fairly negative, with negative sentiment overall in some cases. For the most part all three of these texts describe males more positively than females, but often negatively describe both genders.</li>
+	<li>The three modern mass culture texts are more negative than the others, with negative sentiment overall in some cases. For the most part all three of these texts describe males more positively than females, but often negatively describe both genders.</li>
 </ul>
 
-<p>Again, it's not obvious to me that the gamergate corpus is dramatically more sexist than the other reddit corpus or the Twitter corpus, which just goes to show that a remarkable degree of misogyny is institutionalized in our culture.</p>
+<p>Again, it's not obvious to me that the gamergate corpus is dramatically more sexist than the other reddit corpus or the Twitter corpus, which just goes to show that a remarkable degree of misogyny is culturally pervasive.</p>
 
 <h3>Methodology</h3>
 
-<p>I used the NLTK and TextBlob packages for Python to do all the text processing for this project. The idea was to produce something reasonably accurate in a quick and dirtyw ay, without having to resort to a lot of complicated grammar parsing.</p>
+<p>I used the NLTK and TextBlob packages for Python to do all the text processing for this project. The idea was to produce something reasonably accurate in a quick and dirty way, without having to resort to a lot of complicated grammar parsing.</p>
 
-<p>First texts were tokenized and tagged using NLTK's default part of speech tagger. This tagger seems reasonable enough and I didn't feel a need to evaluate others, but there are a few misses I noticed. 'Fat' and 'dainty' are two cases I noticed where the tagger frequently tagged words as nouns when they should have been adjectives.</p>
+<p>First texts were tokenized and tagged using NLTK's default part of speech tagger. This tagger seems reasonable enough and I didn't feel a need to evaluate others, but there are a few misses I noticed. 'Dainty' is one case where the tagger frequently mistook an adjective for a noun.</p>
 
-<p>One way to approach finding adjectives that describe males/females would be to parse sentences for noun phrases/pronoun phrases. This approach requires a significant amount of faith in the tagger and also on anticipating a number of different ways that such phrases can be constructed. I opted to do something much simpler and hope for approximately correct results. I simply separated each text into sentences and then looked in each sentence for a gendered noun, a pronoun, or a name. Using NLTK's name corpus (divided by gender). If a sentence contained both a male and a female subject, it was thrown out. If it contained only female or male subjects, adjectives in the sentence were collected and counted. Thus, some adjectives did not require a person at all: 'The man sat on the dainty pillow' associates 'dainty' adds one use of 'dainty' to the male column for that text.</p>
+<p>One way to approach finding adjectives that describe males/females would be to parse sentences for noun phrases/pronoun phrases. This approach requires a significant amount of faith in the tagger and also in anticipating a number of different ways that such phrases can be constructed. I opted to do something much simpler and hope for approximately correct results. I simply separated each text into sentences and then looked in each sentence for a gendered noun, a pronoun, or a name. I used NLTK's corpus of names by gender to determine if a name was male or female (last names were discarded). If a sentence contained both a male and a female subject, it was thrown out. If it contained only female or male subjects, adjectives in the sentence were collected and counted. Thus, some adjectives did not describe a person at all: "The man sat on the dainty pillow" adds one use of 'dainty' to the male column for that text. This approach works better on very large texts, which is why many existing corpora available in NLTK for example were not options for me.</p>
 
-<p>Once all the adjectives were collected, they were stemmed using NLTK's Lancaster stemmer, which gave me better results on a number of words I tested with. Using the stemmed words I combined words like 'intelligent' and 'intelligently' for example. This didn't always work so you may still find more than one form of certain words.</p>
+<p>Once all the adjectives were collected, they were stemmed using NLTK's Lancaster stemmer, which gave me better results on a number of words I tested with than the other canned options. Using the stemmed words I combined words like 'intelligent' and 'intelligently' for example. This didn't always work so you may still find more than one form of certain words.</p>
 
-<p>Finally, words were assigned a sentiment using TextBlob's sentiment method. Gender bias is the ratio of the %age of males described using a word to the %age of females described with that word.</p>
+<p>Finally, words were assigned a sentiment using TextBlob's sentiment method. Gender bias is the ratio of the percentage of males described using a word to the percentage of females described with that word. Words used fewer than four times in a text were dropped from the dataset along with words that have a sentiment of zero. Again, this is an attempt to eliminate adverbs or common adjectives that don't really describe people. Unfortunately it catches a few interesting words too, but this winnowing is necessary to help with visual interpretation.</p>
 
 <h3>Footnotes</h3>
 
 <div class='footnote' id='f3' />1. More aptly described by  <a href="http://theslot.jezebel.com/every-word-jezebel-used-to-describe-donald-trump-in-201-1746957022">Jezebel.com</a>.<a href="#f3s" class="back">&uarr;</a></div>
-<div class='footnote' id='f1' />2. I feel the same way about calling Clinton 'calculating' or similar. Not because it isn't fair; I have read many of her emails and her approach to politics is pretty darn political, but calculating is just a euphemism for political triangulation, and I honestly can't tell if we are similarly critical of male politicians who are basically just practicing politics. <a href="#f1s" class="back">&uarr;</a></div>
-<div class='footnote' id='f2' />3. <a href="https://twitter.com/femscriptintros">Which is all pretty predictable</a>.<a href="#f2s" class="back">&uarr;</a></div>
-
+<div class='footnote' id='f1' />2. I feel the same way about calling Clinton 'calculating' or similar. Not because it isn't fair; I agree that she has a cautious, maybe overly paranoid approach to politics, but calculating is just a euphemism for political, and I'm honestly not sure if we are similarly critical of male politicians who are basically just practicing politics. <a href="#f1s" class="back">&uarr;</a></div>
+<div class='footnote' id='f2' />3. When I first started exploring the dataset visually I was reminded of <a href="https://twitter.com/femscriptintros">female script intros</a>.<a href="#f2s" class="back">&uarr;</a></div>
+<div class='footnote' id='f4' />4. The most frequent words are often not very interesting (much, very, more). These are common adjectives that are either being used as adverbs to modify another adjective or which are describing something else in the sentence, a detail that is lost on my naive approach to parsing the text. See the section on average sentiment for more.<a href="#f4s" class="back">&uarr;</a></div>
+<div class='footnote' id='f5' />5. It just so happens that these modifier words mostly have positive sentiment. Reflecting the fact that they don't really describe people, you can see that the male/female ratio for these words (try 'many', own', 'much', and 'other') is generally close to one.<a href="#f5s" class="back">&uarr;</a></div>
 
 </div>
 </body>
@@ -363,6 +393,11 @@ var circlemaskgroup=paper.group()
 circlemaskgroup.attr({mask:circlemasker})
 maskgroup.attr({mask:wordmasker2})
 setupcorpus(austen,'austen')
+
+$("#sbox").jsSocials({
+    showLabel: false,
+    shares: ["twitter", "facebook", "linkedin"]
+});
 
 $(document).on('tap',function(){
     $('#tooltip').css("top", -9999);
@@ -696,10 +731,10 @@ $(document).ready(function() {
 			}) )
 		}
 	})
+	start()
 	populateg3(words[getRandomInt(0,words.length-1)])
 })
 
-start()
 
 function start(){
 	paper.line(2,getcoord(2),900,getcoord(2)).attr({'stroke-width':1,stroke:'#ddd','shape-rendering':'crispEdges'})
@@ -732,12 +767,12 @@ function start(){
 	mtext.selectAll("tspan:not(:first-child)").attr({fontFamily:'Cabin'})
 	paper.text(720,550,'Twitter').attr({'text-anchor':'middle','font-family':'Cabin',class:'labels'})
 
-	var desc1=paper.text(6,6.5,'describes females').attr({'text-anchor':'start','font-family':'Cabin','font-size':'1em','fill':'white'})
-	var desc2=paper.text(6,520.5,'describes males').attr({'text-anchor':'start','font-family':'Cabin','font-size':'1em','fill':'white'})
+	var desc1=paper.text(6,6.5,'describes females').attr({'text-anchor':'start','font-family':'Cabin','font-size':'1em','fill':'white',d1:1})
+	var desc2=paper.text(6,520.5,'describes males').attr({'text-anchor':'start','font-family':'Cabin','font-size':'1em','fill':'white',d2:1})
 	paper.line(2,getcoord(1),900,getcoord(1)).attr({'stroke-width':2,stroke:'black','shape-rendering':'crispEdges'})
 
-	paper.rect(2,-11,desc1.getBBox().x2+2,22,4,4).attr({fill:mfscale[8],opacity:'.95','shape-rendering':'crispEdges'})
-	paper.rect(2,503,desc2.getBBox().x2+2,22,4,4).attr({fill:mfscale[0],opacity:'.95','shape-rendering':'crispEdges'})
+	paper.rect(2,-11,desc1.getBBox().width+7,22,4,4).attr({fill:mfscale[8],opacity:'.95','shape-rendering':'crispEdges'})
+	paper.rect(2,503,desc2.getBBox().width+7,22,4,4).attr({fill:mfscale[0],opacity:'.95','shape-rendering':'crispEdges'})
 
 	paper.add(desc1)
 	paper.add(desc2)
