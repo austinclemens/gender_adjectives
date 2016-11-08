@@ -4,7 +4,7 @@
 
 	<title>Exploring Gendered Language</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<meta name=”description” content=”Exploring Gendered Language in Mass Culture, the Media, and Victorian Literature. A data-driven look at the adjectives we use to describe women and men by Austin Clemens">
+	<meta name=”description” content=”Exploring Gendered Language in Mass Culture, the Media, and Victorian Literature. A data-driven look at the adjectives we use to describe women and men.">
 	<meta charset="utf-8"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -16,6 +16,12 @@
 	<meta property=”og:type” content=”article”/>
 	<meta property=”og:image” content="graphs/social.png"/>
 	<meta property=”og:description” content=”A data-driven look at the adjectives we use to describe women and men.”/>
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@austinclemens2">
+	<meta name="twitter:creator" content="@austinclemens2">
+	<meta name="twitter:title" content="Exploring Gendered Language in Mass Culture, the Media, and Victorian Literature">
+	<meta name="twitter:description" content="A data-driven look at the adjectives we use to describe women and men.">
+	<meta name="twitter:image" content="file:///Users/austinc/Desktop/gender_adjectives/graphs/social.png">
 	<link href="https://fonts.googleapis.com/css?family=Overlock|Cabin|Dosis|Oxygen:400,700|PT+Serif" rel="stylesheet">
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">	
 	<link rel="stylesheet" href="lib/select-css.css">
@@ -680,13 +686,24 @@ function populate(){
 	var corpus=$('#corpus').val()
 	corpus=corpora[corpus]
 
+	var afreq=[]
+	for(var i=0;i<corpus.length;i++){
+		afreq.push(corpus[i][1])
+	}
+
+	function sortNumber(a,b) {
+    	return a - b;
+	}
+
+	afreq.sort(sortNumber)
+
 	var corp2=[]
 	var female_total=0
 	var male_total=0
 	if(gender==='hero' | gender==='heroine'){
 		var corp2=[]
 		for(var i=0;i<corpus.length;i++){
-			if(corpus[i][4]>0){
+			if(corpus[i][4]>0 & corpus[i][1]<afreq[parseInt(.98*afreq.length)]){
 				corp2.push(corpus[i])
 				female_total=female_total+parseFloat(corpus[i][2])
 				male_total=male_total+parseFloat(corpus[i][3])
@@ -695,7 +712,7 @@ function populate(){
 	} else {
 		var corp2=[]
 		for(var i=0;i<corpus.length;i++){
-			if(corpus[i][4]<0){
+			if(corpus[i][4]<0 & corpus[i][1]<afreq[parseInt(.98*afreq.length)]){
 				corp2.push(corpus[i])
 				female_total=female_total+corpus[i][2]
 				male_total=male_total+corpus[i][3]
